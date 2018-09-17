@@ -1,0 +1,11 @@
+C:\Users\Lloyd\source\repos\GUIform\GUIform\bin\Debug\GUIform.exe.config
+C:\Users\Lloyd\source\repos\GUIform\GUIform\bin\Debug\GUIform.exe
+C:\Users\Lloyd\source\repos\GUIform\GUIform\bin\Debug\GUIform.pdb
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csprojAssemblyReference.cache
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.TitleScreen.resources
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.Game1.resources
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.Properties.Resources.resources
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csproj.GenerateResource.cache
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csproj.CoreCompileInputs.cache
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.exe
+C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.pdb
