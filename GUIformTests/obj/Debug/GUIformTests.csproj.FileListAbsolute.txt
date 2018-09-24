@@ -1,0 +1,17 @@
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\GUIformTests.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\GUIformTests.pdb
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\GUIform.exe
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\GUIform.pdb
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\GUIform.exe.config
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\obj\Debug\GUIformTests.csprojAssemblyReference.cache
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\obj\Debug\GUIformTests.csproj.CoreCompileInputs.cache
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\obj\Debug\GUIformTests.csproj.CopyComplete
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\obj\Debug\GUIformTests.dll
+C:\Users\Lloyd\source\repos\GUIform\GUIformTests\obj\Debug\GUIformTests.pdb
