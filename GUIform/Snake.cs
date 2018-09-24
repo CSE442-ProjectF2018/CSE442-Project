@@ -41,6 +41,5 @@ namespace GUIform
             speed += s;
             return;
         }
-        
     }
 }
