@@ -1,0 +1,3 @@
+You will see a screen with a picture of a snake.
+Click the "Play" button.
+A second window will open up. You will see a grid with a score counter.
