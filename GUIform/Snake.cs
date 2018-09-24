@@ -41,6 +41,21 @@ namespace GUIform
             speed += s;
             return;
         }
-        
+
+        public void spawn()
+        {
+
+        }
+
+        public void eatapple()
+        {
+
+        }
+
+        public void death()
+        {
+
+        }
+
     }
 }
