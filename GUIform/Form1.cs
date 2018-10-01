@@ -15,13 +15,20 @@ namespace GUIform
         public TitleScreen()
         {
             InitializeComponent();
+            HomeSreen.Visible = true;
         }
 
-        private void PlayButton_Click(object sender, EventArgs e)
+
+        private void TitleScreen_Load(object sender, EventArgs e)
         {
-            Hide();
-            Game1 game = new Game1();
-            game.Show();
+
+        }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            HomeSreen.Visible = false;
+            GameScreen.Visible = true;
+
         }
     }
 }

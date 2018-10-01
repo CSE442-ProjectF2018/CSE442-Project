@@ -1,9 +1,0 @@
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.exe.config
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.exe
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.pdb
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csprojAssemblyReference.cache
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Properties.Resources.resources
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.GenerateResource.cache
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CoreCompileInputs.cache
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.exe
-c:\users\lloyd\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.pdb
