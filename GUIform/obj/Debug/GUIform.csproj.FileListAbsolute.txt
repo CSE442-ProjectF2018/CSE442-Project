@@ -9,3 +9,14 @@ C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csproj.GenerateRes
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csproj.CoreCompileInputs.cache
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.exe
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.pdb
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\bin\Debug\GUIform.exe.config
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\bin\Debug\GUIform.exe
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\bin\Debug\GUIform.pdb
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.csprojAssemblyReference.cache
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.TitleScreen.resources
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.Game1.resources
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.Properties.Resources.resources
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.csproj.GenerateResource.cache
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.csproj.CoreCompileInputs.cache
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.exe
+C:\Users\ThankamAbish\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.pdb

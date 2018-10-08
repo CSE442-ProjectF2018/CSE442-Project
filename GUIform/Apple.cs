@@ -16,13 +16,28 @@ namespace GUIform
 
         public void placeA(int i, int j)
         {
-            if(Master.Apples > 0)
+            if(Master.Apples > 0)   //Apples suser has left
             {
                 x = i;
                 y = j;
                 Master.Apples--;
             }
             return;
+        }
+
+        public int getX()
+        {
+            return x;
+        }
+
+        public int getY()
+        {
+            return y;
+        }
+
+        public System.Drawing.Color selectColor(System.Drawing.Color color)
+        {
+            return color;
         }
     }
 
