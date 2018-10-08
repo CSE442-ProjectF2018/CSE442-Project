@@ -7,3 +7,5 @@ C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.csproj.CoreCompile
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.exe
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.pdb
 C:\Users\Lloyd\source\repos\GUIform\GUIform\obj\Debug\GUIform.Game.resources
+C:\Users\Dylan\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.exe
+C:\Users\Dylan\Source\Repos\CSE442-Project\GUIform\obj\Debug\GUIform.pdb
