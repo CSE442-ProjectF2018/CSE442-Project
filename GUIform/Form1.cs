@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace GUIform
 {
     enum BType { apple, snake, wall, free };
     enum direction { left, right, up, down };
+    
 
     public partial class Game : Form
     {
@@ -15,8 +17,12 @@ namespace GUIform
 
         int posx = 32;
         int posy = 32;
-        int mx = -100;
-        int my = -100;
+        int mx = -100;  //mouse x
+        int my = -100;  //mouse y 
+
+        //sound stuff
+        SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
+        
 
         public Game()
         {
@@ -36,6 +42,8 @@ namespace GUIform
         {
             HomeSreen.Visible = false;
             GameScreen.Visible = true;
+
+            s_PlayButton.Play();
 
             tt.Interval = 1000;
             tt.Tick += new EventHandler(timer1_Tick);
@@ -67,6 +75,10 @@ namespace GUIform
         private void Grid_Click(object sender, EventArgs e)
         {
             MouseEventArgs mE = e as MouseEventArgs;
+            /*When we receive click coordinates they wont be multiples of 32
+             So we divide by 32 (The remainder is negligible) and remultiply by 32 to get multiple 
+             We want coordinates to be multiples of 32 so they allign with the grid when placed
+             */
             mx = mE.X;
             my = mE.Y;
             mx = (mx / 32) * 32;

@@ -11,5 +11,16 @@ namespace GUIform
     {
         public BType bt;
         public int x, y;
+
+        //Default contructor
+        public Block()
+        {
+
+        }
+        //Constructor where we immediately assign Btype
+        public Block(BType b)
+        {
+            bt = b;
+        }
     }
 }
