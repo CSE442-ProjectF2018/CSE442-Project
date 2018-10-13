@@ -28,7 +28,7 @@ namespace GUIform
             buildMap();
         }
 
-        public buildMap()
+        public void buildMap()
         {
             Block[,] info = new Block[dimension,dimension];
 

@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/GUIform/v15/Server/sqlite3/storage.ide-shm
+/.vs/GUIform/v15/Server/sqlite3/storage.ide-wal
+/.vs/CSE442-Project/v15/.suo
