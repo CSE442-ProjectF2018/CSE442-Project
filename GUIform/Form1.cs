@@ -11,25 +11,24 @@ namespace GUIform
 
     public partial class Game : Form
     {
-        Timer tt = new Timer();
-        Timer mt = new Timer();
-        int time = 0;
-
-        int posx = 32;
-        int posy = 32;
-        int mx = -100;  //mouse x
-        int my = -100;  //mouse y 
-
+        
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
+
+        Map _m;
         
 
         public Game()
         {
             InitializeComponent();
-            GameScreen.Visible = false;
-            HomeSreen.Visible = true;
-            TimeValue.Text = time.ToString();
+
+            //Excahnges the current screen/panel.
+            titleScreen.Visible = true;
+            gameScreen.Visible = false;
+
+            //Loads the sound ahead of time, in attempt to play it.
+            s_PlayButton.Load();
+
         }
 
 
@@ -40,50 +39,82 @@ namespace GUIform
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            HomeSreen.Visible = false;
-            GameScreen.Visible = true;
-
+            //Plays apple crunch sound.
             s_PlayButton.Play();
 
-            tt.Interval = 1000;
-            tt.Tick += new EventHandler(timer1_Tick);
-            tt.Start();
+            //Generates a new default map.
+            _m = new Map();
 
-            mt.Interval = 500;
-            mt.Tick += new EventHandler(MoveTimer_Tick);
-            mt.Start();
+            //Exchanges the current screen panel.
+            titleScreen.Visible = false;
+            gameScreen.Visible = true;
+
+            
+            
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private bool sm = false;
+        System.Windows.Forms.Panel testPanel = new System.Windows.Forms.Panel();
+        
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            time++;
-            TimeValue.Text = time.ToString();
+            
+
+            switch (sm)
+            {
+                case true:
+                    snakeGrid.Controls.Remove(testPanel);
+                    snakeGrid.Controls.Add(testPanel, 5, 8);
+                    sm = !sm;
+
+                    break;
+                case false:
+                    snakeGrid.Controls.Remove(testPanel);
+                    snakeGrid.Controls.Add(testPanel, 8, 5);
+                    sm = !sm;
+
+                    break;
+            }
+
+
         }
 
-        private void Grid_Paint(object sender, PaintEventArgs e)
+        private void rescanMap()
         {
-            e.Graphics.FillRectangle(Brushes.Green, posx, posy, 32, 32);
-            e.Graphics.FillRectangle(Brushes.Red, mx, my, 32, 32);
+            Block currentBlock;
+            snakeGrid.Controls.Clear();
+            for(int i = 0; i < 15; ++i)
+            {
+                for(int j = 0; j < 15; ++j)
+                {
+                    currentBlock = _m.getBlockAt(i, j);
+
+                    if(currentBlock.getType().Equals("Apple"))
+                    {
+                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                        snakeGrid.Controls.Add(test, i, j);
+                        test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
+                        test.Margin = new System.Windows.Forms.Padding(0);
+                        //MessageBox.Show(string.Format("Apple reached in scan"));
+                    }
+                }
+            }
         }
 
-        private void MoveTimer_Tick(object sender, EventArgs e)
+        private void snakeGrid_Click(object sender, EventArgs e)
         {
-            posx += 32;
-            Grid.Refresh();
-        }
+            Point p = snakeGrid.PointToClient(MousePosition);
+            //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
 
-        private void Grid_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs mE = e as MouseEventArgs;
-            /*When we receive click coordinates they wont be multiples of 32
-             So we divide by 32 (The remainder is negligible) and remultiply by 32 to get multiple 
-             We want coordinates to be multiples of 32 so they allign with the grid when placed
-             */
-            mx = mE.X;
-            my = mE.Y;
-            mx = (mx / 32) * 32;
-            my = (my / 32) * 32;
-            Grid.Refresh();
+            p.X = (int)(((double)15 / 297) * p.X);
+            p.Y = (int)(((double)15 / 297) * p.Y);
+
+            Block test = new Block("Apple");
+
+            _m.setBlockAt(p.X, p.Y, test);
+            rescanMap();           
+
         }
     }
 }

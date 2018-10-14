@@ -91,6 +91,8 @@
   <ItemGroup>
     <Content Include="apple.cur" />
     <Content Include="Assets\Audio\apple_crunch.wav" />
+    <None Include="Images\Grid.png" />
+    <None Include="Images\snek2.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
