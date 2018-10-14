@@ -11,15 +11,7 @@ namespace GUIform
 
     public partial class Game : Form
     {
-        Timer tt = new Timer();
-        Timer mt = new Timer();
-        int time = 0;
-
-        int posx = 32;
-        int posy = 32;
-        int mx = -100;  //mouse x
-        int my = -100;  //mouse y 
-
+        
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
         
@@ -27,9 +19,11 @@ namespace GUIform
         public Game()
         {
             InitializeComponent();
-            GameScreen.Visible = false;
-            HomeSreen.Visible = true;
-            TimeValue.Text = time.ToString();
+
+            titleScreen.Visible = true;
+            gameScreen.Visible = false;
+            s_PlayButton.Load();
+
         }
 
 
@@ -40,50 +34,55 @@ namespace GUIform
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            HomeSreen.Visible = false;
-            GameScreen.Visible = true;
-
+            
             s_PlayButton.Play();
 
-            tt.Interval = 1000;
-            tt.Tick += new EventHandler(timer1_Tick);
-            tt.Start();
+            titleScreen.Visible = false;
+            gameScreen.Visible = true;
 
-            mt.Interval = 500;
-            mt.Tick += new EventHandler(MoveTimer_Tick);
-            mt.Start();
+            
+            snakeGrid.Controls.Add(testPanel, 5, 8);
+            testPanel.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
+            testPanel.Margin = new System.Windows.Forms.Padding(0);
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private bool sm = false;
+        System.Windows.Forms.Panel testPanel = new System.Windows.Forms.Panel();
+        
+
+        private void button1_Click(object sender, EventArgs e)
         {
-            time++;
-            TimeValue.Text = time.ToString();
+            
+
+            switch (sm)
+            {
+                case true:
+                    snakeGrid.Controls.Remove(testPanel);
+                    snakeGrid.Controls.Add(testPanel, 5, 8);
+                    sm = !sm;
+
+                    break;
+                case false:
+                    snakeGrid.Controls.Remove(testPanel);
+                    snakeGrid.Controls.Add(testPanel, 8, 5);
+                    sm = !sm;
+
+                    break;
+            }
+
+
         }
 
-        private void Grid_Paint(object sender, PaintEventArgs e)
+        private void snakeGrid_Click(object sender, EventArgs e)
         {
-            e.Graphics.FillRectangle(Brushes.Green, posx, posy, 32, 32);
-            e.Graphics.FillRectangle(Brushes.Red, mx, my, 32, 32);
-        }
-
-        private void MoveTimer_Tick(object sender, EventArgs e)
-        {
-            posx += 32;
-            Grid.Refresh();
-        }
-
-        private void Grid_Click(object sender, EventArgs e)
-        {
-            MouseEventArgs mE = e as MouseEventArgs;
-            /*When we receive click coordinates they wont be multiples of 32
-             So we divide by 32 (The remainder is negligible) and remultiply by 32 to get multiple 
-             We want coordinates to be multiples of 32 so they allign with the grid when placed
-             */
-            mx = mE.X;
-            my = mE.Y;
-            mx = (mx / 32) * 32;
-            my = (my / 32) * 32;
-            Grid.Refresh();
+            Point p = snakeGrid.PointToClient(MousePosition);
+            //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
+            p = new Point(p.X % 15, p.Y % 15);
+            MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
+            snakeGrid.Controls.Remove(testPanel);
+            
+            
+            snakeGrid.Controls.Add(testPanel, p.X, p.Y);
         }
     }
 }

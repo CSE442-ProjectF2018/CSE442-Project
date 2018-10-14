@@ -68,5 +68,25 @@ namespace GUIform.Properties {
                 return ResourceManager.GetStream("apple_crunch", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Grid {
+            get {
+                object obj = ResourceManager.GetObject("Grid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap snek2 {
+            get {
+                object obj = ResourceManager.GetObject("snek2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
