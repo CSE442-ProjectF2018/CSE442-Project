@@ -9,13 +9,16 @@ namespace GUIform
     class Map
     {
         //Default dimension is 16x16.
-        private int dimension = 16;
+        private int dimension = 15;
         //Default map type(empty). Int: for use with switch statement.
         private int mapType = 0;
+
+        private Block[,] info;
         
         //If no arguments given, use default arguments.
         public Map()
         {
+            info = new Block[dimension, dimension];
             buildMap();
         }
         
@@ -28,10 +31,18 @@ namespace GUIform
             buildMap();
         }
 
+        public Block getBlockAt(int i, int j)
+        {
+            return info[i, j];
+        }
+
+        public void setBlockAt(int i, int j, Block t)
+        {
+            info[i, j] = t;
+        }
+
         public void buildMap()
         {
-            Block[,] info = new Block[dimension,dimension];
-
             for(int i = 0; i < dimension; ++i)
             {
                 for(int j = 0; j < dimension; ++j)

@@ -14,14 +14,19 @@ namespace GUIform
         
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
+
+        Map _m;
         
 
         public Game()
         {
             InitializeComponent();
 
+            //Excahnges the current screen/panel.
             titleScreen.Visible = true;
             gameScreen.Visible = false;
+
+            //Loads the sound ahead of time, in attempt to play it.
             s_PlayButton.Load();
 
         }
@@ -34,16 +39,18 @@ namespace GUIform
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            
+            //Plays apple crunch sound.
             s_PlayButton.Play();
 
+            //Generates a new default map.
+            _m = new Map();
+
+            //Exchanges the current screen panel.
             titleScreen.Visible = false;
             gameScreen.Visible = true;
 
             
-            snakeGrid.Controls.Add(testPanel, 5, 8);
-            testPanel.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
-            testPanel.Margin = new System.Windows.Forms.Padding(0);
+            
         }
 
         private bool sm = false;
@@ -73,16 +80,41 @@ namespace GUIform
 
         }
 
+        private void rescanMap()
+        {
+            Block currentBlock;
+            snakeGrid.Controls.Clear();
+            for(int i = 0; i < 15; ++i)
+            {
+                for(int j = 0; j < 15; ++j)
+                {
+                    currentBlock = _m.getBlockAt(i, j);
+
+                    if(currentBlock.getType().Equals("Apple"))
+                    {
+                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                        snakeGrid.Controls.Add(test, i, j);
+                        test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
+                        test.Margin = new System.Windows.Forms.Padding(0);
+                        //MessageBox.Show(string.Format("Apple reached in scan"));
+                    }
+                }
+            }
+        }
+
         private void snakeGrid_Click(object sender, EventArgs e)
         {
             Point p = snakeGrid.PointToClient(MousePosition);
             //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
-            p = new Point(p.X % 15, p.Y % 15);
-            MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
-            snakeGrid.Controls.Remove(testPanel);
-            
-            
-            snakeGrid.Controls.Add(testPanel, p.X, p.Y);
+
+            p.X = (int)(((double)15 / 297) * p.X);
+            p.Y = (int)(((double)15 / 297) * p.Y);
+
+            Block test = new Block("Apple");
+
+            _m.setBlockAt(p.X, p.Y, test);
+            rescanMap();           
+
         }
     }
 }

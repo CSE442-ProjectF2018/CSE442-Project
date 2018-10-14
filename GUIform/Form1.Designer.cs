@@ -34,9 +34,7 @@
             this.snakeGrid = new System.Windows.Forms.TableLayoutPanel();
             this.titleScreen = new System.Windows.Forms.Panel();
             this.playButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.gameScreen.SuspendLayout();
-            this.snakeGrid.SuspendLayout();
             this.titleScreen.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +78,6 @@
             this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.snakeGrid.Controls.Add(this.button2, 4, 7);
             this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.snakeGrid.Location = new System.Drawing.Point(12, 12);
             this.snakeGrid.Name = "snakeGrid";
@@ -128,15 +125,6 @@
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(79, 139);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(14, 14);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(624, 321);
@@ -146,7 +134,6 @@
             this.Name = "Game";
             this.Text = "Snek Snak";
             this.gameScreen.ResumeLayout(false);
-            this.snakeGrid.ResumeLayout(false);
             this.titleScreen.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -160,7 +147,6 @@
         private System.Windows.Forms.Panel gameScreen;
         private System.Windows.Forms.TableLayoutPanel snakeGrid;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
     }
 }
 
