@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Block.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,10 +90,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apple.cur" />
-    <Content Include="Assets\Audio\apple_chew.wav" />
     <Content Include="Assets\Audio\apple_crunch.wav" />
-    <Content Include="Assets\Audio\apple_crunch2.wav" />
-    <Content Include="Assets\Audio\BGM1.wav" />
+    <None Include="Images\Grid.png" />
+    <None Include="Images\snek2.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

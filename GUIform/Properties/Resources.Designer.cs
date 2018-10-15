@@ -63,15 +63,6 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream apple_chew {
-            get {
-                return ResourceManager.GetStream("apple_chew", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
         internal static System.IO.UnmanagedMemoryStream apple_crunch {
             get {
                 return ResourceManager.GetStream("apple_crunch", resourceCulture);
@@ -79,20 +70,22 @@ namespace GUIform.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream apple_crunch2 {
+        internal static System.Drawing.Bitmap Grid {
             get {
-                return ResourceManager.GetStream("apple_crunch2", resourceCulture);
+                object obj = ResourceManager.GetObject("Grid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream BGM1 {
+        internal static System.Drawing.Bitmap snek2 {
             get {
-                return ResourceManager.GetStream("BGM1", resourceCulture);
+                object obj = ResourceManager.GetObject("snek2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
