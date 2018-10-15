@@ -13,13 +13,13 @@ namespace GUIform.Tests
     public class SnakeTests2
     {
 
-        /// set the x coordinate for a node
+        /// set the x coordinate for a SnakeNode
         [TestMethod()]
         public void checkSnakeNodeX()
         {
             int x = 0;
 
-            SnakeNode chunk = new SnakeNode();
+            SnakeNode* chunk = new SnakeNode();
             chunk.x = x;
 
             int expected = x;
@@ -28,13 +28,13 @@ namespace GUIform.Tests
 
         }
 
-        /// set the y coordinate for a node
+        /// set the y coordinate for a SnakeNode
         [TestMethod()]
         public void checkSnakeNodeY()
         {
             int y = 0;
 
-            SnakeNode chunk = new SnakeNode();
+            SnakeNode* chunk = new SnakeNode();
             chunk.y = y;
 
             int expected = y;
@@ -43,18 +43,45 @@ namespace GUIform.Tests
 
         }
 
-        /// set the spawn length for a snake
+        /// set next node for a SnakeNode
+        [TestMethod()]
+        public void checkSnakeNodeNext()
+        {
+            SnakeNode* chunk = new SnakeNode();
+            SnakeNode* temp = new SnakeNode();
+            chunk.next = temp;
+
+            SnakeNode* expected = temp;
+            SnakeNode* actual = chunk.next;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        /// set prev node for a SnakeNode
+        [TestMethod()]
+        public void checkSnakeNodeNext()
+        {
+            SnakeNode* chunk = new SnakeNode();
+            SnakeNode* temp = new SnakeNode();
+            chunk.prev = temp;
+
+            SnakeNode* expected = temp;
+            SnakeNode* actual = chunk.prev;
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        /// set the spawn coords and length for a Snake
         [TestMethod()]
         public void checkSpawnLength()
         {
-            Snake snek = new Snake();
+            Snake* snek = new Snake();
             int x = 0;
             int y = 0;
             int len = 5;
             snek.spawn( x, y, len );
 
             SnakeNode* tempnode = snek.Head.next;
-
 
             int expected = length;
             int actual = 5;

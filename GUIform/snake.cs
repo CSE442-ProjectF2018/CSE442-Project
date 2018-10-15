@@ -21,19 +21,19 @@ namespace GUIform
         direction dir;
         int length = 2;
 
-        public void spawn( int gridx, int gridy, int len )
+        public void spawn( int x, int y, int len )
         {
             Head = new SnakeNode();
-            Head.x = gridx;
-            Head.y = gridy;
+            Head.x = x;
+            Head.y = y;
             Tail = new SnakeNode();
-            Tail.x = gridx;
-            Tail.y = gridy;
+            Tail.x = x;
+            Tail.y = y;
 
             SnakeNode* tempnode;
             tempnode = Head;
 
-            for (int i = 2; i < len; i++)
+            for(int i = 2; i < len; i++)
             {
                 tempnode.next = new SnakeNode();
                 tempnode.next.x = gridx;
