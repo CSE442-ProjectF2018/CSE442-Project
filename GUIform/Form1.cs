@@ -5,30 +5,37 @@ using System.Windows.Forms;
 
 namespace GUIform
 {
-    enum BType { apple, snake, wall, free };
+    public enum BType { apple, snake, wall, free };
     enum direction { left, right, up, down };
     
 
     public partial class Game : Form
     {
-        
+        Timer tt = new Timer();
+        Timer mt = new Timer();
+        int time = 0;
+        int score = 0;
+
+        public BType[,] map_16 = new BType[16, 16];  //Map keeping track of what is placed
+
+        int posx = 40;
+        int posy = 40;
+        int mx = -100;  //mouse x
+        int my = -100;  //mouse y 
+
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
-
-        Map _m;
-        
+        SoundPlayer s_gotApple = new SoundPlayer(Properties.Resources.apple_crunch2);
+        SoundPlayer Title_BGM = new SoundPlayer(Properties.Resources.BGM1);
 
         public Game()
         {
+            initializeMap();
             InitializeComponent();
-
-            //Excahnges the current screen/panel.
-            titleScreen.Visible = true;
-            gameScreen.Visible = false;
-
-            //Loads the sound ahead of time, in attempt to play it.
-            s_PlayButton.Load();
-
+            GameScreen.Visible = false;
+            HomeSreen.Visible = true;
+            TimeValue.Text = time.ToString();
+            Title_BGM.PlayLooping();
         }
 
 
@@ -39,82 +46,88 @@ namespace GUIform
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            //Plays apple crunch sound.
+            HomeSreen.Visible = false;
+            GameScreen.Visible = true;
+
+            Title_BGM.Stop();
             s_PlayButton.Play();
 
-            //Generates a new default map.
-            _m = new Map();
+            tt.Interval = 1000;
+            tt.Tick += new EventHandler(timer1_Tick);
+            tt.Start();
 
-            //Exchanges the current screen panel.
-            titleScreen.Visible = false;
-            gameScreen.Visible = true;
+            mt.Interval = 500;
+            mt.Tick += new EventHandler(MoveTimer_Tick);
+            mt.Start();
 
-            
-            
+           
         }
 
-        private bool sm = false;
-        System.Windows.Forms.Panel testPanel = new System.Windows.Forms.Panel();
-        
-
-        private void button1_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            
-
-            switch (sm)
-            {
-                case true:
-                    snakeGrid.Controls.Remove(testPanel);
-                    snakeGrid.Controls.Add(testPanel, 5, 8);
-                    sm = !sm;
-
-                    break;
-                case false:
-                    snakeGrid.Controls.Remove(testPanel);
-                    snakeGrid.Controls.Add(testPanel, 8, 5);
-                    sm = !sm;
-
-                    break;
-            }
-
-
+            time++;
+            TimeValue.Text = time.ToString();
         }
 
-        private void rescanMap()
+        private void Grid_Paint(object sender, PaintEventArgs e)
         {
-            Block currentBlock;
-            snakeGrid.Controls.Clear();
-            for(int i = 0; i < 15; ++i)
+            e.Graphics.FillRectangle(Brushes.Green, posx, posy, 40, 40);
+            e.Graphics.FillRectangle(Brushes.Red, mx, my, 40, 40);
+        }
+
+        private void MoveTimer_Tick(object sender, EventArgs e)
+        {
+            if ((posx / 40) < (16 - 1)) posx += 40;
+            else posx -= 40;
+            checkPosition(posx/40, posy/40);
+            Grid.Refresh();
+        }
+
+        private void Grid_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs mE = e as MouseEventArgs;
+            /*When we receive click coordinates they wont be multiples of 32
+             So we divide by 32 (The remainder is negligible) and remultiply by 32 to get multiple 
+             We want coordinates to be multiples of 32 so they allign with the grid when placed
+             */
+            mx = mE.X;
+            my = mE.Y;
+            int coordx = mx / 40;
+            int coordy = my / 40;
+            placeApple(coordx, coordy);
+
+            mx = (coordx) * 40;
+            my = (coordy) * 40;
+            Grid.Refresh();
+        }
+
+        //Makes sre that when we start out, all spaces by default are considered free spaces
+        public void initializeMap()
+        {
+            for (int i = 0; i < 16; i++)
             {
-                for(int j = 0; j < 15; ++j)
+                for (int j = 0; j < 16; j++)
                 {
-                    currentBlock = _m.getBlockAt(i, j);
-
-                    if(currentBlock.getType().Equals("Apple"))
-                    {
-                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
-                        snakeGrid.Controls.Add(test, i, j);
-                        test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
-                        test.Margin = new System.Windows.Forms.Padding(0);
-                        //MessageBox.Show(string.Format("Apple reached in scan"));
-                    }
+                    map_16[i, j] = BType.free;
                 }
             }
         }
 
-        private void snakeGrid_Click(object sender, EventArgs e)
+        public void placeApple(int x, int y)
         {
-            Point p = snakeGrid.PointToClient(MousePosition);
-            //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
-
-            p.X = (int)(((double)15 / 297) * p.X);
-            p.Y = (int)(((double)15 / 297) * p.Y);
-
-            Block test = new Block("Apple");
-
-            _m.setBlockAt(p.X, p.Y, test);
-            rescanMap();           
-
+            map_16[x, y] = BType.apple;
+        }
+        public void checkPosition(int x, int y)
+        {
+            if(map_16[x,y] == BType.apple)
+            {
+                mx = -100;
+                my = -100;
+                map_16[x, y] = BType.free;
+                score += 100;
+                ScoreValue.Text = score.ToString();
+                s_gotApple.Play();
+            }
         }
     }
 }
