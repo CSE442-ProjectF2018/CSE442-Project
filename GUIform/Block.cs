@@ -12,9 +12,6 @@ namespace GUIform
         public BType bt;
         public int x, y;
 
-        //Temporary type checking until Apple and Snake classes are ready.
-        private string tempType = "None";
-
         //Default contructor
         public Block()
         {
@@ -25,19 +22,11 @@ namespace GUIform
         {
             bt = b;
         }
-
-        //Constructor to test out type checking until Apple and Snake classes are ready.
-        public Block(string T)
+        public Block(BType b, int x_in, int y_in)
         {
-            tempType = T;
-        }
-        public string getType()
-        {
-            return tempType;
-        }
-        public void setType(string s)
-        {
-            tempType = s;
+            bt = b;
+            x = x_in;
+            y = y_in;
         }
     }
 }
