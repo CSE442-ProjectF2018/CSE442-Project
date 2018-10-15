@@ -46,9 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Apple.cs" />
-    <Compile Include="Master.cs" />
-    <Compile Include="Snake.cs" />
+    <Compile Include="Block.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +72,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -90,6 +89,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apple.cur" />
+    <Content Include="Assets\Audio\apple_chew.wav" />
+    <Content Include="Assets\Audio\apple_crunch.wav" />
+    <Content Include="Assets\Audio\apple_crunch2.wav" />
+    <Content Include="Assets\Audio\BGM1.wav" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

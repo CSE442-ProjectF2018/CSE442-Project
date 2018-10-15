@@ -1,6 +1,6 @@
 ﻿namespace GUIform
 {
-    partial class TitleScreen
+    partial class Game
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TitleScreen));
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.HomeSreen = new System.Windows.Forms.Panel();
             this.PlayButton = new System.Windows.Forms.Button();
             this.Title = new System.Windows.Forms.Label();
             this.GameScreen = new System.Windows.Forms.Panel();
-            this.Score = new System.Windows.Forms.Label();
+            this.TimeValue = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ScoreValue = new System.Windows.Forms.Label();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.Grid = new System.Windows.Forms.PictureBox();
+            this.TimeCounter = new System.Windows.Forms.Timer(this.components);
+            this.MoveTimer = new System.Windows.Forms.Timer(this.components);
             this.HomeSreen.SuspendLayout();
             this.GameScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid)).BeginInit();
@@ -78,7 +83,9 @@
             // 
             // GameScreen
             // 
-            this.GameScreen.Controls.Add(this.Score);
+            this.GameScreen.Controls.Add(this.TimeValue);
+            this.GameScreen.Controls.Add(this.label1);
+            this.GameScreen.Controls.Add(this.ScoreValue);
             this.GameScreen.Controls.Add(this.ScoreLabel);
             this.GameScreen.Controls.Add(this.Grid);
             this.GameScreen.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -87,15 +94,35 @@
             this.GameScreen.Size = new System.Drawing.Size(642, 671);
             this.GameScreen.TabIndex = 1;
             // 
-            // Score
+            // TimeValue
             // 
-            this.Score.AutoSize = true;
-            this.Score.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Score.Location = new System.Drawing.Point(71, 0);
-            this.Score.Name = "Score";
-            this.Score.Size = new System.Drawing.Size(23, 25);
-            this.Score.TabIndex = 1;
-            this.Score.Text = "0";
+            this.TimeValue.AutoSize = true;
+            this.TimeValue.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeValue.Location = new System.Drawing.Point(549, 0);
+            this.TimeValue.Name = "TimeValue";
+            this.TimeValue.Size = new System.Drawing.Size(23, 25);
+            this.TimeValue.TabIndex = 4;
+            this.TimeValue.Text = "0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(489, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 25);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Time:";
+            // 
+            // ScoreValue
+            // 
+            this.ScoreValue.AutoSize = true;
+            this.ScoreValue.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScoreValue.Location = new System.Drawing.Point(71, 0);
+            this.ScoreValue.Name = "ScoreValue";
+            this.ScoreValue.Size = new System.Drawing.Size(23, 25);
+            this.ScoreValue.TabIndex = 1;
+            this.ScoreValue.Text = "0";
             // 
             // ScoreLabel
             // 
@@ -110,24 +137,35 @@
             // Grid
             // 
             this.Grid.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Grid.BackgroundImage")));
+            this.Grid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Grid.Location = new System.Drawing.Point(0, 28);
             this.Grid.Name = "Grid";
             this.Grid.Size = new System.Drawing.Size(640, 640);
             this.Grid.TabIndex = 2;
             this.Grid.TabStop = false;
+            this.Grid.Click += new System.EventHandler(this.Grid_Click);
+            this.Grid.Paint += new System.Windows.Forms.PaintEventHandler(this.Grid_Paint);
             // 
-            // TitleScreen
+            // TimeCounter
+            // 
+            this.TimeCounter.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // MoveTimer
+            // 
+            this.MoveTimer.Tick += new System.EventHandler(this.MoveTimer_Tick);
+            // 
+            // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(642, 671);
-            this.Controls.Add(this.HomeSreen);
             this.Controls.Add(this.GameScreen);
+            this.Controls.Add(this.HomeSreen);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TitleScreen";
+            this.Name = "Game";
             this.Text = "Snekk Snacc";
             this.Load += new System.EventHandler(this.TitleScreen_Load);
             this.HomeSreen.ResumeLayout(false);
@@ -145,9 +183,13 @@
         private System.Windows.Forms.Button PlayButton;
         private System.Windows.Forms.Label Title;
         private System.Windows.Forms.Panel GameScreen;
-        private System.Windows.Forms.Label Score;
+        private System.Windows.Forms.Label ScoreValue;
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.PictureBox Grid;
+        private System.Windows.Forms.Label TimeValue;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer TimeCounter;
+        private System.Windows.Forms.Timer MoveTimer;
     }
 }
 
