@@ -84,9 +84,9 @@ namespace GUIform
         {
             Block currentBlock;
             snakeGrid.Controls.Clear();
-            for(int i = 0; i < 15; ++i)
+            for(int i = 0; i < 16; ++i)
             {
-                for(int j = 0; j < 15; ++j)
+                for(int j = 0; j < 16; ++j)
                 {
                     currentBlock = _m.getBlockAt(i, j);
 
@@ -107,8 +107,8 @@ namespace GUIform
             Point p = snakeGrid.PointToClient(MousePosition);
             //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
 
-            p.X = (int)(((double)15 / 297) * p.X);
-            p.Y = (int)(((double)15 / 297) * p.Y);
+            p.X = (int)(((double)16 / 592) * p.X);
+            p.Y = (int)(((double)16 / 592) * p.Y);
 
             Block test = new Block("Apple");
 

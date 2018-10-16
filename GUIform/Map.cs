@@ -9,7 +9,7 @@ namespace GUIform
     class Map
     {
         //Default dimension is 16x16.
-        private int dimension = 15;
+        private int dimension = 16;
         //Default map type(empty). Int: for use with switch statement.
         private int mapType = 0;
 
