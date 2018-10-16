@@ -4,3 +4,5 @@
 /.vs/*
 /GUIform/bin/*
 /GUIform/obj/*
+/GUIformTests/bin/*
+/GUIformTests/obj/*
