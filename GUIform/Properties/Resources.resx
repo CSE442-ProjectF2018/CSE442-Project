@@ -127,4 +127,16 @@
   <data name="Grid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\Grid.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="apple_chew" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Audio\apple_chew.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="apple_crunch2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Audio\apple_crunch2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="BGM1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Audio\BGM1.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="apple" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\apple.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

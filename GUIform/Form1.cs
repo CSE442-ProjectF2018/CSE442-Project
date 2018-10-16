@@ -14,6 +14,9 @@ namespace GUIform
         
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
+        SoundPlayer s_TitleScreen = new SoundPlayer(Properties.Resources.BGM1);
+        SoundPlayer s_AppleGET = new SoundPlayer(Properties.Resources.apple_chew);
+
 
         Map _m;
         
@@ -28,6 +31,8 @@ namespace GUIform
 
             //Loads the sound ahead of time, in attempt to play it.
             s_PlayButton.Load();
+
+            s_TitleScreen.PlayLooping();
 
         }
 
@@ -94,7 +99,10 @@ namespace GUIform
                     {
                         System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
                         snakeGrid.Controls.Add(test, i, j);
-                        test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
+                        //test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
+                        test.BackgroundImage = Properties.Resources.apple;
+                        test.BackgroundImageLayout = ImageLayout.Stretch;
+                        test.BackColor = System.Drawing.Color.FromArgb(0, 255, 255, 255);
                         test.Margin = new System.Windows.Forms.Padding(0);
                         //MessageBox.Show(string.Format("Apple reached in scan"));
                     }
