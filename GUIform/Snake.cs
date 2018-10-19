@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GUIform
+﻿namespace GUIform
 {
     public enum direction { up, down, left, right }
 
     public class SnakeNode
     {
-        int x;
-        int y;
-        SnakeNode* next;
-        SnakeNode* prev;
+        public int x;
+        public int y;
+        public SnakeNode next;
+        public SnakeNode prev;
 
     }
 
     public class Snake
     {
-        SnakeNode* Head;
-        SnakeNode* Tail;
+        SnakeNode Head;
+        SnakeNode Tail;
         int speed;
         direction dir;
         int length = 2;
@@ -34,14 +28,14 @@ namespace GUIform
             Tail.x = x;
             Tail.y = y;
 
-            SnakeNode* tempnode;
+            SnakeNode tempnode;
             tempnode = Head;
 
             for (int i = 2; i < len; i++)
             {
                 tempnode.next = new SnakeNode();
-                tempnode.next.x = gridx;
-                tempnode.next.y = gridy;
+                //tempnode.next.x = gridx;
+                //tempnode.next.y = gridy;
                 tempnode.next.prev = tempnode;
                 tempnode = tempnode.next;
                 tempnode.next = Tail;
