@@ -61,16 +61,6 @@ namespace GUIform.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap apple {
-            get {
-                object obj = ResourceManager.GetObject("apple", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream apple_chew {
@@ -109,9 +99,9 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Grid {
+        internal static System.Drawing.Bitmap snek {
             get {
-                object obj = ResourceManager.GetObject("Grid", resourceCulture);
+                object obj = ResourceManager.GetObject("snek", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -119,9 +109,9 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snek2 {
+        internal static System.Drawing.Bitmap snek_blink {
             get {
-                object obj = ResourceManager.GetObject("snek2", resourceCulture);
+                object obj = ResourceManager.GetObject("snek_blink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

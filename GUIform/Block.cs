@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 namespace GUIform
 {
     
-    class Block
+    public class Block
     {
         public BType bt;
         public int x, y;
 
-        //Temporary type checking until Apple and Snake classes are ready.
-        private string tempType = "None";
+        //snake related properties
+        public Block next;
+        public Block prev;
+        public direction d;
+
+
 
         //Default contructor
         public Block()
@@ -25,19 +29,16 @@ namespace GUIform
         {
             bt = b;
         }
+        public Block(BType b, int x_in, int y_in)
+        {
+            bt = b;
+            x = x_in;
+            y = y_in;
+        }
+        public void extend(Stack<Block> stack)
+        {
+            Block tail = new Block(BType.snake);
 
-        //Constructor to test out type checking until Apple and Snake classes are ready.
-        public Block(string T)
-        {
-            tempType = T;
-        }
-        public string getType()
-        {
-            return tempType;
-        }
-        public void setType(string s)
-        {
-            tempType = s;
         }
     }
 }
