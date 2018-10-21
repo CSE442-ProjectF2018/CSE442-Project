@@ -13,6 +13,10 @@ namespace GUIform
         //Default map type(empty). Int: for use with switch statement.
         private int mapType = 0;
 
+        private Snake _currentSnake;
+
+        private Tuple<int> _appleLocation;
+
         private Block[,] info;
         
         //If no arguments given, use default arguments.
@@ -39,6 +43,18 @@ namespace GUIform
         public void setBlockAt(int i, int j, Block t)
         {
             info[i, j] = t;
+        }
+
+        public void initSnake()
+        {
+            //Spawn new snake at location 7,7 with length of 3.
+            _currentSnake = new Snake();
+            _currentSnake.spawn(7, 7, 3);
+        }
+
+        public void updateSnakePath()
+        {
+
         }
 
         public void buildMap()
