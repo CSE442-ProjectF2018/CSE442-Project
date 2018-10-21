@@ -3,41 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace GUIform
 {
-    
+    //Block Types
+    //0 is None.
+    //1 is Apple.
+    //2 is Obstacle.
+    //3 is Snake.
+
     class Block
     {
-        public BType bt;
-        public int x, y;
-
-        //Temporary type checking until Apple and Snake classes are ready.
-        private string tempType = "None";
+        //Set Blocktype to None by default.
+        private int _blockType = 0;
 
         //Default contructor
         public Block()
         {
 
         }
+        
         //Constructor where we immediately assign Btype
-        public Block(BType b)
+        public Block(int inputType)
         {
-            bt = b;
+            if(inputType >= 0 && inputType <= 4)
+            {
+                _blockType = inputType;
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Not Valid Block Type; Block init type error"));
+            }
+            
         }
 
-        //Constructor to test out type checking until Apple and Snake classes are ready.
-        public Block(string T)
+        //Get a block's type
+        public int getType()
         {
-            tempType = T;
+            return _blockType;
         }
-        public string getType()
+
+        //Set block type after creation.
+        public void setType(int newType)
         {
-            return tempType;
-        }
-        public void setType(string s)
-        {
-            tempType = s;
+            if (newType >= 0 && newType <= 4)
+            {
+                _blockType = newType;
+            }
+            else
+            {
+                MessageBox.Show(string.Format("Not Valid Block Type; Block SET type error"));
+            }
         }
     }
 }

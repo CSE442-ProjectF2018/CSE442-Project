@@ -118,7 +118,7 @@ namespace GUIform
             p.X = (int)(((double)16 / 592) * p.X);
             p.Y = (int)(((double)16 / 592) * p.Y);
 
-            Block test = new Block("Apple");
+            //Block test = new Block("Apple");
 
             _m.setBlockAt(p.X, p.Y, test);
             rescanMap();           
