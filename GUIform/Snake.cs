@@ -12,13 +12,13 @@ namespace GUIform
     public class SnakeNode
     {
         //grid position for slice of snake
-        private int x;
-        private int y;
+        public int x;
+        public int y;
 
         //next moves towards the tail
-        private SnakeNode next;
+        public SnakeNode next;
         //prev moves towads the head
-        private SnakeNode prev;
+        public SnakeNode prev;
 
     }
 
