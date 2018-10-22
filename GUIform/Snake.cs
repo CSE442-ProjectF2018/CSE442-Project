@@ -73,8 +73,38 @@ namespace GUIform
 
         }
 
+        //check for collisions first
         public void slither(direction d)
         {
+
+            //move tail to head
+            Tail.x = Head.x;
+            Tail.y = Head.y;
+
+            switch(d)
+            {
+                case direction.up:
+                    Tail.y += 1;
+                    break;
+
+                case direction.down:
+                    Tail.y -= 1;
+                    break;
+
+                case direction.left:
+                    Tail.x -= 1;
+                    break;
+
+                case direction.right:
+                    Tail.x += 1;
+                    break;
+            }
+
+            //update node order
+            Tail.prev.next = null;
+            Tail.next = Head;
+            Head = Tail;
+            Tail = Tail.prev;
 
         }
 
