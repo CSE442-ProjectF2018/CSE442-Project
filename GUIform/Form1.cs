@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
+using System.Windows.Threading;
 
 namespace GUIform
 {
@@ -34,6 +35,9 @@ namespace GUIform
 
             s_TitleScreen.PlayLooping();
 
+
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
         }
 
 
@@ -62,27 +66,12 @@ namespace GUIform
         System.Windows.Forms.Panel testPanel = new System.Windows.Forms.Panel();
         
 
-        private void button1_Click(object sender, EventArgs e)
+        private void RESET_BUTTON_Click(object sender, EventArgs e)
         {
-            
-
-            switch (sm)
-            {
-                case true:
-                    snakeGrid.Controls.Remove(testPanel);
-                    snakeGrid.Controls.Add(testPanel, 5, 8);
-                    sm = !sm;
-
-                    break;
-                case false:
-                    snakeGrid.Controls.Remove(testPanel);
-                    snakeGrid.Controls.Add(testPanel, 8, 5);
-                    sm = !sm;
-
-                    break;
-            }
-
-
+            _m = new Map();
+            snakeGrid.Controls.Clear();
+            _userScore = 0;
+            PlayerScore.Text = _userScore.ToString();
         }
 
         private void rescanMap()
@@ -95,7 +84,7 @@ namespace GUIform
                 {
                     currentBlock = _m.getBlockAt(i, j);
 
-                    if(currentBlock.getType().Equals("Apple"))
+                    if(currentBlock.getType() == 1)
                     {
                         System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
                         snakeGrid.Controls.Add(test, i, j);
@@ -105,6 +94,15 @@ namespace GUIform
                         test.BackColor = System.Drawing.Color.FromArgb(0, 255, 255, 255);
                         test.Margin = new System.Windows.Forms.Padding(0);
                         //MessageBox.Show(string.Format("Apple reached in scan"));
+                    }else if(currentBlock.getType() == 3)
+                    {
+                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                        snakeGrid.Controls.Add(test, i, j);
+                        test.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
+                        //test.BackgroundImage = Properties.Resources.apple;
+                        //test.BackgroundImageLayout = ImageLayout.Stretch;
+                        //test.BackColor = System.Drawing.Color.FromArgb(0, 255, 255, 255);
+                        test.Margin = new System.Windows.Forms.Padding(0);
                     }
                 }
             }
@@ -118,11 +116,39 @@ namespace GUIform
             p.X = (int)(((double)16 / 592) * p.X);
             p.Y = (int)(((double)16 / 592) * p.Y);
 
-            //Block test = new Block("Apple");
+            Block test = new Block(1);
 
             _m.setBlockAt(p.X, p.Y, test);
-            rescanMap();           
+            rescanMap();
+
+            _m.updateSnakePath();
+
+            
+            dispatcherTimer.Start();
+        }
+
+        DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
+        int _userScore = 0;
+        int _moveCounter = 0;
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            _m.moveSnake();
+            //MessageBox.Show("timer tick");
+            rescanMap();
+            _moveCounter++;
+
+            if (_m._appleGet == true)
+            {
+                s_AppleGET.Play();
+                _userScore += _moveCounter * 10;
+                PlayerScore.Text = _userScore.ToString();
+                _moveCounter = 0;
+                dispatcherTimer.Stop();
+            }
 
         }
+
     }
 }

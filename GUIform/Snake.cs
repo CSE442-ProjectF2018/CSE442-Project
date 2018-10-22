@@ -46,6 +46,11 @@
 
         }
 
+        public void getHeadLocation()
+        {
+            
+        }
+
         public void slither(direction d)
         {
 
