@@ -34,7 +34,7 @@ namespace GUIform
 
         //keeps track of snake length
         //just incase we want to use it for something
-        private int length = 2;
+        public int length = 2;
 
         //unemplemented
         public int speed;
