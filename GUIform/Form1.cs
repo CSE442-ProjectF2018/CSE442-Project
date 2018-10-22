@@ -136,7 +136,7 @@ namespace GUIform
         {
             _m.moveSnake();
             //MessageBox.Show("timer tick");
-            rescanMap();
+            //rescanMap();
             _moveCounter++;
 
             if (_m._appleGet == true)
@@ -145,6 +145,7 @@ namespace GUIform
                 _userScore += _moveCounter * 10;
                 PlayerScore.Text = _userScore.ToString();
                 _moveCounter = 0;
+                rescanMap();
                 dispatcherTimer.Stop();
             }
 

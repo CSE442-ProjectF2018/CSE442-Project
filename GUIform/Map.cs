@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GUIform
 {
-    class Path
+    public class Path
     {
         public Path next;
         public Path prev;
@@ -20,7 +20,7 @@ namespace GUIform
             Y = y;
         }
     }
-    class Map
+    public class Map
     {
         //Default dimension is 16x16.
         private int dimension = 16;
@@ -30,16 +30,16 @@ namespace GUIform
         private Snake _currentSnake;
 
         //Location of apple.
-        private Point _appleLocation;
+        public Point _appleLocation;
 
         //Location of snake's _head.
-        private Point _snakeLocation;
+        public Point _snakeLocation;
 
         public bool _appleGet;
 
 
-        Path _head;
-        Path _tail;
+        public Path _head;
+        public Path _tail;
         Path _trav;
         
 

@@ -13,7 +13,7 @@ namespace GUIform
     //2 is Obstacle.
     //3 is Snake.
 
-    class Block
+    public class Block
     {
         //Set Blocktype to None by default.
         private int _blockType = 0;
