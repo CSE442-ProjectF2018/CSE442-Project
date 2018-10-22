@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace GUIform
 {
     enum BType { apple, snake, wall, free };
-    enum direction { left, right, up, down };
+    
     
 
     public partial class Game : Form
