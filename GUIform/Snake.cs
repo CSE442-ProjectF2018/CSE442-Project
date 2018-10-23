@@ -6,111 +6,176 @@ using System.Threading.Tasks;
 
 namespace GUIform
 {
-    //snake movement
-    public enum direction { up, down, left, right }
-
+    
     public class SnakeNode
     {
         //grid position for slice of snake
-        public int x;
-        public int y;
+        public int X;
+        public int Y;
 
         //next moves towards the tail
         public SnakeNode next;
         //prev moves towads the head
         public SnakeNode prev;
 
+        public SnakeNode(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 
     public class Snake
     {
+        //North = 0
+        //East = 1
+        //South = 2
+        //West = 3
+        int _currentDirection;
+
         //head is the part that looks like it moves
-        public SnakeNode Head;
+        public SnakeNode _Head;
+        
         //tail is what actually moves
-        public SnakeNode Tail;
+        public SnakeNode _Tail;
 
         //record of previous direction
-        public direction dir;
+        public int _dirPrev;
 
         //keeps track of snake length
         //just incase we want to use it for something
-        public int length = 2;
+        public int _length;
 
-        //unemplemented
-        public int speed;
-
-        //this builds the snake
-        public void spawn(int gridx, int gridy, int len=2)
+        //Default Constructor
+        public Snake()
         {
-            //entire snake begins in one grid space
+            //Snake Moves right by default.
+            _currentDirection = 1;
 
-            //start with at least two nodes
-            //one for the head
-            Head = new SnakeNode();
-            Head.x = gridx;
-            Head.y = gridy;
-            //one for the tail
-            Tail = new SnakeNode();
-            Tail.x = gridx;
-            Tail.y = gridy;
+            _dirPrev = _currentDirection;
 
-            //if a longer snake is desired
-            //this loop adds them
-            SnakeNode tempnode;
-            tempnode = Head;
-            for (int i = 2; i < len; i++)
+            //Spawn snake at 7,7.
+            _Head = new SnakeNode(7, 7);
+
+            //At the beginning, Head and Tail occupy same space.
+            _Tail = _Head;
+            _Tail.next = _Head;
+            _Head.prev = _Tail;
+
+            //Initial Length unless otherwise specified.
+            _length = 3;
+
+            SnakeNode trav = _Tail;
+            for(int i = 0; i < (3 - 2); ++i)
             {
-                tempnode.next = new SnakeNode();
-                tempnode.next.x = gridx;
-                tempnode.next.y = gridy;
-                tempnode.next.prev = tempnode;
-                tempnode = tempnode.next;
-                tempnode.next = Tail;
-                Tail.prev = tempnode;
-                length = length + 1;
+                SnakeNode temp = trav;
+                temp.prev = trav;
+                temp.next = _Head;
+
+                trav.next = temp;
+                _Head.prev = temp;
+
+                trav = temp;               
 
             }
 
+
         }
 
-        //check for collisions first
-        public void slither(direction d)
+        //A D V A N C E D   Constructor
+        public Snake(int x, int y, int initLength, int initDirection)
         {
+            //Snake Moves right by default.
+            _currentDirection = initDirection;
 
-            //move tail to head
-            Tail.x = Head.x;
-            Tail.y = Head.y;
+            _dirPrev = _currentDirection;
 
-            switch(d)
+            //Spawn snake at 7,7.
+            _Head = new SnakeNode(x, y);
+
+            //At the beginning, Head and Tail occupy same space.
+            _Tail = _Head;
+
+            //Initial Length unless otherwise specified.
+            _length = initLength;
+
+            if(_length > 2)
             {
-                case direction.up:
-                    Tail.y += 1;
-                    break;
+                SnakeNode trav = _Tail;
+                for (int i = 0; i < (3 - 2); ++i)
+                {
+                    SnakeNode temp = trav;
+                    temp.prev = trav;
+                    temp.next = _Head;
 
-                case direction.down:
-                    Tail.y -= 1;
-                    break;
+                    trav.next = temp;
+                    _Head.prev = temp;
 
-                case direction.left:
-                    Tail.x -= 1;
-                    break;
+                    trav = temp;
 
-                case direction.right:
-                    Tail.x += 1;
+                }
+            }
+        }
+
+        //Move Snake in a given direction.
+        //This is directed from the pathfinding algo.
+        public void slither(int direction)
+        {
+            //Take in new direction.
+            _currentDirection = direction;
+
+            //Move snake tail coords to head coords.
+            _Tail.X = _Head.X;
+            _Tail.Y = _Head.Y;
+
+            //Move Tail to adjacent tile in new direction.
+            //North = 0
+            //East = 1
+            //South = 2
+            //West = 3
+            switch (_currentDirection)
+            {
+                case 0:
+                    _Tail.Y--;
+                    break;
+                case 1:
+                    _Tail.X++;
+                    break;
+                case 2:
+                    _Tail.Y++;
+                    break;
+                case 3:
+                    _Tail.X--;
                     break;
             }
 
-            //update node order
-            Tail.prev.next = null;
-            Tail.next = Head;
-            Head = Tail;
-            Tail = Tail.prev;
+            //Tail becomes new head.
+            _Head.next = _Tail;
+            _Tail.prev = _Head;
+
+            SnakeNode temp = _Tail.next;
+            temp.prev = null;
+            _Tail.next = null;
+
+            _Head = _Tail;
+            _Tail = temp;
 
         }
 
-        public void consume(int gridx, int gridy)
+        //Add length to snake upon consumption of an Apple.
+        //Amount of length to add is passed as an argument.
+        public void consume(int incBy)
         {
+            for(int i = 0; i < incBy; ++i)
+            {
+                SnakeNode temp = _Tail;
+                temp.next = _Tail;
+                _Tail.prev = temp;
+                _Tail = temp;
 
+                _length++;
+            }
+            
         }
 
         public void perish()
