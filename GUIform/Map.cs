@@ -27,7 +27,7 @@ namespace GUIform
         //Default map type(empty). Int: for use with switch statement.
         private int mapType = 0;
 
-        private Snake _currentSnake;
+        public Snake _currentSnake;
 
         //Location of apple.
         public Point _appleLocation;
@@ -89,7 +89,7 @@ namespace GUIform
         {
             //Spawn new snake at location 7,7 with length of 3.
             _currentSnake = new Snake();
-            _currentSnake.spawn(7, 7, 3);
+            
             _snakeLocation = new Point(7, 7);
         }
 
@@ -124,7 +124,11 @@ namespace GUIform
                 }
             }
 
-            
+            _head = new Path(_snakeLocation.X, _snakeLocation.Y);
+            _tail = _head;
+            _tail.prev = _head;
+            _trav = _head;
+
             Path trav = _head;
             Path temp;
             bool targetReached = false;
@@ -191,6 +195,52 @@ namespace GUIform
         }
 
         public void moveSnake()
+        {
+            _trav = _trav.next;
+
+            int nextDirection;
+
+            //Is apple East or West?
+            if (_trav.X < _snakeLocation.X)
+            {
+                nextDirection = 3;
+            }
+            else if (_trav.X > _snakeLocation.X)
+            {
+                nextDirection = 1;
+            }
+            else
+            {
+                //Is apple North or South?
+                if (_trav.Y < _snakeLocation.Y)
+                {
+                    nextDirection = 0;
+                }
+                else
+                {
+                    nextDirection = 2;
+                }
+            }
+            info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(0);
+
+            _currentSnake.slither(nextDirection);
+
+            _snakeLocation.X = _currentSnake._Head.X;
+            _snakeLocation.Y = _currentSnake._Head.Y;
+
+            if(info[_snakeLocation.X, _snakeLocation.Y].getType() == 1)
+            {
+                _appleGet = true;
+                _currentSnake.consume(1);
+            }
+
+            info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);
+            info[_currentSnake._Head.X, _currentSnake._Head.Y] = new Block(3);
+
+
+        }
+
+        public void moveSnakeOLD()
         {
             Block temp = new Block(3);
             setBlockAt(_trav.X, _trav.Y, temp);

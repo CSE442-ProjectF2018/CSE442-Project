@@ -74,53 +74,42 @@ namespace GUIform
             PlayerScore.Text = _userScore.ToString();
         }
 
-        private void rescanMap()
+        private void updateMap()
         {
-            Block currentBlock;
-            snakeGrid.Controls.Clear();
-            for(int i = 0; i < 16; ++i)
-            {
-                for(int j = 0; j < 16; ++j)
-                {
-                    currentBlock = _m.getBlockAt(i, j);
+            snakeGrid.Controls.Remove(snakeGrid.GetChildAtPoint(new Point(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y)));
 
-                    if(currentBlock.getType() == 1)
-                    {
-                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
-                        snakeGrid.Controls.Add(test, i, j);
-                        //test.BackColor = System.Drawing.Color.FromArgb(255, 255, 0, 0);
-                        test.BackgroundImage = Properties.Resources.apple;
-                        test.BackgroundImageLayout = ImageLayout.Stretch;
-                        test.BackColor = System.Drawing.Color.FromArgb(0, 255, 255, 255);
-                        test.Margin = new System.Windows.Forms.Padding(0);
-                        //MessageBox.Show(string.Format("Apple reached in scan"));
-                    }else if(currentBlock.getType() == 3)
-                    {
-                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
-                        snakeGrid.Controls.Add(test, i, j);
-                        test.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
-                        //test.BackgroundImage = Properties.Resources.apple;
-                        //test.BackgroundImageLayout = ImageLayout.Stretch;
-                        //test.BackColor = System.Drawing.Color.FromArgb(0, 255, 255, 255);
-                        test.Margin = new System.Windows.Forms.Padding(0);
-                    }
-                }
-            }
+            System.Windows.Forms.Panel snakeTail = new System.Windows.Forms.Panel();
+            snakeGrid.Controls.Add(snakeTail, _m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
+            snakeTail.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
+            snakeTail.Margin = new System.Windows.Forms.Padding(0);
+
+            System.Windows.Forms.Panel snakeHead = new System.Windows.Forms.Panel();
+            snakeGrid.Controls.Add(snakeHead, _m._currentSnake._Head.X, _m._currentSnake._Head.Y);
+            snakeHead.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
+            snakeHead.Margin = new System.Windows.Forms.Padding(0);
+
         }
 
         private void snakeGrid_Click(object sender, EventArgs e)
         {
             Point p = snakeGrid.PointToClient(MousePosition);
-            //MessageBox.Show(string.Format("X: {0} Y: {1}", p.X, p.Y));
 
-            p.X = (int)(((double)16 / 592) * p.X);
-            p.Y = (int)(((double)16 / 592) * p.Y);
+            p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+            p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
 
-            Block test = new Block(1);
+            //Add Apple def to backing map.
+            Block newApple = new Block(1);
+            _m.setBlockAt(p.X, p.Y, newApple);
 
-            _m.setBlockAt(p.X, p.Y, test);
-            rescanMap();
+            //Add Apple to GUI
+            System.Windows.Forms.Panel applePanel = new System.Windows.Forms.Panel();
+            snakeGrid.Controls.Add(applePanel, p.X, p.Y);
+            applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+            applePanel.BackgroundImage = Properties.Resources.apple;
+            applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+            applePanel.Margin = new System.Windows.Forms.Padding(0);
 
+            //Create a path for the snake towards the apple.
             _m.updateSnakePath();
 
             
@@ -134,9 +123,16 @@ namespace GUIform
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
+            //System.Windows.Forms.Panel addToRemove = new System.Windows.Forms.Panel();
+            //snakeGrid.Controls.Add(addToRemove, _m._currentSnake._Head.X, _m._currentSnake._Head.Y);
+            //snakeGrid.Controls.Remove(addToRemove);
+
+            snakeGrid.Controls.Remove(snakeGrid.GetChildAtPoint(new Point(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y)));
+
             _m.moveSnake();
-            //MessageBox.Show("timer tick");
-            //rescanMap();
+
+            updateMap();
+
             _moveCounter++;
 
             if (_m._appleGet == true)
@@ -145,7 +141,7 @@ namespace GUIform
                 _userScore += _moveCounter * 10;
                 PlayerScore.Text = _userScore.ToString();
                 _moveCounter = 0;
-                rescanMap();
+                updateMap();
                 dispatcherTimer.Stop();
             }
 
