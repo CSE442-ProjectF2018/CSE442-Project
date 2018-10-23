@@ -231,7 +231,7 @@ namespace GUIform
             if(info[_snakeLocation.X, _snakeLocation.Y].getType() == 1)
             {
                 _appleGet = true;
-                _currentSnake.consume(1);
+                _currentSnake.consume(5);
             }
 
             info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);

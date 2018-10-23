@@ -58,7 +58,7 @@ namespace GUIform
             _Head = new SnakeNode(7, 7);
 
             //At the beginning, Head and Tail occupy same space.
-            _Tail = _Head;
+            _Tail = new SnakeNode(7, 7);
             _Tail.next = _Head;
             _Head.prev = _Tail;
 
@@ -68,7 +68,7 @@ namespace GUIform
             SnakeNode trav = _Tail;
             for(int i = 0; i < (3 - 2); ++i)
             {
-                SnakeNode temp = trav;
+                SnakeNode temp = new SnakeNode(trav.X, trav.Y);
                 temp.prev = trav;
                 temp.next = _Head;
 
@@ -94,7 +94,7 @@ namespace GUIform
             _Head = new SnakeNode(x, y);
 
             //At the beginning, Head and Tail occupy same space.
-            _Tail = _Head;
+            _Tail = new SnakeNode(x, y);
 
             //Initial Length unless otherwise specified.
             _length = initLength;
@@ -104,7 +104,7 @@ namespace GUIform
                 SnakeNode trav = _Tail;
                 for (int i = 0; i < (3 - 2); ++i)
                 {
-                    SnakeNode temp = trav;
+                    SnakeNode temp = new SnakeNode(trav.X, trav.Y);
                     temp.prev = trav;
                     temp.next = _Head;
 
@@ -168,7 +168,7 @@ namespace GUIform
         {
             for(int i = 0; i < incBy; ++i)
             {
-                SnakeNode temp = _Tail;
+                SnakeNode temp = new SnakeNode(_Tail.X, _Tail.Y);
                 temp.next = _Tail;
                 _Tail.prev = temp;
                 _Tail = temp;

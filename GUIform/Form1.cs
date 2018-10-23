@@ -76,7 +76,7 @@ namespace GUIform
 
         private void updateMap()
         {
-            snakeGrid.Controls.Remove(snakeGrid.GetChildAtPoint(new Point(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y)));
+            snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
 
             System.Windows.Forms.Panel snakeTail = new System.Windows.Forms.Panel();
             snakeGrid.Controls.Add(snakeTail, _m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
@@ -123,17 +123,10 @@ namespace GUIform
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            //System.Windows.Forms.Panel addToRemove = new System.Windows.Forms.Panel();
-            //snakeGrid.Controls.Add(addToRemove, _m._currentSnake._Head.X, _m._currentSnake._Head.Y);
-            //snakeGrid.Controls.Remove(addToRemove);
-
-            snakeGrid.Controls.Remove(snakeGrid.GetChildAtPoint(new Point(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y)));
+            
+            snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
 
             _m.moveSnake();
-
-            updateMap();
-
-            _moveCounter++;
 
             if (_m._appleGet == true)
             {
@@ -141,8 +134,15 @@ namespace GUIform
                 _userScore += _moveCounter * 10;
                 PlayerScore.Text = _userScore.ToString();
                 _moveCounter = 0;
+                snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y));
                 updateMap();
                 dispatcherTimer.Stop();
+            }
+            else
+            {
+                updateMap();
+
+                _moveCounter++;
             }
 
         }
