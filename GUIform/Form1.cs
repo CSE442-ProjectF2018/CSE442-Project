@@ -76,6 +76,7 @@ namespace GUIform
 
         private void updateMap()
         {
+            //snakeGrid.SuspendLayout();
             snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
 
             System.Windows.Forms.Panel snakeTail = new System.Windows.Forms.Panel();
@@ -87,7 +88,7 @@ namespace GUIform
             snakeGrid.Controls.Add(snakeHead, _m._currentSnake._Head.X, _m._currentSnake._Head.Y);
             snakeHead.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
             snakeHead.Margin = new System.Windows.Forms.Padding(0);
-
+            //snakeGrid.ResumeLayout();
         }
 
         private void snakeGrid_Click(object sender, EventArgs e)
@@ -102,12 +103,14 @@ namespace GUIform
             _m.setBlockAt(p.X, p.Y, newApple);
 
             //Add Apple to GUI
+            snakeGrid.SuspendLayout();
             System.Windows.Forms.Panel applePanel = new System.Windows.Forms.Panel();
             snakeGrid.Controls.Add(applePanel, p.X, p.Y);
             applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
             applePanel.BackgroundImage = Properties.Resources.apple;
             applePanel.BackgroundImageLayout = ImageLayout.Stretch;
             applePanel.Margin = new System.Windows.Forms.Padding(0);
+            snakeGrid.ResumeLayout();
 
             //Create a path for the snake towards the apple.
             _m.updateSnakePath();
@@ -123,8 +126,9 @@ namespace GUIform
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            
+            //snakeGrid.SuspendLayout();
             snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
+            //snakeGrid.ResumeLayout();
 
             _m.moveSnake();
 
@@ -134,7 +138,9 @@ namespace GUIform
                 _userScore += _moveCounter * 10;
                 PlayerScore.Text = _userScore.ToString();
                 _moveCounter = 0;
+                //snakeGrid.SuspendLayout();
                 snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y));
+                //snakeGrid.ResumeLayout();
                 updateMap();
                 dispatcherTimer.Stop();
             }

@@ -30,12 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
             this.gameScreen = new System.Windows.Forms.Panel();
+            this.ScoreLabel = new System.Windows.Forms.Label();
+            this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
-            this.snakeGrid = new System.Windows.Forms.TableLayoutPanel();
+            //this.snakeGrid = new System.Windows.Forms.TableLayoutPanel();
+            this.snakeGrid = new DBLayoutPanel();
             this.titleScreen = new System.Windows.Forms.Panel();
             this.playButton = new System.Windows.Forms.Button();
-            this.PlayerScore = new System.Windows.Forms.Label();
-            this.ScoreLabel = new System.Windows.Forms.Label();
             this.gameScreen.SuspendLayout();
             this.titleScreen.SuspendLayout();
             this.SuspendLayout();
@@ -50,6 +51,26 @@
             this.gameScreen.Name = "gameScreen";
             this.gameScreen.Size = new System.Drawing.Size(1136, 610);
             this.gameScreen.TabIndex = 1;
+            // 
+            // ScoreLabel
+            // 
+            this.ScoreLabel.AutoSize = true;
+            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScoreLabel.Location = new System.Drawing.Point(12, 26);
+            this.ScoreLabel.Name = "ScoreLabel";
+            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
+            this.ScoreLabel.TabIndex = 3;
+            this.ScoreLabel.Text = "SCORE:";
+            // 
+            // PlayerScore
+            // 
+            this.PlayerScore.AutoSize = true;
+            this.PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerScore.Location = new System.Drawing.Point(23, 72);
+            this.PlayerScore.Name = "PlayerScore";
+            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
+            this.PlayerScore.TabIndex = 2;
+            this.PlayerScore.Text = "0";
             // 
             // RESET_BUTTON
             // 
@@ -132,26 +153,6 @@
             this.playButton.UseVisualStyleBackColor = false;
             this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
-            // PlayerScore
-            // 
-            this.PlayerScore.AutoSize = true;
-            this.PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerScore.Location = new System.Drawing.Point(23, 72);
-            this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
-            this.PlayerScore.TabIndex = 2;
-            this.PlayerScore.Text = "0";
-            // 
-            // ScoreLabel
-            // 
-            this.ScoreLabel.AutoSize = true;
-            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScoreLabel.Location = new System.Drawing.Point(12, 26);
-            this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
-            this.ScoreLabel.TabIndex = 3;
-            this.ScoreLabel.Text = "SCORE:";
-            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
@@ -174,7 +175,8 @@
         private System.Windows.Forms.Panel titleScreen;
         private System.Windows.Forms.Button playButton;
         private System.Windows.Forms.Panel gameScreen;
-        private System.Windows.Forms.TableLayoutPanel snakeGrid;
+        //private System.Windows.Forms.TableLayoutPanel snakeGrid;
+        private DBLayoutPanel snakeGrid;
         private System.Windows.Forms.Button RESET_BUTTON;
         private System.Windows.Forms.Label ScoreLabel;
         private System.Windows.Forms.Label PlayerScore;
