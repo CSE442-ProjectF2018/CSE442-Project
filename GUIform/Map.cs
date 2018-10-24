@@ -37,7 +37,6 @@ namespace GUIform
 
         public bool _appleGet;
 
-
         public Path _head;
         public Path _tail;
         Path _trav;
@@ -58,12 +57,13 @@ namespace GUIform
             _tail.prev = _head;
             _trav = _head;
 
-
         }
 
         //Parameter d refers to dimension(s) of the grid. It's a square so only one number is needed.
         public Map(int d, int mt)
         {
+
+            //MUST BE UPDATED. DO NOT USE.
             dimension = d;
             mapType = mt;
 
@@ -240,31 +240,7 @@ namespace GUIform
 
         }
 
-        public void moveSnakeOLD()
-        {
-            Block temp = new Block(3);
-            setBlockAt(_trav.X, _trav.Y, temp);
-            _snakeLocation.X = _trav.X;
-            _snakeLocation.Y = _trav.Y;
-            
-            if(_trav == _tail)
-            {
-                _appleGet = true;
-                
-                setBlockAt(_tail.X, _tail.Y, temp);
-                _snakeLocation.X = _trav.X;
-                _snakeLocation.Y = _trav.Y;
-                _head = new Path(_snakeLocation.X, _snakeLocation.Y);
-                _tail = _head;
-                _tail.prev = _head;
-                _trav = _head;
-            }
-            else
-            {
-                _trav = _trav.next;
-            }
-
-        }
+        
 
         public void buildMap()
         {

@@ -17,9 +17,14 @@ namespace GUIform
         public DBLayoutPanel()
         {
             //InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint |
+            
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
               ControlStyles.OptimizedDoubleBuffer |
               ControlStyles.UserPaint, true);
+            
+    
+            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
             this.UpdateStyles();
         }
 
@@ -27,9 +32,11 @@ namespace GUIform
         {
             container.Add(this);
             //InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint |
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint |
               ControlStyles.OptimizedDoubleBuffer |
               ControlStyles.UserPaint, true);
+            
+            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
         }
     }

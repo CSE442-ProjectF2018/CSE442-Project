@@ -20,11 +20,14 @@ namespace GUIform
 
 
         Map _m;
+
+        bool _yourTurn = true;
         
 
         public Game()
         {
             InitializeComponent();
+
 
             //Excahnges the current screen/panel.
             titleScreen.Visible = true;
@@ -93,30 +96,36 @@ namespace GUIform
 
         private void snakeGrid_Click(object sender, EventArgs e)
         {
-            Point p = snakeGrid.PointToClient(MousePosition);
+            if (_yourTurn)
+            {
+                _yourTurn = false;
 
-            p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
-            p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+                Point p = snakeGrid.PointToClient(MousePosition);
 
-            //Add Apple def to backing map.
-            Block newApple = new Block(1);
-            _m.setBlockAt(p.X, p.Y, newApple);
+                p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+                p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
 
-            //Add Apple to GUI
-            snakeGrid.SuspendLayout();
-            System.Windows.Forms.Panel applePanel = new System.Windows.Forms.Panel();
-            snakeGrid.Controls.Add(applePanel, p.X, p.Y);
-            applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-            applePanel.BackgroundImage = Properties.Resources.apple;
-            applePanel.BackgroundImageLayout = ImageLayout.Stretch;
-            applePanel.Margin = new System.Windows.Forms.Padding(0);
-            snakeGrid.ResumeLayout();
+                //Add Apple def to backing map.
+                Block newApple = new Block(1);
+                _m.setBlockAt(p.X, p.Y, newApple);
 
-            //Create a path for the snake towards the apple.
-            _m.updateSnakePath();
+                //Add Apple to GUI
+                snakeGrid.SuspendLayout();
+                System.Windows.Forms.Panel applePanel = new System.Windows.Forms.Panel();
+                snakeGrid.Controls.Add(applePanel, p.X, p.Y);
+                applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                applePanel.BackgroundImage = Properties.Resources.apple;
+                applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+                applePanel.Margin = new System.Windows.Forms.Padding(0);
+                snakeGrid.ResumeLayout();
 
+                //Create a path for the snake towards the apple.
+                _m.updateSnakePath();
+
+
+                dispatcherTimer.Start();
+            }
             
-            dispatcherTimer.Start();
         }
 
         DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -142,6 +151,9 @@ namespace GUIform
                 snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y));
                 //snakeGrid.ResumeLayout();
                 updateMap();
+
+                _yourTurn = true;
+
                 dispatcherTimer.Stop();
             }
             else
