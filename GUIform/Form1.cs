@@ -62,12 +62,18 @@ namespace GUIform
             gameScreen.Visible = true;
 
             
+            for(int i = 0; i < 16; ++i)
+            {
+                for(int j = 0; j < 16; ++j)
+                {
+                    System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                    test.Click += new System.EventHandler(this.snakeGrid_Click);
+                    snakeGrid.Controls.Add(test, i, j);
+                }
+            }
+            
             
         }
-
-        private bool sm = false;
-        System.Windows.Forms.Panel testPanel = new System.Windows.Forms.Panel();
-        
 
         private void RESET_BUTTON_Click(object sender, EventArgs e)
         {
@@ -82,7 +88,9 @@ namespace GUIform
             //snakeGrid.SuspendLayout();
             snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
 
+            //System.Windows.Forms.Panel snakeTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
             System.Windows.Forms.Panel snakeTail = new System.Windows.Forms.Panel();
+
             snakeGrid.Controls.Add(snakeTail, _m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
             snakeTail.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
             snakeTail.Margin = new System.Windows.Forms.Padding(0);
@@ -109,15 +117,16 @@ namespace GUIform
                 Block newApple = new Block(1);
                 _m.setBlockAt(p.X, p.Y, newApple);
 
+                
                 //Add Apple to GUI
-                snakeGrid.SuspendLayout();
-                System.Windows.Forms.Panel applePanel = new System.Windows.Forms.Panel();
-                snakeGrid.Controls.Add(applePanel, p.X, p.Y);
+                
+                System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                
+
                 applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
                 applePanel.BackgroundImage = Properties.Resources.apple;
                 applePanel.BackgroundImageLayout = ImageLayout.Stretch;
                 applePanel.Margin = new System.Windows.Forms.Padding(0);
-                snakeGrid.ResumeLayout();
 
                 //Create a path for the snake towards the apple.
                 _m.updateSnakePath();
