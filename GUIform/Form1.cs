@@ -61,16 +61,19 @@ namespace GUIform
             titleScreen.Visible = false;
             gameScreen.Visible = true;
 
-            
+            snakeGrid.SuspendLayout();
             for(int i = 0; i < 16; ++i)
             {
                 for(int j = 0; j < 16; ++j)
                 {
                     System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                    test.Margin = new System.Windows.Forms.Padding(0);
+                    test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
                     test.Click += new System.EventHandler(this.snakeGrid_Click);
                     snakeGrid.Controls.Add(test, i, j);
                 }
             }
+            snakeGrid.ResumeLayout();
             
             
         }
@@ -79,54 +82,61 @@ namespace GUIform
         {
             _m = new Map();
             snakeGrid.Controls.Clear();
+            snakeGrid.SuspendLayout();
+            for (int i = 0; i < 16; ++i)
+            {
+                for (int j = 0; j < 16; ++j)
+                {
+                    System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                    test.Margin = new System.Windows.Forms.Padding(0);
+                    test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    test.Click += new System.EventHandler(this.snakeGrid_Click);
+                    snakeGrid.Controls.Add(test, i, j);
+                }
+            }
+            snakeGrid.ResumeLayout();
             _userScore = 0;
             PlayerScore.Text = _userScore.ToString();
         }
 
         private void updateMap()
         {
-            //snakeGrid.SuspendLayout();
-            snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
+            System.Windows.Forms.Panel sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
+            sTail.BackgroundImage = null;
+            sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+            //sTail.Update();
 
-            //System.Windows.Forms.Panel snakeTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
-            System.Windows.Forms.Panel snakeTail = new System.Windows.Forms.Panel();
+            sTail.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
 
-            snakeGrid.Controls.Add(snakeTail, _m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
-            snakeTail.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
-            snakeTail.Margin = new System.Windows.Forms.Padding(0);
-
-            System.Windows.Forms.Panel snakeHead = new System.Windows.Forms.Panel();
-            snakeGrid.Controls.Add(snakeHead, _m._currentSnake._Head.X, _m._currentSnake._Head.Y);
-            snakeHead.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
-            snakeHead.Margin = new System.Windows.Forms.Padding(0);
-            //snakeGrid.ResumeLayout();
+            System.Windows.Forms.Panel sHead = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y);
+            
+            sHead.BackColor = System.Drawing.Color.FromArgb(255, 0, 255, 0);
+            //sHead.Update();
+            snakeGrid.Update();
         }
 
         private void snakeGrid_Click(object sender, EventArgs e)
         {
+            Point p = snakeGrid.PointToClient(MousePosition);
+            p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+            p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+
+            //Add Apple def to backing map.
+            Block newApple = new Block(1);
+            _m.setBlockAt(p.X, p.Y, newApple);
+
+            System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+            applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+            applePanel.BackgroundImage = Properties.Resources.apple;
+            applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+            applePanel.Update();
+
             if (_yourTurn)
             {
                 _yourTurn = false;
 
-                Point p = snakeGrid.PointToClient(MousePosition);
-
-                p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
-                p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
-
-                //Add Apple def to backing map.
-                Block newApple = new Block(1);
-                _m.setBlockAt(p.X, p.Y, newApple);
-
                 
-                //Add Apple to GUI
-                
-                System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
-                
-
-                applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-                applePanel.BackgroundImage = Properties.Resources.apple;
-                applePanel.BackgroundImageLayout = ImageLayout.Stretch;
-                applePanel.Margin = new System.Windows.Forms.Padding(0);
+                //Add Apple
 
                 //Create a path for the snake towards the apple.
                 _m.updateSnakePath();
@@ -144,9 +154,10 @@ namespace GUIform
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            //snakeGrid.SuspendLayout();
-            snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y));
-            //snakeGrid.ResumeLayout();
+            System.Windows.Forms.Panel sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
+            sTail.BackgroundImage = null;
+            sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+            //sTail.Update();
 
             _m.moveSnake();
 
@@ -156,9 +167,12 @@ namespace GUIform
                 _userScore += _moveCounter * 10;
                 PlayerScore.Text = _userScore.ToString();
                 _moveCounter = 0;
-                //snakeGrid.SuspendLayout();
-                snakeGrid.Controls.Remove(snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y));
-                //snakeGrid.ResumeLayout();
+
+                sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y);
+                sTail.BackgroundImage = null;
+                sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                //sTail.Update();
+
                 updateMap();
 
                 _yourTurn = true;
