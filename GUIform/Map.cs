@@ -37,6 +37,8 @@ namespace GUIform
 
         public bool _appleGet;
 
+        public bool _snakeDeath;
+
         public Path _head;
         public Path _tail;
         Path _trav;
@@ -91,6 +93,7 @@ namespace GUIform
             _currentSnake = new Snake();
             
             _snakeLocation = new Point(7, 7);
+            _snakeDeath = false;
         }
 
         public void updateSnakePath()
@@ -155,6 +158,8 @@ namespace GUIform
                 temp.prev = _tail;
                 _tail.next = temp;
                 _tail = temp;
+
+                //if(info[_tail.X, _tail.Y] == )
 
                 //Is apple East or West?
             if(_tail.X < _appleLocation.X)
@@ -232,6 +237,9 @@ namespace GUIform
             {
                 _appleGet = true;
                 _currentSnake.consume(5);
+            }else if(info[_snakeLocation.X, _snakeLocation.Y].getType() == 3)
+            {
+                _snakeDeath = true;
             }
 
             info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);

@@ -178,6 +178,30 @@ namespace GUIform
                 _yourTurn = true;
 
                 dispatcherTimer.Stop();
+            }else if (_m._snakeDeath)
+            {
+                s_PlayButton.Play();
+                MessageBox.Show("SNEK IS DED! GAM OVR!");
+                _m = new Map();
+                snakeGrid.Controls.Clear();
+                snakeGrid.SuspendLayout();
+                for (int i = 0; i < 16; ++i)
+                {
+                    for (int j = 0; j < 16; ++j)
+                    {
+                        System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                        test.Margin = new System.Windows.Forms.Padding(0);
+                        test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                        test.Click += new System.EventHandler(this.snakeGrid_Click);
+                        snakeGrid.Controls.Add(test, i, j);
+                    }
+                }
+                snakeGrid.ResumeLayout();
+                _userScore = 0;
+                PlayerScore.Text = _userScore.ToString();
+
+                _yourTurn = true;
+                dispatcherTimer.Stop();
             }
             else
             {
