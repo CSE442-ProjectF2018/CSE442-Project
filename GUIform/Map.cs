@@ -42,7 +42,9 @@ namespace GUIform
         public Path _head;
         public Path _tail;
         Path _trav;
-        
+
+        public int _apples = 3;
+
 
         private Block[,] info;
         

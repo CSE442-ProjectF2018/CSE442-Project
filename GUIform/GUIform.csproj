@@ -95,15 +95,47 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="apple.cur" />
-    <None Include="Images\apple.png" />
+    <Content Include="Assets\Audio\GameBGM1.wav" />
+    <Content Include="Assets\Audio\GameBGM2.wav" />
+    <Content Include="Assets\Audio\Scream.wav" />
+    <Content Include="Assets\Images\apple.png" />
+    <Content Include="Assets\Images\Apple_Game_Over.png" />
+    <Content Include="Assets\Images\BG_grassy.png" />
+    <Content Include="Assets\Images\BG_sandy.png" />
+    <Content Include="Assets\Images\BG_wooden.png" />
+    <Content Include="Assets\Images\Btile.png" />
+    <Content Include="Assets\Images\Grid.png" />
+    <Content Include="Assets\Images\snek.png" />
+    <Content Include="Assets\Images\snek2.png" />
+    <Content Include="Assets\Images\snek_blink.png" />
+    <Content Include="Assets\Images\Snek_Game_Over.png" />
+    <Content Include="Assets\Sprites\apple.png" />
+    <Content Include="Assets\Sprites\snake_body.png" />
+    <Content Include="Assets\Sprites\snake_head.png" />
     <None Include="Assets\Audio\apple_crunch2.wav" />
     <None Include="Assets\Audio\apple_chew.wav" />
     <Content Include="Assets\Audio\apple_crunch.wav" />
     <None Include="Assets\Audio\BGM1.wav" />
     <None Include="Resources\BGM1.bmp" />
-    <None Include="Images\Grid.png" />
-    <None Include="Images\snek2.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
