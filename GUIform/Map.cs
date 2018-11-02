@@ -111,10 +111,10 @@ namespace GUIform
             int currentDirection;
 
             //Longest path (by DPS) to apple.
-            Path deepestApple;
+            Path deepestApple = null;
 
             //Furthest away (by DPS) deadend.
-            Path deepestDeadEnd;
+            Path deepestDeadEnd = null;
 
             //Traversal stack for DPS.
             Stack<Path> DPS = new Stack<Path>();
@@ -122,19 +122,168 @@ namespace GUIform
             //2D array same size as map for checking if a tile has been visited.
             bool[,] visited = new bool[16, 16];
 
-            _trav = new Path(_snakeLocation.X, _snakeLocation.Y);
-            _trav.depth = 0;
+            _head = new Path(_snakeLocation.X, _snakeLocation.Y);
+            _head.depth = 0;
+            _trav = _head;
             visited[_trav.X, _trav.Y] = true;
 
             DPS.Push(_trav);
 
             while (true)
             {
+                //Get top node.
+                _trav = DPS.Pop();
+                
+                //Check if Apple.
+                if(info[_trav.X,_trav.Y].getType() == 1)
+                {
+                    if(deepestApple == null)
+                    {
+                        deepestApple = _trav;
+                    }
+                    else if(_trav.depth > deepestApple.depth)
+                    {
+                        deepestApple = _trav;
+                    }
+                }
+
+
+                //Check if DeadEnd.
+                int badDirectionCount = 0;
+                
                 //Check Children
                 //North
+                if(validChild(_trav.X, _trav.Y - 1))
+                {
+                    if(!visited[_trav.X, _trav.Y - 1])
+                    {
+                        Path currentChild = new Path(_trav.X, _trav.Y - 1);
+                        currentChild.prev = _trav;
+                        currentChild.depth = currentChild.prev.depth + 1;
+                        visited[currentChild.X, currentChild.Y] = true;
+
+                        DPS.Push(currentChild);
+                    }
+                    else
+                    {
+                        ++badDirectionCount;
+                    }
+                }
+                else
+                {
+                    ++badDirectionCount;
+                }
                 
+                //Check Children
+                //East
+                if (validChild(_trav.X + 1, _trav.Y))
+                {
+                    if (!visited[_trav.X + 1, _trav.Y])
+                    {
+                        Path currentChild = new Path(_trav.X + 1, _trav.Y);
+                        currentChild.prev = _trav;
+                        currentChild.depth = currentChild.prev.depth + 1;
+                        visited[currentChild.X, currentChild.Y] = true;
+
+                        DPS.Push(currentChild);
+                    }
+                    else
+                    {
+                        ++badDirectionCount;
+                    }
+                }
+                else
+                {
+                    ++badDirectionCount;
+                }
+
+                //Check Children
+                //South
+                if (validChild(_trav.X, _trav.Y + 1))
+                {
+                    if (!visited[_trav.X, _trav.Y + 1])
+                    {
+                        Path currentChild = new Path(_trav.X, _trav.Y + 1);
+                        currentChild.prev = _trav;
+                        currentChild.depth = currentChild.prev.depth + 1;
+                        visited[currentChild.X, currentChild.Y] = true;
+
+                        DPS.Push(currentChild);
+                    }
+                    else
+                    {
+                        ++badDirectionCount;
+                    }
+                }
+                else
+                {
+                    ++badDirectionCount;
+                }
+
+                //Check Children
+                //West
+                if (validChild(_trav.X - 1, _trav.Y))
+                {
+                    if (!visited[_trav.X - 1, _trav.Y])
+                    {
+                        Path currentChild = new Path(_trav.X - 1, _trav.Y);
+                        currentChild.prev = _trav;
+                        currentChild.depth = currentChild.prev.depth + 1;
+                        visited[currentChild.X, currentChild.Y] = true;
+
+                        DPS.Push(currentChild);
+                    }
+                    else
+                    {
+                        ++badDirectionCount;
+                    }
+                }
+                else
+                {
+                    ++badDirectionCount;
+                }
+
+                //Check if deadEnd
+                if(badDirectionCount == 4)
+                {
+                    if(deepestDeadEnd == null)
+                    {
+                        deepestDeadEnd = _trav;
+                    }else if(_trav.depth > deepestDeadEnd.depth)
+                    {
+                        deepestDeadEnd = _trav;
+                    }
+
+                    if(DPS.Count == 0)
+                    {
+                        break;
+                    }
+                }
             }
-            
+
+            if(deepestApple != null)
+            {
+                _tail = deepestApple;
+                _trav = _tail;
+
+                while(_trav != _head)
+                {
+                    _trav.prev.next = _trav;
+                    _trav = _trav.prev;
+                }
+            }
+            else
+            {
+                _tail = deepestDeadEnd;
+                _trav = _tail;
+
+                while (_trav != _head)
+                {
+                    _trav.prev.next = _trav;
+                    _trav = _trav.prev;
+                }
+            }
+
 
 
         }
