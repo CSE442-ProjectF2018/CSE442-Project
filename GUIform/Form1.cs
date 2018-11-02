@@ -13,8 +13,8 @@ namespace GUIform
 
     public partial class Game : Form
     {
-       
 
+        
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
         SoundPlayer s_TitleScreen = new SoundPlayer(Properties.Resources.BGM1);
@@ -32,9 +32,11 @@ namespace GUIform
         bool _yourTurn = true;
 
         //Snake Blinking related variables
+        int time = 0;
         Timer blink_timer = new Timer();
+        Timer t_time = new Timer();
+
         PictureBox pb;
-        
 
         public Game()
         {
@@ -89,8 +91,12 @@ namespace GUIform
                 }
             }
             snakeGrid.ResumeLayout();
-            
-            s_player.URL = ("GameBGM1.wav");
+
+            Timer t_time = new Timer();
+            t_time.Interval = 1000;
+            t_time.Tick += new EventHandler(t_timer_Tick);
+            t_time.Start();
+
             s_player.controls.play();
            // s_BGM_1.PlayLooping();
 
@@ -135,7 +141,7 @@ namespace GUIform
             
             sHead.BackColor = System.Drawing.Color.FromArgb(0, 0, 255, 0);
             sHead.BackgroundImageLayout = ImageLayout.Stretch;
-            sHead.BackgroundImage = Properties.Resources.snake_head;
+            sHead.BackgroundImage = Properties.Resources.snake_body;
 
             //sHead.Update();
             snakeGrid.Update();
@@ -203,11 +209,13 @@ namespace GUIform
                 {
                     gameScreen.Visible = false;
                     apple_game_over.Visible = true;
+                    t_timer.Stop();
                 }
 
                 dispatcherTimer.Stop();
             }else if (_m._snakeDeath)
             {
+                t_timer.Stop();
                 s_snakeDIE.Play();
                 gameScreen.Visible = false;
                 snake_game_over.Visible = true;
@@ -244,6 +252,7 @@ namespace GUIform
 
         private void snake_game_over_reset_CLick(object sender, EventArgs e)
         {
+           
             snake_game_over.Visible = false;
             gameScreen.Visible = true;
             reset_gameScreen();
@@ -251,12 +260,14 @@ namespace GUIform
         }
         private void apple_game_over_reset_Click(object sender, EventArgs e)
         {
+            
             apple_game_over.Visible = false;
             gameScreen.Visible = true;
             reset_gameScreen();
         }
         private void reset_gameScreen()
         {
+            
             _m = new Map();
             gameScreen.Controls.Add(snakeGrid);
             snakeGrid.Controls.Clear();
@@ -276,8 +287,32 @@ namespace GUIform
             _userScore = 0;
             _yourTurn = true;
             PlayerScore.Text = _userScore.ToString();
+
+            
+            Timer t_time = new Timer();
+            t_time.Interval = 1000;
+            t_time.Start();
+            time = 0;
         }
 
-        
+       /* private void how_to_play_Click(object sender, EventArgs e)
+        {
+            
+            instruction_panel.Visible = true;
+            titleScreen.Visible = false;
+           // instructions.Text = "Welcome to Snec Snacc. \n";
+        }*/
+
+        private void IP_back_Click(object sender, EventArgs e)
+        {
+           // instruction_panel.Visible = true;
+            titleScreen.Visible = true;
+        }
+
+        private void t_timer_Tick(object sender, EventArgs e)
+        {
+            time += 1;
+            time_value.Text = time.ToString();
+        }
     }
 }
