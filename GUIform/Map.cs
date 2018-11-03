@@ -46,7 +46,7 @@ namespace GUIform
         public Path _tail;
         Path _trav;
 
-        public int _apples = 3;
+        public int _apples = 20;
 
 
         private Block[,] info;
@@ -143,7 +143,7 @@ namespace GUIform
                     {
                         deepestApple = _trav;
                     }
-                    else if(_trav.depth > deepestApple.depth)
+                    else if(_trav.depth < deepestApple.depth)
                     {
                         deepestApple = _trav;
                     }
@@ -310,6 +310,15 @@ namespace GUIform
 
         public void moveSnake()
         {
+            if(_trav.next == _tail)
+            {
+                updateSnakePath();
+            }else if(_trav.next == null)
+            {
+                _snakeDeath = true;
+                return;
+            }
+
             _trav = _trav.next;
 
             int nextDirection;

@@ -151,21 +151,26 @@ namespace GUIform
                 p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
                 p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
 
-                //Add Apple def to backing map.
-                Block newApple = new Block(1);
-                _m.setBlockAt(p.X, p.Y, newApple);
+                if(_m.getBlockAt(p.X,p.Y).getType() == 0)
+                {
+                    //Add Apple def to backing map.
+                    Block newApple = new Block(1);
+                    _m.setBlockAt(p.X, p.Y, newApple);
 
-                System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
-                applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-                applePanel.BackgroundImage = Properties.Resources.apple;
-                applePanel.BackgroundImageLayout = ImageLayout.Stretch;
-                applePanel.Update();
-                _m._apples--;
-                _yourTurn = false;
+                    System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                    applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    applePanel.BackgroundImage = Properties.Resources.apple;
+                    applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+                    applePanel.Update();
+                    _m._apples--;
+                    _yourTurn = false;
 
-                _m.updateSnakePath();
+                    _m.updateSnakePath();
 
-                dispatcherTimer.Start();
+                    dispatcherTimer.Start();
+                }
+
+                
             }
             
         }
