@@ -10,6 +10,9 @@ namespace GUIform
 {
     public class Path
     {
+        //depth NOT Initialized! Must be set elsewhere!
+        public int depth;
+
         public Path next;
         public Path prev;
         public int X;
@@ -100,6 +103,7 @@ namespace GUIform
 
         public void updateSnakePath()
         {
+            //Reset apple flag to false when new path is calculated.
             _appleGet = false;
             
             //North = 0
@@ -108,97 +112,51 @@ namespace GUIform
             //West = 3
             int currentDirection;
 
-            //Is apple East or West?
-            if(_snakeLocation.X < _appleLocation.X)
+            //Longest path (by DPS) to apple.
+            Path deepestApple;
+
+            //Furthest away (by DPS) deadend.
+            Path deepestDeadEnd;
+
+            //Traversal stack for DPS.
+            Stack<Path> DPS = new Stack<Path>();
+
+            //2D array same size as map for checking if a tile has been visited.
+            bool[,] visited = new bool[16, 16];
+
+            _trav = new Path(_snakeLocation.X, _snakeLocation.Y);
+            _trav.depth = 0;
+            visited[_trav.X, _trav.Y] = true;
+
+            DPS.Push(_trav);
+
+            while (true)
             {
-                currentDirection = 1;
-            }else if(_snakeLocation.X > _appleLocation.X)
+                //Check Children
+                //North
+                
+            }
+            
+
+
+        }
+
+        private bool validChild(int x, int y)
+        {
+            if(x < 0 || y < 0)
             {
-                currentDirection = 3;
+                return false;
+            }else if(15 < x || 15 < y)
+            {
+                return false;
+            }else if(info[x,y].getType() == 2 || info[x,y].getType() == 3)
+            {
+                return false;
             }
             else
             {
-                //Is apple North or South?
-                if(_snakeLocation.Y < _appleLocation.Y)
-                {
-                    currentDirection = 2;
-                }
-                else
-                {
-                    currentDirection = 0;
-                }
+                return true;
             }
-
-            _head = new Path(_snakeLocation.X, _snakeLocation.Y);
-            _tail = _head;
-            _tail.prev = _head;
-            _trav = _head;
-
-            Path trav = _head;
-            Path temp;
-            bool targetReached = false;
-            while (!targetReached)
-            {
-                switch (currentDirection)
-                {
-                    case 0:
-                        temp = new Path(_tail.X, _tail.Y - 1);
-                        break;
-                    case 1:
-                        temp = new Path(_tail.X + 1, _tail.Y);
-                        break;
-                    case 2:
-                        temp = new Path(_tail.X, _tail.Y + 1);
-                        break;
-                    case 3:
-                        temp = new Path(_tail.X - 1, _tail.Y);
-                        break;
-                    default:
-                        temp = new Path(0, 0);
-                        break;
-                }
-                temp.prev = _tail;
-                _tail.next = temp;
-                _tail = temp;
-
-                //if(info[_tail.X, _tail.Y] == )
-
-                //Is apple East or West?
-            if(_tail.X < _appleLocation.X)
-            {
-                currentDirection = 1;
-            }else if(_tail.X > _appleLocation.X)
-            {
-                currentDirection = 3;
-            }
-            else
-            {
-                //Is apple North or South?
-                if(_tail.Y < _appleLocation.Y)
-                {
-                    currentDirection = 2;
-                }else if(_tail.Y > _appleLocation.Y)
-                    {
-                        currentDirection = 0;
-                    }
-                    else
-                    {
-                        targetReached = !targetReached;
-                        continue;
-                    }
-            }
-
-
-
-                if (_tail.X >= 16 || _tail.Y >= 16)
-                {
-                    MessageBox.Show("OUT OF BOUNDS IN PATHFINDING");
-                }
-
-                continue;
-            }
-
-
         }
 
         public void moveSnake()
