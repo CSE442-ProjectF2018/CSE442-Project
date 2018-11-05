@@ -172,4 +172,10 @@
   <data name="Scream" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\assets\audio\scream.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="appleturn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\appleturn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="snekturn" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\snekturn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -22,7 +22,7 @@ namespace GUIform.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace GUIform.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GUIform.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace GUIform.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap apple {
+        public static System.Drawing.Bitmap apple {
             get {
                 object obj = ResourceManager.GetObject("apple", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream apple_chew {
+        public static System.IO.UnmanagedMemoryStream apple_chew {
             get {
                 return ResourceManager.GetStream("apple_chew", resourceCulture);
             }
@@ -82,7 +82,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream apple_crunch {
+        public static System.IO.UnmanagedMemoryStream apple_crunch {
             get {
                 return ResourceManager.GetStream("apple_crunch", resourceCulture);
             }
@@ -91,7 +91,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream apple_crunch2 {
+        public static System.IO.UnmanagedMemoryStream apple_crunch2 {
             get {
                 return ResourceManager.GetStream("apple_crunch2", resourceCulture);
             }
@@ -100,7 +100,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Apple_Game_Over {
+        public static System.Drawing.Bitmap Apple_Game_Over {
             get {
                 object obj = ResourceManager.GetObject("Apple_Game_Over", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -110,7 +110,17 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BG_grassy {
+        public static System.Drawing.Bitmap appleturn {
+            get {
+                object obj = ResourceManager.GetObject("appleturn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap BG_grassy {
             get {
                 object obj = ResourceManager.GetObject("BG_grassy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -120,7 +130,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BG_sandy {
+        public static System.Drawing.Bitmap BG_sandy {
             get {
                 object obj = ResourceManager.GetObject("BG_sandy", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -130,7 +140,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BG_wooden {
+        public static System.Drawing.Bitmap BG_wooden {
             get {
                 object obj = ResourceManager.GetObject("BG_wooden", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -140,7 +150,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream BGM1 {
+        public static System.IO.UnmanagedMemoryStream BGM1 {
             get {
                 return ResourceManager.GetStream("BGM1", resourceCulture);
             }
@@ -149,7 +159,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream GameBGM1 {
+        public static System.IO.UnmanagedMemoryStream GameBGM1 {
             get {
                 return ResourceManager.GetStream("GameBGM1", resourceCulture);
             }
@@ -158,7 +168,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream GameBGM2 {
+        public static System.IO.UnmanagedMemoryStream GameBGM2 {
             get {
                 return ResourceManager.GetStream("GameBGM2", resourceCulture);
             }
@@ -167,7 +177,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Grid {
+        public static System.Drawing.Bitmap Grid {
             get {
                 object obj = ResourceManager.GetObject("Grid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -177,7 +187,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Scream {
+        public static System.IO.UnmanagedMemoryStream Scream {
             get {
                 return ResourceManager.GetStream("Scream", resourceCulture);
             }
@@ -186,7 +196,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snake_body {
+        public static System.Drawing.Bitmap snake_body {
             get {
                 object obj = ResourceManager.GetObject("snake_body", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -196,7 +206,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snake_head {
+        public static System.Drawing.Bitmap snake_head {
             get {
                 object obj = ResourceManager.GetObject("snake_head", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -206,7 +216,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snek_blink {
+        public static System.Drawing.Bitmap snek_blink {
             get {
                 object obj = ResourceManager.GetObject("snek_blink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -216,7 +226,7 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Snek_Game_Over {
+        public static System.Drawing.Bitmap Snek_Game_Over {
             get {
                 object obj = ResourceManager.GetObject("Snek_Game_Over", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -226,9 +236,19 @@ namespace GUIform.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap snek2 {
+        public static System.Drawing.Bitmap snek2 {
             get {
                 object obj = ResourceManager.GetObject("snek2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap snekturn {
+            get {
+                object obj = ResourceManager.GetObject("snekturn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
