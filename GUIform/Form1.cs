@@ -14,6 +14,7 @@ namespace GUIform
     public partial class Game : Form
     {
 
+        
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
         SoundPlayer s_TitleScreen = new SoundPlayer(Properties.Resources.BGM1);
@@ -22,35 +23,37 @@ namespace GUIform
         SoundPlayer s_BGM_1 = new SoundPlayer(Properties.Resources.GameBGM1);
         SoundPlayer s_BGM_2 = new SoundPlayer(Properties.Resources.GameBGM2);
 
-        //time stuff
+        WMPLib.WindowsMediaPlayer s_player = new WindowsMediaPlayer();
+
         
+
+        Map _m;
+
+        bool _yourTurn = true;
+
+        //Snake Blinking related variables
+        int time = 0;
         Timer blink_timer = new Timer();
         Timer t_time = new Timer();
-        DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
 
-        int time = 0;
-        int _userScore = 0;
-        Map _m;
-        bool _yourTurn = true;
-        int _moveCounter = 0;
-        string s_directory = Environment.CurrentDirectory + "/Assets/Audio/";
-
-
+        PictureBox pb;
 
         public Game()
         {
             InitializeComponent();
 
-            setPanel(titleScreen);
+
             //Excahnges the current screen/panel.
-           
+            titleScreen.Visible = true;
+            gameScreen.Visible = false;
+            snake_game_over.Visible = false;
 
             //Loads the sound ahead of time, in attempt to play it.
             s_PlayButton.Load();
-            s_AppleGET.LoadAsync();
+            s_AppleGET.Load();
             s_TitleScreen.PlayLooping();
 
-            
+
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
 
@@ -69,45 +72,59 @@ namespace GUIform
             s_PlayButton.Play();
             
             //Generates a new default map.
+            _m = new Map();
 
             //Exchanges the current screen panel.
-            reset_to_gameScreen();
+            titleScreen.Visible = false;
+            gameScreen.Visible = true;
 
-
-        }
-        private void snake_game_over_reset_CLick(object sender, EventArgs e)
-        {
-
-            
-            reset_to_gameScreen();
-
-        }
-        private void apple_game_over_reset_Click(object sender, EventArgs e)
-        {
-            
-            reset_to_gameScreen();
-        }
-        private void instruction_button_Click(object sender, EventArgs e)
-        {
-            if (instructions.Visible == false)
+            snakeGrid.SuspendLayout();
+            for(int i = 0; i < 16; ++i)
             {
-                instructions.Visible = true;
-                instructions.Text = "Welcome to Snec Snacc!" + Environment.NewLine;
-                instructions.Text += "A snake who dreams of flight has gone back in time ";
-                instructions.Text += "to prevent gravity from being invented." + Environment.NewLine;
-                instructions.Text += "The only answer is EXTERMINATION!" + Environment.NewLine;
-                instructions.Text += "You have a limited amount of apples," + Environment.NewLine;
-                instructions.Text += "Kill the snake before you run out!" + Environment.NewLine;
-                instruction_button.Text = "Back";
+                for(int j = 0; j < 16; ++j)
+                {
+                    System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                    test.Margin = new System.Windows.Forms.Padding(0);
+                    test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    test.Click += new System.EventHandler(this.snakeGrid_Click);
+                    snakeGrid.Controls.Add(test, i, j);
+                }
             }
-            else
-            {
-                instructions.Visible = false;
-                instruction_button.Text = "How to Play";
-            }
-            
+            snakeGrid.ResumeLayout();
+
+            Timer t_time = new Timer();
+            t_time.Interval = 1000;
+            t_time.Tick += new EventHandler(t_timer_Tick);
+            t_time.Start();
+
+            s_player.controls.play();
+           // s_BGM_1.PlayLooping();
+
+
         }
-        
+
+        private void RESET_BUTTON_Click(object sender, EventArgs e)
+        {
+            _m = new Map();
+            gameScreen.Controls.Add(snakeGrid);
+            snakeGrid.Controls.Clear();
+            snakeGrid.SuspendLayout();
+            for (int i = 0; i < 16; ++i)
+            {
+                for (int j = 0; j < 16; ++j)
+                {
+                    System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
+                    test.Margin = new System.Windows.Forms.Padding(0);
+                    test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    test.Click += new System.EventHandler(this.snakeGrid_Click);
+                    snakeGrid.Controls.Add(test, i, j);
+                }
+            }
+            snakeGrid.ResumeLayout();
+            _userScore = 0;
+            PlayerScore.Text = _userScore.ToString();
+        }
+
         private void updateMap()
         {
             System.Windows.Forms.Panel sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
@@ -129,6 +146,7 @@ namespace GUIform
             //sHead.Update();
             snakeGrid.Update();
         }
+
         private void snakeGrid_Click(object sender, EventArgs e)
         {
             
@@ -152,22 +170,17 @@ namespace GUIform
                 _yourTurn = false;
 
                 _m.updateSnakePath();
+
                 dispatcherTimer.Start();
             }
             
         }
-        private void titleScreen_Click(object sender, EventArgs e)
-        {
-            
-            blink.Dock = DockStyle.Fill;
-            blink.Visible = true;
-            blink_timer.Interval = 250;
-            blink_timer.Start();
-            Console.WriteLine(Environment.CurrentDirectory + "\\Assets\\Audio\\BGM1.wav");
-        }
 
-        
-        //Timer functions
+        DispatcherTimer dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+
+        int _userScore = 0;
+        int _moveCounter = 0;
+
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             System.Windows.Forms.Panel sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Tail.X, _m._currentSnake._Tail.Y);
@@ -194,21 +207,15 @@ namespace GUIform
                 _yourTurn = true;
                 if(_m._apples == 0)
                 {
-                    BGM1.Ctlcontrols.stop();
                     gameScreen.Visible = false;
                     apple_game_over.Visible = true;
-                    t_time.Stop();
-                    dispatcherTimer.Stop();
-                    
-                    
-
+                    t_timer.Stop();
                 }
 
                 dispatcherTimer.Stop();
             }else if (_m._snakeDeath)
             {
-                BGM1.Ctlcontrols.stop();
-                t_time.Stop();
+                t_timer.Stop();
                 s_snakeDIE.Play();
                 gameScreen.Visible = false;
                 snake_game_over.Visible = true;
@@ -225,23 +232,40 @@ namespace GUIform
             }
 
         }
-        private void t_timer_Tick(object sender, EventArgs e)
+
+        private void titleScreen_Click(object sender, EventArgs e)
         {
-            time += 1;
-            time_value.Text = time.ToString();
+            pb = new PictureBox();
+            pb.BackgroundImage = Properties.Resources.snek_blink;
+            pb.BackgroundImageLayout = ImageLayout.Stretch; 
+            pb.Dock = DockStyle.Fill;
+            pb.Visible = true;
+            titleScreen.Controls.Add(pb);
+            blink_timer.Interval = 250;
+            blink_timer.Start();
         }
         private void blinkTimer_Tick(object sender, EventArgs e)
         {
-            blink.Dock = DockStyle.None;
-            blink.Visible = false;
+            titleScreen.Controls.Remove(pb);
             blink_timer.Stop();
         }
 
-        
-       
-
-       //Other 
-        private void reset_to_gameScreen()
+        private void snake_game_over_reset_CLick(object sender, EventArgs e)
+        {
+           
+            snake_game_over.Visible = false;
+            gameScreen.Visible = true;
+            reset_gameScreen();
+            
+        }
+        private void apple_game_over_reset_Click(object sender, EventArgs e)
+        {
+            
+            apple_game_over.Visible = false;
+            gameScreen.Visible = true;
+            reset_gameScreen();
+        }
+        private void reset_gameScreen()
         {
             
             _m = new Map();
@@ -263,60 +287,32 @@ namespace GUIform
             _userScore = 0;
             _yourTurn = true;
             PlayerScore.Text = _userScore.ToString();
-            BGM1.URL = s_directory + "GameBGM1.wav";
 
-            BGM1.settings.volume += 500;
-            BGM1.Ctlcontrols.play();
-
-
-
-            initializeTimeCounter();
-
-            setPanel(gameScreen);
-        }
-        private void initializeTimeCounter()
-        {
-            time = 0;
-            t_time = new Timer();
+            
+            Timer t_time = new Timer();
             t_time.Interval = 1000;
-            t_time.Tick += new EventHandler(t_timer_Tick);
             t_time.Start();
+            time = 0;
         }
-        private void RESET_BUTTON_Click(object sender, EventArgs e)
+
+       /* private void how_to_play_Click(object sender, EventArgs e)
         {
-            _m = new Map();
-            gameScreen.Controls.Add(snakeGrid);
-            snakeGrid.Controls.Clear();
-            snakeGrid.SuspendLayout();
-            for (int i = 0; i < 16; ++i)
-            {
-                for (int j = 0; j < 16; ++j)
-                {
-                    System.Windows.Forms.Panel test = new System.Windows.Forms.Panel();
-                    test.Margin = new System.Windows.Forms.Padding(0);
-                    test.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-                    test.Click += new System.EventHandler(this.snakeGrid_Click);
-                    snakeGrid.Controls.Add(test, i, j);
-                }
-            }
-            snakeGrid.ResumeLayout();
-            _userScore = 0;
-            PlayerScore.Text = _userScore.ToString();
-        }
-        private void setPanel(Panel p)
+            
+            instruction_panel.Visible = true;
+            titleScreen.Visible = false;
+           // instructions.Text = "Welcome to Snec Snacc. \n";
+        }*/
+
+        private void IP_back_Click(object sender, EventArgs e)
         {
-            foreach(Panel q in this.Controls){
-                if (q != p) q.Visible = false;
-            }
-            p.Visible = true;
+           // instruction_panel.Visible = true;
+            titleScreen.Visible = true;
         }
 
-
-
-
-
-
-
-
+        private void t_timer_Tick(object sender, EventArgs e)
+        {
+            time += 1;
+            time_value.Text = time.ToString();
+        }
     }
 }
