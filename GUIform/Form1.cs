@@ -262,6 +262,7 @@ namespace GUIform
         }
         private void reset_gameScreen()
         {
+            
             _m = new Map();
             gameScreen.Controls.Add(snakeGrid);
             snakeGrid.Controls.Clear();

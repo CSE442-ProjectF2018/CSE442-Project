@@ -12,7 +12,7 @@ namespace GUIform
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void nMain()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
