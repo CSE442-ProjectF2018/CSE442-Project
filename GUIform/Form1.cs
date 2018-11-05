@@ -136,9 +136,9 @@ namespace GUIform
             sHead.BackColor = System.Drawing.Color.FromArgb(0, 0, 255, 0);
             sHead.BackgroundImageLayout = ImageLayout.Stretch;
             sHead.BackgroundImage = Properties.Resources.snake_head;
-
             //sHead.Update();
             snakeGrid.Update();
+            snakeTurn_StyleChanged();
         }
 
         private void snakeGrid_Click(object sender, EventArgs e)
@@ -150,7 +150,6 @@ namespace GUIform
                 Point p = snakeGrid.PointToClient(MousePosition);
                 p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
                 p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
-
                 if(_m.getBlockAt(p.X,p.Y).getType() == 0)
                 {
                     //Add Apple def to backing map.
@@ -204,7 +203,8 @@ namespace GUIform
                 updateMap();
 
                 _yourTurn = true;
-                if(_m._apples == 0)
+                snakeTurn_StyleChanged();
+                if (_m._apples == 0)
                 {
                     gameScreen.Visible = false;
                     apple_game_over.Visible = true;
@@ -283,6 +283,20 @@ namespace GUIform
             PlayerScore.Text = _userScore.ToString();
         }
 
-        
+        private void snakeTurn_StyleChanged()
+        {
+            if (_yourTurn)
+            {
+                snakeTurn.BackgroundImage = Properties.Resources.appleturn;
+                turnLabel.BackColor = System.Drawing.Color.FromArgb(255,255,255,192);
+                turnLabel.Text = "YOUR TURN";
+            }
+            else
+            {
+                snakeTurn.BackgroundImage = Properties.Resources.snekturn;
+                turnLabel.BackColor = System.Drawing.Color.FromArgb(255, 65, 241, 248);
+                turnLabel.Text = "SNEK'S TURN";
+            }
+        }
     }
 }

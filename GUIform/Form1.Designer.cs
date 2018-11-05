@@ -30,29 +30,210 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Game));
-            this.snake_game_over = new System.Windows.Forms.Panel();
-            this.Enter_Initials = new System.Windows.Forms.Label();
-            this.snake_game_over_reset = new System.Windows.Forms.Button();
             this.gameScreen = new System.Windows.Forms.Panel();
+            this.turnLabel = new System.Windows.Forms.Label();
+            this.snakeTurn = new System.Windows.Forms.PictureBox();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
-            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
-            this.titleScreen = new System.Windows.Forms.Panel();
-            this.how_to_play = new System.Windows.Forms.Button();
-            this.Title = new System.Windows.Forms.Label();
-            this.playButton = new System.Windows.Forms.Button();
             this.apple_game_over = new System.Windows.Forms.Panel();
             this.apple_game_over_reset = new System.Windows.Forms.Button();
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
-            this.snake_game_over.SuspendLayout();
+            this.titleScreen = new System.Windows.Forms.Panel();
+            this.how_to_play = new System.Windows.Forms.Button();
+            this.Title = new System.Windows.Forms.Label();
+            this.playButton = new System.Windows.Forms.Button();
+            this.snake_game_over = new System.Windows.Forms.Panel();
+            this.Enter_Initials = new System.Windows.Forms.Label();
+            this.snake_game_over_reset = new System.Windows.Forms.Button();
+            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.gameScreen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snakeTurn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
-            this.titleScreen.SuspendLayout();
             this.apple_game_over.SuspendLayout();
+            this.titleScreen.SuspendLayout();
+            this.snake_game_over.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // gameScreen
+            // 
+            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
+            this.gameScreen.Controls.Add(this.turnLabel);
+            this.gameScreen.Controls.Add(this.snakeTurn);
+            this.gameScreen.Controls.Add(this.axWindowsMediaPlayer1);
+            this.gameScreen.Controls.Add(this.ScoreLabel);
+            this.gameScreen.Controls.Add(this.PlayerScore);
+            this.gameScreen.Controls.Add(this.RESET_BUTTON);
+            this.gameScreen.Controls.Add(this.snakeGrid);
+            this.gameScreen.Location = new System.Drawing.Point(0, 0);
+            this.gameScreen.Name = "gameScreen";
+            this.gameScreen.Size = new System.Drawing.Size(1136, 610);
+            this.gameScreen.TabIndex = 1;
+            // 
+            // turnLabel
+            // 
+            this.turnLabel.AutoSize = true;
+            this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.turnLabel.Location = new System.Drawing.Point(844, 368);
+            this.turnLabel.Name = "turnLabel";
+            this.turnLabel.Size = new System.Drawing.Size(104, 20);
+            this.turnLabel.TabIndex = 7;
+            this.turnLabel.Text = "YOUR TURN";
+            // 
+            // snakeTurn
+            // 
+            this.snakeTurn.AccessibleName = "";
+            this.snakeTurn.BackColor = System.Drawing.Color.Cyan;
+            this.snakeTurn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("snakeTurn.BackgroundImage")));
+            this.snakeTurn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.snakeTurn.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.snakeTurn.Location = new System.Drawing.Point(834, 359);
+            this.snakeTurn.Name = "snakeTurn";
+            this.snakeTurn.Size = new System.Drawing.Size(266, 200);
+            this.snakeTurn.TabIndex = 6;
+            this.snakeTurn.TabStop = false;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(1126, 4);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(10, 10);
+            this.axWindowsMediaPlayer1.TabIndex = 4;
+            // 
+            // ScoreLabel
+            // 
+            this.ScoreLabel.AutoSize = true;
+            this.ScoreLabel.BackColor = System.Drawing.Color.Transparent;
+            this.ScoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScoreLabel.Location = new System.Drawing.Point(2, 0);
+            this.ScoreLabel.Name = "ScoreLabel";
+            this.ScoreLabel.Size = new System.Drawing.Size(208, 55);
+            this.ScoreLabel.TabIndex = 3;
+            this.ScoreLabel.Text = "SCORE:";
+            // 
+            // PlayerScore
+            // 
+            this.PlayerScore.AutoSize = true;
+            this.PlayerScore.BackColor = System.Drawing.Color.Transparent;
+            this.PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlayerScore.Location = new System.Drawing.Point(129, 16);
+            this.PlayerScore.Name = "PlayerScore";
+            this.PlayerScore.Size = new System.Drawing.Size(35, 38);
+            this.PlayerScore.TabIndex = 2;
+            this.PlayerScore.Text = "0";
+            // 
+            // RESET_BUTTON
+            // 
+            this.RESET_BUTTON.BackColor = System.Drawing.Color.DimGray;
+            this.RESET_BUTTON.Location = new System.Drawing.Point(921, 235);
+            this.RESET_BUTTON.Name = "RESET_BUTTON";
+            this.RESET_BUTTON.Size = new System.Drawing.Size(91, 68);
+            this.RESET_BUTTON.TabIndex = 1;
+            this.RESET_BUTTON.Text = "RESET";
+            this.RESET_BUTTON.UseVisualStyleBackColor = false;
+            this.RESET_BUTTON.Click += new System.EventHandler(this.RESET_BUTTON_Click);
+            // 
+            // apple_game_over
+            // 
+            this.apple_game_over.BackgroundImage = global::GUIform.Properties.Resources.Apple_Game_Over;
+            this.apple_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.apple_game_over.Controls.Add(this.apple_game_over_reset);
+            this.apple_game_over.Controls.Add(this.game_over_label);
+            this.apple_game_over.Controls.Add(this.Adocalypse);
+            this.apple_game_over.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.apple_game_over.Location = new System.Drawing.Point(0, 0);
+            this.apple_game_over.Name = "apple_game_over";
+            this.apple_game_over.Size = new System.Drawing.Size(1136, 609);
+            this.apple_game_over.TabIndex = 3;
+            // 
+            // apple_game_over_reset
+            // 
+            this.apple_game_over_reset.BackColor = System.Drawing.Color.Yellow;
+            this.apple_game_over_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apple_game_over_reset.Location = new System.Drawing.Point(1019, 573);
+            this.apple_game_over_reset.Name = "apple_game_over_reset";
+            this.apple_game_over_reset.Size = new System.Drawing.Size(117, 38);
+            this.apple_game_over_reset.TabIndex = 2;
+            this.apple_game_over_reset.Text = "Play Again";
+            this.apple_game_over_reset.UseVisualStyleBackColor = false;
+            this.apple_game_over_reset.Click += new System.EventHandler(this.apple_game_over_reset_Click);
+            // 
+            // game_over_label
+            // 
+            this.game_over_label.AutoSize = true;
+            this.game_over_label.BackColor = System.Drawing.Color.Transparent;
+            this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.game_over_label.Location = new System.Drawing.Point(408, 4);
+            this.game_over_label.Name = "game_over_label";
+            this.game_over_label.Size = new System.Drawing.Size(436, 82);
+            this.game_over_label.TabIndex = 1;
+            this.game_over_label.Text = "Game Over!";
+            // 
+            // Adocalypse
+            // 
+            this.Adocalypse.AutoSize = true;
+            this.Adocalypse.BackColor = System.Drawing.Color.Transparent;
+            this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Adocalypse.Location = new System.Drawing.Point(84, 533);
+            this.Adocalypse.Name = "Adocalypse";
+            this.Adocalypse.Size = new System.Drawing.Size(908, 26);
+            this.Adocalypse.TabIndex = 0;
+            this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
+    ".";
+            // 
+            // titleScreen
+            // 
+            this.titleScreen.BackgroundImage = global::GUIform.Properties.Resources.snek2;
+            this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.titleScreen.Controls.Add(this.how_to_play);
+            this.titleScreen.Controls.Add(this.Title);
+            this.titleScreen.Controls.Add(this.playButton);
+            this.titleScreen.Location = new System.Drawing.Point(-1, -1);
+            this.titleScreen.Name = "titleScreen";
+            this.titleScreen.Size = new System.Drawing.Size(1137, 611);
+            this.titleScreen.TabIndex = 0;
+            this.titleScreen.Click += new System.EventHandler(this.titleScreen_Click);
+            // 
+            // how_to_play
+            // 
+            this.how_to_play.BackColor = System.Drawing.Color.Yellow;
+            this.how_to_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.how_to_play.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.how_to_play.Location = new System.Drawing.Point(1015, 574);
+            this.how_to_play.Name = "how_to_play";
+            this.how_to_play.Size = new System.Drawing.Size(119, 37);
+            this.how_to_play.TabIndex = 2;
+            this.how_to_play.Text = "Instructions";
+            this.how_to_play.UseVisualStyleBackColor = false;
+            // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.BackColor = System.Drawing.Color.Transparent;
+            this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Title.Location = new System.Drawing.Point(146, 39);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(428, 82);
+            this.Title.TabIndex = 1;
+            this.Title.Text = "Snec Snacc";
+            // 
+            // playButton
+            // 
+            this.playButton.BackColor = System.Drawing.Color.Yellow;
+            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.Location = new System.Drawing.Point(418, 510);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(308, 88);
+            this.playButton.TabIndex = 0;
+            this.playButton.Text = "PLAY!";
+            this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
             // 
             // snake_game_over
             // 
@@ -71,18 +252,18 @@
             // 
             this.Enter_Initials.AutoSize = true;
             this.Enter_Initials.BackColor = System.Drawing.Color.Transparent;
-            this.Enter_Initials.Font = new System.Drawing.Font("Minerva", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Enter_Initials.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Enter_Initials.ForeColor = System.Drawing.SystemColors.Window;
             this.Enter_Initials.Location = new System.Drawing.Point(440, 16);
             this.Enter_Initials.Name = "Enter_Initials";
-            this.Enter_Initials.Size = new System.Drawing.Size(248, 41);
+            this.Enter_Initials.Size = new System.Drawing.Size(326, 46);
             this.Enter_Initials.TabIndex = 1;
             this.Enter_Initials.Text = "Enter your initials";
             // 
             // snake_game_over_reset
             // 
             this.snake_game_over_reset.BackColor = System.Drawing.Color.Yellow;
-            this.snake_game_over_reset.Font = new System.Drawing.Font("Minerva", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.snake_game_over_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.snake_game_over_reset.Location = new System.Drawing.Point(468, 480);
             this.snake_game_over_reset.Name = "snake_game_over_reset";
             this.snake_game_over_reset.Size = new System.Drawing.Size(173, 50);
@@ -90,61 +271,6 @@
             this.snake_game_over_reset.Text = "Play Again";
             this.snake_game_over_reset.UseVisualStyleBackColor = false;
             this.snake_game_over_reset.Click += new System.EventHandler(this.snake_game_over_reset_CLick);
-            // 
-            // gameScreen
-            // 
-            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
-            this.gameScreen.Controls.Add(this.axWindowsMediaPlayer1);
-            this.gameScreen.Controls.Add(this.ScoreLabel);
-            this.gameScreen.Controls.Add(this.PlayerScore);
-            this.gameScreen.Controls.Add(this.RESET_BUTTON);
-            this.gameScreen.Controls.Add(this.snakeGrid);
-            this.gameScreen.Location = new System.Drawing.Point(0, 0);
-            this.gameScreen.Name = "gameScreen";
-            this.gameScreen.Size = new System.Drawing.Size(1136, 610);
-            this.gameScreen.TabIndex = 1;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(1126, 4);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(10, 10);
-            this.axWindowsMediaPlayer1.TabIndex = 4;
-            // 
-            // ScoreLabel
-            // 
-            this.ScoreLabel.AutoSize = true;
-            this.ScoreLabel.BackColor = System.Drawing.Color.Transparent;
-            this.ScoreLabel.Font = new System.Drawing.Font("Minerva", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ScoreLabel.Location = new System.Drawing.Point(2, 0);
-            this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(121, 50);
-            this.ScoreLabel.TabIndex = 3;
-            this.ScoreLabel.Text = "SCORE:";
-            // 
-            // PlayerScore
-            // 
-            this.PlayerScore.AutoSize = true;
-            this.PlayerScore.BackColor = System.Drawing.Color.Transparent;
-            this.PlayerScore.Font = new System.Drawing.Font("Minerva", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlayerScore.Location = new System.Drawing.Point(129, 16);
-            this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(31, 35);
-            this.PlayerScore.TabIndex = 2;
-            this.PlayerScore.Text = "0";
-            // 
-            // RESET_BUTTON
-            // 
-            this.RESET_BUTTON.BackColor = System.Drawing.Color.DimGray;
-            this.RESET_BUTTON.Location = new System.Drawing.Point(921, 235);
-            this.RESET_BUTTON.Name = "RESET_BUTTON";
-            this.RESET_BUTTON.Size = new System.Drawing.Size(91, 68);
-            this.RESET_BUTTON.TabIndex = 1;
-            this.RESET_BUTTON.Text = "RESET";
-            this.RESET_BUTTON.UseVisualStyleBackColor = false;
-            this.RESET_BUTTON.Click += new System.EventHandler(this.RESET_BUTTON_Click);
             // 
             // snakeGrid
             // 
@@ -193,104 +319,6 @@
             this.snakeGrid.TabIndex = 0;
             this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
-            // titleScreen
-            // 
-            this.titleScreen.BackgroundImage = global::GUIform.Properties.Resources.snek2;
-            this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.titleScreen.Controls.Add(this.how_to_play);
-            this.titleScreen.Controls.Add(this.Title);
-            this.titleScreen.Controls.Add(this.playButton);
-            this.titleScreen.Location = new System.Drawing.Point(-1, -1);
-            this.titleScreen.Name = "titleScreen";
-            this.titleScreen.Size = new System.Drawing.Size(1137, 611);
-            this.titleScreen.TabIndex = 0;
-            this.titleScreen.Click += new System.EventHandler(this.titleScreen_Click);
-            // 
-            // how_to_play
-            // 
-            this.how_to_play.BackColor = System.Drawing.Color.Yellow;
-            this.how_to_play.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.how_to_play.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.how_to_play.Location = new System.Drawing.Point(1015, 574);
-            this.how_to_play.Name = "how_to_play";
-            this.how_to_play.Size = new System.Drawing.Size(119, 37);
-            this.how_to_play.TabIndex = 2;
-            this.how_to_play.Text = "Instructions";
-            this.how_to_play.UseVisualStyleBackColor = false;
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.BackColor = System.Drawing.Color.Transparent;
-            this.Title.Font = new System.Drawing.Font("Minerva", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(146, 39);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(310, 75);
-            this.Title.TabIndex = 1;
-            this.Title.Text = "Snec Snacc";
-            // 
-            // playButton
-            // 
-            this.playButton.BackColor = System.Drawing.Color.Yellow;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.playButton.Font = new System.Drawing.Font("Minerva", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(418, 510);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(308, 88);
-            this.playButton.TabIndex = 0;
-            this.playButton.Text = "PLAY!";
-            this.playButton.UseVisualStyleBackColor = false;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            // 
-            // apple_game_over
-            // 
-            this.apple_game_over.BackgroundImage = global::GUIform.Properties.Resources.Apple_Game_Over;
-            this.apple_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.apple_game_over.Controls.Add(this.apple_game_over_reset);
-            this.apple_game_over.Controls.Add(this.game_over_label);
-            this.apple_game_over.Controls.Add(this.Adocalypse);
-            this.apple_game_over.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.apple_game_over.Location = new System.Drawing.Point(0, 0);
-            this.apple_game_over.Name = "apple_game_over";
-            this.apple_game_over.Size = new System.Drawing.Size(1136, 609);
-            this.apple_game_over.TabIndex = 3;
-            // 
-            // apple_game_over_reset
-            // 
-            this.apple_game_over_reset.BackColor = System.Drawing.Color.Yellow;
-            this.apple_game_over_reset.Font = new System.Drawing.Font("Minerva", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apple_game_over_reset.Location = new System.Drawing.Point(1019, 573);
-            this.apple_game_over_reset.Name = "apple_game_over_reset";
-            this.apple_game_over_reset.Size = new System.Drawing.Size(117, 38);
-            this.apple_game_over_reset.TabIndex = 2;
-            this.apple_game_over_reset.Text = "Play Again";
-            this.apple_game_over_reset.UseVisualStyleBackColor = false;
-            this.apple_game_over_reset.Click += new System.EventHandler(this.apple_game_over_reset_Click);
-            // 
-            // game_over_label
-            // 
-            this.game_over_label.AutoSize = true;
-            this.game_over_label.BackColor = System.Drawing.Color.Transparent;
-            this.game_over_label.Font = new System.Drawing.Font("Minerva", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.game_over_label.Location = new System.Drawing.Point(408, 4);
-            this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(335, 75);
-            this.game_over_label.TabIndex = 1;
-            this.game_over_label.Text = "Game Over!";
-            // 
-            // Adocalypse
-            // 
-            this.Adocalypse.AutoSize = true;
-            this.Adocalypse.BackColor = System.Drawing.Color.Transparent;
-            this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Adocalypse.Location = new System.Drawing.Point(84, 533);
-            this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(804, 24);
-            this.Adocalypse.TabIndex = 0;
-            this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
-    ".";
-            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
@@ -302,15 +330,16 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
             this.Text = "Snek Snak";
-            this.snake_game_over.ResumeLayout(false);
-            this.snake_game_over.PerformLayout();
             this.gameScreen.ResumeLayout(false);
             this.gameScreen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snakeTurn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
-            this.titleScreen.ResumeLayout(false);
-            this.titleScreen.PerformLayout();
             this.apple_game_over.ResumeLayout(false);
             this.apple_game_over.PerformLayout();
+            this.titleScreen.ResumeLayout(false);
+            this.titleScreen.PerformLayout();
+            this.snake_game_over.ResumeLayout(false);
+            this.snake_game_over.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -335,6 +364,8 @@
         private System.Windows.Forms.Label game_over_label;
         private System.Windows.Forms.Button apple_game_over_reset;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
+        private System.Windows.Forms.PictureBox snakeTurn;
+        private System.Windows.Forms.Label turnLabel;
     }
 }
 
