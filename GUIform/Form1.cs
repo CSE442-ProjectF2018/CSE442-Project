@@ -127,6 +127,7 @@ namespace GUIform
             sHead.BackgroundImage = Properties.Resources.snake_body;
 
             //sHead.Update();
+            turnIcon_StyleChanged();
             snakeGrid.Update();
         }
         private void snakeGrid_Click(object sender, EventArgs e)
@@ -192,6 +193,7 @@ namespace GUIform
                 updateMap();
 
                 _yourTurn = true;
+                turnIcon_StyleChanged();
                 if(_m._apples == 0)
                 {
                     BGM1.Ctlcontrols.stop();
@@ -311,7 +313,21 @@ namespace GUIform
             p.Visible = true;
         }
 
-
+        private void turnIcon_StyleChanged()
+        {
+            if (_yourTurn)
+            {
+                turnIcon.BackgroundImage = Properties.Resources.appleturn;
+                turnLabel.BackColor = System.Drawing.Color.FromArgb(255, 255, 255, 128);
+                turnLabel.Text = "Your Turn";
+            }
+            else
+            {
+                turnIcon.BackgroundImage = Properties.Resources.snekturn;
+                turnLabel.BackColor = System.Drawing.Color.FromArgb(255, 128, 255, 255);
+                turnLabel.Text = "Snec's Turn";
+            }
+        }
 
 
 
