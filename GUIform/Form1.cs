@@ -329,10 +329,9 @@ namespace GUIform
             }
         }
 
-
-
-
-
-
+        private void toggleAppleRock(object sender, EventArgs e)
+        {
+            _m._toggleAR = !_m._toggleAR;
+        }
     }
 }

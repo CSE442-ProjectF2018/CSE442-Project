@@ -46,8 +46,11 @@ namespace GUIform
         public Path _tail;
         Path _trav;
 
+        //true = apple
+        //false = rock
+        public bool _toggleAR = true;
         public int _apples = 20;
-
+        public int _rocks = 10;
 
         private Block[,] info;
         

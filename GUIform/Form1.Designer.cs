@@ -34,6 +34,9 @@
             this.Enter_Initials = new System.Windows.Forms.Label();
             this.snake_game_over_reset = new System.Windows.Forms.Button();
             this.gameScreen = new System.Windows.Forms.Panel();
+            this.togAppleRock = new System.Windows.Forms.Button();
+            this.turnLabel = new System.Windows.Forms.Label();
+            this.turnIcon = new System.Windows.Forms.PictureBox();
             this.BGM1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.time_value = new System.Windows.Forms.Label();
             this.time_label = new System.Windows.Forms.Label();
@@ -52,15 +55,13 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.t_timer = new System.Windows.Forms.Timer(this.components);
-            this.turnIcon = new System.Windows.Forms.PictureBox();
-            this.turnLabel = new System.Windows.Forms.Label();
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BGM1)).BeginInit();
             this.titleScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
             this.apple_game_over.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // snake_game_over
@@ -84,7 +85,7 @@
             this.Enter_Initials.ForeColor = System.Drawing.SystemColors.Window;
             this.Enter_Initials.Location = new System.Drawing.Point(440, 16);
             this.Enter_Initials.Name = "Enter_Initials";
-            this.Enter_Initials.Size = new System.Drawing.Size(326, 46);
+            this.Enter_Initials.Size = new System.Drawing.Size(222, 31);
             this.Enter_Initials.TabIndex = 1;
             this.Enter_Initials.Text = "Enter your initials";
             // 
@@ -103,6 +104,7 @@
             // gameScreen
             // 
             this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
+            this.gameScreen.Controls.Add(this.togAppleRock);
             this.gameScreen.Controls.Add(this.turnLabel);
             this.gameScreen.Controls.Add(this.turnIcon);
             this.gameScreen.Controls.Add(this.BGM1);
@@ -116,6 +118,40 @@
             this.gameScreen.Name = "gameScreen";
             this.gameScreen.Size = new System.Drawing.Size(1136, 610);
             this.gameScreen.TabIndex = 1;
+            // 
+            // togAppleRock
+            // 
+            this.togAppleRock.BackColor = System.Drawing.Color.White;
+            this.togAppleRock.BackgroundImage = global::GUIform.Properties.Resources.apple;
+            this.togAppleRock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.togAppleRock.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.togAppleRock.Location = new System.Drawing.Point(17, 523);
+            this.togAppleRock.Name = "togAppleRock";
+            this.togAppleRock.Size = new System.Drawing.Size(135, 73);
+            this.togAppleRock.TabIndex = 10;
+            this.togAppleRock.Text = "Toggle\r\nApple/Rock";
+            this.togAppleRock.UseVisualStyleBackColor = true;
+            this.togAppleRock.Click += new System.EventHandler(this.toggleAppleRock);
+            // 
+            // turnLabel
+            // 
+            this.turnLabel.AutoSize = true;
+            this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.turnLabel.Location = new System.Drawing.Point(840, 441);
+            this.turnLabel.Name = "turnLabel";
+            this.turnLabel.Size = new System.Drawing.Size(54, 13);
+            this.turnLabel.TabIndex = 9;
+            this.turnLabel.Text = "Your Turn";
+            // 
+            // turnIcon
+            // 
+            this.turnIcon.BackgroundImage = global::GUIform.Properties.Resources.appleturn;
+            this.turnIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.turnIcon.Location = new System.Drawing.Point(821, 411);
+            this.turnIcon.Name = "turnIcon";
+            this.turnIcon.Size = new System.Drawing.Size(272, 185);
+            this.turnIcon.TabIndex = 8;
+            this.turnIcon.TabStop = false;
             // 
             // BGM1
             // 
@@ -135,7 +171,7 @@
             this.time_value.ForeColor = System.Drawing.SystemColors.Window;
             this.time_value.Location = new System.Drawing.Point(914, 12);
             this.time_value.Name = "time_value";
-            this.time_value.Size = new System.Drawing.Size(37, 40);
+            this.time_value.Size = new System.Drawing.Size(26, 29);
             this.time_value.TabIndex = 6;
             this.time_value.Text = "0";
             // 
@@ -147,7 +183,7 @@
             this.time_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.time_label.Location = new System.Drawing.Point(782, -1);
             this.time_label.Name = "time_label";
-            this.time_label.Size = new System.Drawing.Size(143, 55);
+            this.time_label.Size = new System.Drawing.Size(97, 37);
             this.time_label.TabIndex = 5;
             this.time_label.Text = "Time:";
             // 
@@ -159,7 +195,7 @@
             this.ScoreLabel.ForeColor = System.Drawing.SystemColors.Window;
             this.ScoreLabel.Location = new System.Drawing.Point(2, -1);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(208, 55);
+            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
             this.ScoreLabel.TabIndex = 3;
             this.ScoreLabel.Text = "SCORE:";
             // 
@@ -171,7 +207,7 @@
             this.PlayerScore.ForeColor = System.Drawing.SystemColors.Window;
             this.PlayerScore.Location = new System.Drawing.Point(12, 49);
             this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(35, 38);
+            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
             this.PlayerScore.TabIndex = 2;
             this.PlayerScore.Text = "0";
             // 
@@ -268,7 +304,7 @@
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(146, 39);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(428, 82);
+            this.Title.Size = new System.Drawing.Size(291, 55);
             this.Title.TabIndex = 1;
             this.Title.Text = "Snec Snacc";
             // 
@@ -340,7 +376,7 @@
             this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.game_over_label.Location = new System.Drawing.Point(408, 4);
             this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(436, 82);
+            this.game_over_label.Size = new System.Drawing.Size(295, 55);
             this.game_over_label.TabIndex = 1;
             this.game_over_label.Text = "Game Over!";
             // 
@@ -351,7 +387,7 @@
             this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Adocalypse.Location = new System.Drawing.Point(84, 533);
             this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(908, 26);
+            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
             this.Adocalypse.TabIndex = 0;
             this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
     ".";
@@ -359,26 +395,6 @@
             // t_timer
             // 
             this.t_timer.Tick += new System.EventHandler(this.t_timer_Tick);
-            // 
-            // turnIcon
-            // 
-            this.turnIcon.BackgroundImage = global::GUIform.Properties.Resources.appleturn;
-            this.turnIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.turnIcon.Location = new System.Drawing.Point(821, 411);
-            this.turnIcon.Name = "turnIcon";
-            this.turnIcon.Size = new System.Drawing.Size(272, 185);
-            this.turnIcon.TabIndex = 8;
-            this.turnIcon.TabStop = false;
-            // 
-            // turnLabel
-            // 
-            this.turnLabel.AutoSize = true;
-            this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.turnLabel.Location = new System.Drawing.Point(840, 441);
-            this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(79, 20);
-            this.turnLabel.TabIndex = 9;
-            this.turnLabel.Text = "Your Turn";
             // 
             // Game
             // 
@@ -395,13 +411,13 @@
             this.snake_game_over.PerformLayout();
             this.gameScreen.ResumeLayout(false);
             this.gameScreen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BGM1)).EndInit();
             this.titleScreen.ResumeLayout(false);
             this.titleScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
             this.apple_game_over.ResumeLayout(false);
             this.apple_game_over.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,6 +449,7 @@
         private AxWMPLib.AxWindowsMediaPlayer BGM1;
         private System.Windows.Forms.PictureBox turnIcon;
         private System.Windows.Forms.Label turnLabel;
+        private System.Windows.Forms.Button togAppleRock;
     }
 }
 
