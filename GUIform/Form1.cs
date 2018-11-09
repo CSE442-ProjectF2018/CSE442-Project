@@ -130,33 +130,58 @@ namespace GUIform
             turnIcon_StyleChanged();
             snakeGrid.Update();
         }
+
         private void snakeGrid_Click(object sender, EventArgs e)
         {
-            
-
             if (_yourTurn)
             {
-                Point p = snakeGrid.PointToClient(MousePosition);
-                p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
-                p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+                if(_m._toggleAR)
+                {
+                    //Place an apple
 
-                //Add Apple def to backing map.
-                Block newApple = new Block(1);
-                _m.setBlockAt(p.X, p.Y, newApple);
+                    Point p = snakeGrid.PointToClient(MousePosition);
+                    p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+                    p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
 
-                System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
-                applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
-                applePanel.BackgroundImage = Properties.Resources.apple;
-                applePanel.BackgroundImageLayout = ImageLayout.Stretch;
-                applePanel.Update();
-                _m._apples--;
-                _yourTurn = false;
+                    //Add Apple def to backing map.
+                    Block newApple = new Block(1);
+                    _m.setBlockAt(p.X, p.Y, newApple);
 
-                _m.updateSnakePath();
-                dispatcherTimer.Start();
+                    System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                    applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    applePanel.BackgroundImage = Properties.Resources.apple;
+                    applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+                    applePanel.Update();
+                    _m._apples--;
+                    _yourTurn = false;
+
+                    _m.updateSnakePath();
+                    dispatcherTimer.Start();
+                }
+                else
+                {
+                    //Place a Rock
+                    Point p = snakeGrid.PointToClient(MousePosition);
+                    p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+                    p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+
+                    //Add Rock def to backing map.
+                    Block newRock = new Block(2);
+                    _m.setBlockAt(p.X, p.Y, newRock);
+
+                    System.Windows.Forms.Panel rockPanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                    rockPanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+
+                    rockPanel.BackgroundImage = Properties.Resources.apple;
+
+                    rockPanel.BackgroundImageLayout = ImageLayout.Stretch;
+                    rockPanel.Update();
+                    _m._rocks--;
+
+                }
             }
-            
         }
+
         private void titleScreen_Click(object sender, EventArgs e)
         {
             
