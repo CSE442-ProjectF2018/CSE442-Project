@@ -110,6 +110,7 @@
     <Content Include="Assets\Images\snek_blink.png" />
     <Content Include="Assets\Images\Snek_Game_Over.png" />
     <Content Include="Assets\Sprites\apple.png" />
+    <Content Include="Assets\Sprites\rock.png" />
     <Content Include="Assets\Sprites\snake_body.png" />
     <Content Include="Assets\Sprites\snake_head.png" />
     <None Include="Resources\snekturn.png" />

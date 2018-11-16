@@ -34,16 +34,16 @@
             this.Enter_Initials = new System.Windows.Forms.Label();
             this.snake_game_over_reset = new System.Windows.Forms.Button();
             this.gameScreen = new System.Windows.Forms.Panel();
+            this.SFX_Player = new AxWMPLib.AxWindowsMediaPlayer();
+            this.BGM_Player = new AxWMPLib.AxWindowsMediaPlayer();
             this.togAppleRock = new System.Windows.Forms.Button();
             this.turnLabel = new System.Windows.Forms.Label();
             this.turnIcon = new System.Windows.Forms.PictureBox();
-            this.BGM1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.time_value = new System.Windows.Forms.Label();
             this.time_label = new System.Windows.Forms.Label();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
-            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.titleScreen = new System.Windows.Forms.Panel();
             this.instructions = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
@@ -55,10 +55,13 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.t_timer = new System.Windows.Forms.Timer(this.components);
+            this.loading_screen = new System.Windows.Forms.Panel();
+            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGM_Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BGM1)).BeginInit();
             this.titleScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
             this.apple_game_over.SuspendLayout();
@@ -85,7 +88,7 @@
             this.Enter_Initials.ForeColor = System.Drawing.SystemColors.Window;
             this.Enter_Initials.Location = new System.Drawing.Point(440, 16);
             this.Enter_Initials.Name = "Enter_Initials";
-            this.Enter_Initials.Size = new System.Drawing.Size(222, 31);
+            this.Enter_Initials.Size = new System.Drawing.Size(267, 38);
             this.Enter_Initials.TabIndex = 1;
             this.Enter_Initials.Text = "Enter your initials";
             // 
@@ -95,7 +98,7 @@
             this.snake_game_over_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.snake_game_over_reset.Location = new System.Drawing.Point(468, 480);
             this.snake_game_over_reset.Name = "snake_game_over_reset";
-            this.snake_game_over_reset.Size = new System.Drawing.Size(173, 50);
+            this.snake_game_over_reset.Size = new System.Drawing.Size(193, 50);
             this.snake_game_over_reset.TabIndex = 0;
             this.snake_game_over_reset.Text = "Play Again";
             this.snake_game_over_reset.UseVisualStyleBackColor = false;
@@ -104,10 +107,11 @@
             // gameScreen
             // 
             this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
+            this.gameScreen.Controls.Add(this.SFX_Player);
+            this.gameScreen.Controls.Add(this.BGM_Player);
             this.gameScreen.Controls.Add(this.togAppleRock);
             this.gameScreen.Controls.Add(this.turnLabel);
             this.gameScreen.Controls.Add(this.turnIcon);
-            this.gameScreen.Controls.Add(this.BGM1);
             this.gameScreen.Controls.Add(this.time_value);
             this.gameScreen.Controls.Add(this.time_label);
             this.gameScreen.Controls.Add(this.ScoreLabel);
@@ -118,6 +122,26 @@
             this.gameScreen.Name = "gameScreen";
             this.gameScreen.Size = new System.Drawing.Size(1136, 610);
             this.gameScreen.TabIndex = 1;
+            // 
+            // SFX_Player
+            // 
+            this.SFX_Player.Enabled = true;
+            this.SFX_Player.Location = new System.Drawing.Point(1057, -1);
+            this.SFX_Player.Name = "SFX_Player";
+            this.SFX_Player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("SFX_Player.OcxState")));
+            this.SFX_Player.Size = new System.Drawing.Size(79, 74);
+            this.SFX_Player.TabIndex = 4;
+            this.SFX_Player.Visible = false;
+            // 
+            // BGM_Player
+            // 
+            this.BGM_Player.Enabled = true;
+            this.BGM_Player.Location = new System.Drawing.Point(975, -1);
+            this.BGM_Player.Name = "BGM_Player";
+            this.BGM_Player.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("BGM_Player.OcxState")));
+            this.BGM_Player.Size = new System.Drawing.Size(85, 76);
+            this.BGM_Player.TabIndex = 4;
+            this.BGM_Player.Visible = false;
             // 
             // togAppleRock
             // 
@@ -139,7 +163,7 @@
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.turnLabel.Location = new System.Drawing.Point(840, 441);
             this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(54, 13);
+            this.turnLabel.Size = new System.Drawing.Size(72, 17);
             this.turnLabel.TabIndex = 9;
             this.turnLabel.Text = "Your Turn";
             // 
@@ -153,16 +177,6 @@
             this.turnIcon.TabIndex = 8;
             this.turnIcon.TabStop = false;
             // 
-            // BGM1
-            // 
-            this.BGM1.Enabled = true;
-            this.BGM1.Location = new System.Drawing.Point(979, 16);
-            this.BGM1.Name = "BGM1";
-            this.BGM1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("BGM1.OcxState")));
-            this.BGM1.Size = new System.Drawing.Size(136, 94);
-            this.BGM1.TabIndex = 7;
-            this.BGM1.Visible = false;
-            // 
             // time_value
             // 
             this.time_value.AutoSize = true;
@@ -171,7 +185,7 @@
             this.time_value.ForeColor = System.Drawing.SystemColors.Window;
             this.time_value.Location = new System.Drawing.Point(914, 12);
             this.time_value.Name = "time_value";
-            this.time_value.Size = new System.Drawing.Size(26, 29);
+            this.time_value.Size = new System.Drawing.Size(32, 36);
             this.time_value.TabIndex = 6;
             this.time_value.Text = "0";
             // 
@@ -183,7 +197,7 @@
             this.time_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.time_label.Location = new System.Drawing.Point(782, -1);
             this.time_label.Name = "time_label";
-            this.time_label.Size = new System.Drawing.Size(97, 37);
+            this.time_label.Size = new System.Drawing.Size(119, 46);
             this.time_label.TabIndex = 5;
             this.time_label.Text = "Time:";
             // 
@@ -195,7 +209,7 @@
             this.ScoreLabel.ForeColor = System.Drawing.SystemColors.Window;
             this.ScoreLabel.Location = new System.Drawing.Point(2, -1);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
+            this.ScoreLabel.Size = new System.Drawing.Size(174, 46);
             this.ScoreLabel.TabIndex = 3;
             this.ScoreLabel.Text = "SCORE:";
             // 
@@ -207,7 +221,7 @@
             this.PlayerScore.ForeColor = System.Drawing.SystemColors.Window;
             this.PlayerScore.Location = new System.Drawing.Point(12, 49);
             this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
+            this.PlayerScore.Size = new System.Drawing.Size(31, 32);
             this.PlayerScore.TabIndex = 2;
             this.PlayerScore.Text = "0";
             // 
@@ -221,53 +235,6 @@
             this.RESET_BUTTON.Text = "RESET";
             this.RESET_BUTTON.UseVisualStyleBackColor = false;
             this.RESET_BUTTON.Click += new System.EventHandler(this.RESET_BUTTON_Click);
-            // 
-            // snakeGrid
-            // 
-            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
-            this.snakeGrid.BackgroundImage = global::GUIform.Properties.Resources.BG_wooden;
-            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.snakeGrid.ColumnCount = 16;
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.snakeGrid.Location = new System.Drawing.Point(188, 5);
-            this.snakeGrid.Name = "snakeGrid";
-            this.snakeGrid.RowCount = 16;
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
-            this.snakeGrid.TabIndex = 0;
-            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
             // titleScreen
             // 
@@ -304,14 +271,16 @@
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(146, 39);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(291, 55);
+            this.Title.Size = new System.Drawing.Size(344, 69);
             this.Title.TabIndex = 1;
-            this.Title.Text = "Snec Snacc";
+            this.Title.Text = "$nec $nacc";
             // 
             // playButton
             // 
             this.playButton.BackColor = System.Drawing.Color.Yellow;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.playButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.playButton.FlatAppearance.BorderSize = 0;
+            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playButton.Location = new System.Drawing.Point(418, 510);
             this.playButton.Name = "playButton";
@@ -324,10 +293,12 @@
             // instruction_button
             // 
             this.instruction_button.BackColor = System.Drawing.Color.Yellow;
+            this.instruction_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.instruction_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.instruction_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instruction_button.Location = new System.Drawing.Point(3, 574);
+            this.instruction_button.Location = new System.Drawing.Point(3, 561);
             this.instruction_button.Name = "instruction_button";
-            this.instruction_button.Size = new System.Drawing.Size(121, 38);
+            this.instruction_button.Size = new System.Drawing.Size(150, 51);
             this.instruction_button.TabIndex = 3;
             this.instruction_button.Text = "How to Play";
             this.instruction_button.UseVisualStyleBackColor = false;
@@ -376,7 +347,7 @@
             this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.game_over_label.Location = new System.Drawing.Point(408, 4);
             this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(295, 55);
+            this.game_over_label.Size = new System.Drawing.Size(366, 69);
             this.game_over_label.TabIndex = 1;
             this.game_over_label.Text = "Game Over!";
             // 
@@ -387,7 +358,7 @@
             this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Adocalypse.Location = new System.Drawing.Point(84, 533);
             this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
+            this.Adocalypse.Size = new System.Drawing.Size(804, 24);
             this.Adocalypse.TabIndex = 0;
             this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
     ".";
@@ -396,13 +367,69 @@
             // 
             this.t_timer.Tick += new System.EventHandler(this.t_timer_Tick);
             // 
+            // loading_screen
+            // 
+            this.loading_screen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.loading_screen.Location = new System.Drawing.Point(893, 118);
+            this.loading_screen.Name = "loading_screen";
+            this.loading_screen.Size = new System.Drawing.Size(200, 100);
+            this.loading_screen.TabIndex = 6;
+            // 
+            // snakeGrid
+            // 
+            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
+            this.snakeGrid.BackgroundImage = global::GUIform.Properties.Resources.BG_wooden;
+            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.snakeGrid.ColumnCount = 16;
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.snakeGrid.Location = new System.Drawing.Point(188, 5);
+            this.snakeGrid.Name = "snakeGrid";
+            this.snakeGrid.RowCount = 16;
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
+            this.snakeGrid.TabIndex = 0;
+            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
+            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
-            this.Controls.Add(this.gameScreen);
-            this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.loading_screen);
             this.Controls.Add(this.titleScreen);
             this.Controls.Add(this.snake_game_over);
+            this.Controls.Add(this.gameScreen);
+            this.Controls.Add(this.apple_game_over);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
@@ -411,8 +438,9 @@
             this.snake_game_over.PerformLayout();
             this.gameScreen.ResumeLayout(false);
             this.gameScreen.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGM_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BGM1)).EndInit();
             this.titleScreen.ResumeLayout(false);
             this.titleScreen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
@@ -446,10 +474,12 @@
         private System.Windows.Forms.Button instruction_button;
         private System.Windows.Forms.TextBox instructions;
         private System.Windows.Forms.PictureBox blink;
-        private AxWMPLib.AxWindowsMediaPlayer BGM1;
         private System.Windows.Forms.PictureBox turnIcon;
         private System.Windows.Forms.Label turnLabel;
         private System.Windows.Forms.Button togAppleRock;
+        private AxWMPLib.AxWindowsMediaPlayer BGM_Player;
+        private AxWMPLib.AxWindowsMediaPlayer SFX_Player;
+        private System.Windows.Forms.Panel loading_screen;
     }
 }
 

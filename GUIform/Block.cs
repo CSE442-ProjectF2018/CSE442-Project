@@ -12,6 +12,7 @@ namespace GUIform
     //1 is Apple.
     //2 is Obstacle.
     //3 is Snake.
+    //4 is Coin
 
     public class Block
     {
@@ -27,7 +28,7 @@ namespace GUIform
         //Constructor where we immediately assign Btype
         public Block(int inputType)
         {
-            if(inputType >= 0 && inputType <= 4)
+            if(inputType >= 0 && inputType <= 5)
             {
                 _blockType = inputType;
             }

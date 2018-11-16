@@ -39,6 +39,7 @@ namespace GUIform
         public Point _snakeLocation;
 
         public bool _appleGet;
+        public bool _coinGet;
 
         public bool _snakeDeath;
 
@@ -108,7 +109,7 @@ namespace GUIform
         {
             //Reset apple flag to false when new path is calculated.
             _appleGet = false;
-            
+            _coinGet = false;
             //North = 0
             //East = 1
             //South = 2
@@ -223,6 +224,7 @@ namespace GUIform
                 else
                 {
                     ++badDirectionCount;
+                    
                 }
 
                 //Check Children
@@ -361,6 +363,10 @@ namespace GUIform
             }else if(info[_snakeLocation.X, _snakeLocation.Y].getType() == 3)
             {
                 _snakeDeath = true;
+            }
+            else if (info[_snakeLocation.X, _snakeLocation.Y].getType() == 4)
+            {
+                _coinGet = true;
             }
 
             info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);
