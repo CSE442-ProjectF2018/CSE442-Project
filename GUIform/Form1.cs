@@ -13,7 +13,7 @@ namespace GUIform
 
     public partial class Game : Form
     {
-       
+      
 
         //sound stuff
         SoundPlayer s_PlayButton = new SoundPlayer(Properties.Resources.apple_crunch);
@@ -51,6 +51,12 @@ namespace GUIform
             s_AppleGET.Load();
             s_TitleScreen.PlayLooping();
 
+            HighScoreDB hdb = new HighScoreDB();
+            Tuple<string, string>[] testgetdb = hdb.getTop5();
+            foreach(Tuple<string,string> ts in testgetdb)
+            {
+                MessageBox.Show(ts.ToString());
+            }
 
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);

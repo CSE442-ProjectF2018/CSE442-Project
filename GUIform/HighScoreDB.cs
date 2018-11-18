@@ -7,64 +7,104 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Data.SqlClient;
 
-namespace SheetsQuickstart
+namespace GUIform
 {
-    class Program
+    /*
+     * The constructor opens the connection, but the user must close the connection by calling the 'closeConnection()' function.
+     * DO NOT leave connection open for entire duration of App uptime. Connection may time out, and cause errors when attempting to send commands.
+     * INTENDED USE:
+     *      Create new 'HighScoreDB' object on new game load.
+     *      Populate top scores sidebar of game window.
+     *      Close connection.
+     *      
+     *      Game over.
+     *      Open connection.
+     *      Upload new high score with 'insert()' function.
+     *      Close connection.
+     */
+
+
+    public class HighScoreDB
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
-        static string[] Scopes = { SheetsService.Scope.SpreadsheetsReadonly };
-        static string ApplicationName = "Google Sheets API .NET Quickstart";
+        SqlConnection _cnn;
 
-        static void Main(string[] args)
+        public HighScoreDB()
         {
-            UserCredential credential;
+            openConnection();
+        }
 
-            using (var stream =
-                new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
+        //Inserts a new score.
+        public void insert(string initials, int score)
+        {
+            System.Text.StringBuilder query = new System.Text.StringBuilder();
+            query.Append("INSERT INTO HighScores1 (Initials,Score) Values ('");
+            query.Append(initials);
+            query.Append("',");
+            query.Append(score.ToString());
+            query.Append(");");
+
+            SqlCommand insertCmd = new SqlCommand(query.ToString(), _cnn);
+            SqlDataReader reader = insertCmd.ExecuteReader();
+            reader.Close();
+        }
+
+        //Returns the top 5 highscores from the database.
+        public Tuple<string,string>[] getTop5()
+        {
+            
+            System.Text.StringBuilder query = new System.Text.StringBuilder();
+            query.Append("SELECT TOP(5) Initials,Score FROM HighScores1 ORDER BY Score DESC;");
+
+            SqlCommand getCmd = new SqlCommand(query.ToString(), _cnn);
+            SqlDataReader reader = getCmd.ExecuteReader();
+
+            Tuple<string, string>[] top5 = new Tuple<string, string>[5];
+
+            int i = 0;
+
+            while (reader.Read())
             {
-                string credPath = "token.json";
-                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-                    GoogleClientSecrets.Load(stream).Secrets,
-                    Scopes,
-                    "user",
-                    CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
-                Console.WriteLine("Credential file saved to: " + credPath);
+                top5[i] = new Tuple<string, string>(reader["Initials"].ToString(),reader["Score"].ToString());
+
+                ++i;
             }
+            reader.Close();
+            return top5;
+        }
 
-            // Create Google Sheets API service.
-            var service = new SheetsService(new BaseClientService.Initializer()
+        //Removes ALL highscores from database.
+        public void wipeScores()
+        {
+            SqlCommand wipeCmd = new SqlCommand("DELETE FROM HighScores1;", _cnn);
+            SqlDataReader reader = wipeCmd.ExecuteReader();
+
+            reader.Close();
+        }
+
+        public void openConnection()
+        {
+            string connetionString = "Data Source=den1.mssql8.gear.host;Initial Catalog=highscores1;User ID=highscores1;Password=Rn6G39!c6!2i";
+            _cnn = new SqlConnection(connetionString);
+
+            try
             {
-                HttpClientInitializer = credential,
-                ApplicationName = ApplicationName,
-            });
+                _cnn.Open();
+                System.Windows.Forms.MessageBox.Show("Connected!");
+               
 
-            // Define request parameters.
-            String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
-            String range = "Class Data!A2:E";
-            SpreadsheetsResource.ValuesResource.GetRequest request =
-                    service.Spreadsheets.Values.Get(spreadsheetId, range);
-
-            // Prints the names and majors of students in a sample spreadsheet:
-            // https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-            ValueRange response = request.Execute();
-            IList<IList<Object>> values = response.Values;
-            if (values != null && values.Count > 0)
-            {
-                Console.WriteLine("Name, Major");
-                foreach (var row in values)
-                {
-                    // Print columns A and E, which correspond to indices 0 and 4.
-                    Console.WriteLine("{0}, {1}", row[0], row[4]);
-                }
             }
-            else
+            catch (Exception ex)
             {
-                Console.WriteLine("No data found.");
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                
             }
-            Console.Read();
+        }
+
+        public void closeConnection()
+        {
+            _cnn.Close();
         }
     }
 }
