@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Media;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -29,7 +30,7 @@ namespace GUIform
         
 
         //Asset directiory
-        private string c_asset_pack = "default/"; //Current asset pack
+        private string c_asset_pack = "default\\"; //Current asset pack
         private string s_directory;
         private string i_directory;
         private string sp_directory;
@@ -407,9 +408,9 @@ namespace GUIform
         }
         private void initialize_Asset_Pack(string pack)
         {
-            s_directory = Environment.CurrentDirectory + "/Assets/" + pack + "Audio/";
-            i_directory = Environment.CurrentDirectory + "/Assets/" + pack + "Images/";
-            sp_directory = Environment.CurrentDirectory + "/Assets/" + pack + "Sprites/";
+            s_directory = Environment.CurrentDirectory + "\\Assets\\" + pack + "Audio\\";
+            i_directory = Environment.CurrentDirectory + "\\Assets\\" + pack + "Images\\";
+            sp_directory = Environment.CurrentDirectory + "\\Assets\\" + pack + "Sprites\\";
 
             //sound stuff
             
