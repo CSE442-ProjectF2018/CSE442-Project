@@ -56,7 +56,25 @@
             this.Adocalypse = new System.Windows.Forms.Label();
             this.t_timer = new System.Windows.Forms.Timer(this.components);
             this.loading_screen = new System.Windows.Forms.Panel();
+            this.HS_Init1 = new System.Windows.Forms.Label();
+            this.HS_Init2 = new System.Windows.Forms.Label();
+            this.HS_Init3 = new System.Windows.Forms.Label();
             this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
+            this.HS_Init1_Up = new System.Windows.Forms.Button();
+            this.HS_Init1_Down = new System.Windows.Forms.Button();
+            this.HS_Init2_Up = new System.Windows.Forms.Button();
+            this.HS_Init2_Down = new System.Windows.Forms.Button();
+            this.HS_Init3_Up = new System.Windows.Forms.Button();
+            this.HS_Init3_Down = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.HS_PlayerScore = new System.Windows.Forms.Label();
+            this.HS_P_TopScores = new System.Windows.Forms.Panel();
+            this.HS_L_TopScores = new System.Windows.Forms.Label();
+            this.HS_1 = new System.Windows.Forms.Label();
+            this.HS_2 = new System.Windows.Forms.Label();
+            this.HS_3 = new System.Windows.Forms.Label();
+            this.HS_4 = new System.Windows.Forms.Label();
+            this.HS_5 = new System.Windows.Forms.Label();
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).BeginInit();
@@ -65,12 +83,24 @@
             this.titleScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
             this.apple_game_over.SuspendLayout();
+            this.HS_P_TopScores.SuspendLayout();
             this.SuspendLayout();
             // 
             // snake_game_over
             // 
             this.snake_game_over.BackgroundImage = global::GUIform.Properties.Resources.Snek_Game_Over;
             this.snake_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.snake_game_over.Controls.Add(this.HS_PlayerScore);
+            this.snake_game_over.Controls.Add(this.button1);
+            this.snake_game_over.Controls.Add(this.HS_Init3_Down);
+            this.snake_game_over.Controls.Add(this.HS_Init3_Up);
+            this.snake_game_over.Controls.Add(this.HS_Init2_Down);
+            this.snake_game_over.Controls.Add(this.HS_Init2_Up);
+            this.snake_game_over.Controls.Add(this.HS_Init1_Down);
+            this.snake_game_over.Controls.Add(this.HS_Init1_Up);
+            this.snake_game_over.Controls.Add(this.HS_Init3);
+            this.snake_game_over.Controls.Add(this.HS_Init2);
+            this.snake_game_over.Controls.Add(this.HS_Init1);
             this.snake_game_over.Controls.Add(this.Enter_Initials);
             this.snake_game_over.Controls.Add(this.snake_game_over_reset);
             this.snake_game_over.Cursor = System.Windows.Forms.Cursors.Default;
@@ -86,9 +116,9 @@
             this.Enter_Initials.BackColor = System.Drawing.Color.Transparent;
             this.Enter_Initials.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Enter_Initials.ForeColor = System.Drawing.SystemColors.Window;
-            this.Enter_Initials.Location = new System.Drawing.Point(440, 16);
+            this.Enter_Initials.Location = new System.Drawing.Point(395, 102);
             this.Enter_Initials.Name = "Enter_Initials";
-            this.Enter_Initials.Size = new System.Drawing.Size(267, 38);
+            this.Enter_Initials.Size = new System.Drawing.Size(222, 31);
             this.Enter_Initials.TabIndex = 1;
             this.Enter_Initials.Text = "Enter your initials";
             // 
@@ -107,6 +137,7 @@
             // gameScreen
             // 
             this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
+            this.gameScreen.Controls.Add(this.HS_P_TopScores);
             this.gameScreen.Controls.Add(this.SFX_Player);
             this.gameScreen.Controls.Add(this.BGM_Player);
             this.gameScreen.Controls.Add(this.togAppleRock);
@@ -163,7 +194,7 @@
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.turnLabel.Location = new System.Drawing.Point(840, 441);
             this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(72, 17);
+            this.turnLabel.Size = new System.Drawing.Size(54, 13);
             this.turnLabel.TabIndex = 9;
             this.turnLabel.Text = "Your Turn";
             // 
@@ -185,7 +216,7 @@
             this.time_value.ForeColor = System.Drawing.SystemColors.Window;
             this.time_value.Location = new System.Drawing.Point(914, 12);
             this.time_value.Name = "time_value";
-            this.time_value.Size = new System.Drawing.Size(32, 36);
+            this.time_value.Size = new System.Drawing.Size(26, 29);
             this.time_value.TabIndex = 6;
             this.time_value.Text = "0";
             // 
@@ -197,7 +228,7 @@
             this.time_label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.time_label.Location = new System.Drawing.Point(782, -1);
             this.time_label.Name = "time_label";
-            this.time_label.Size = new System.Drawing.Size(119, 46);
+            this.time_label.Size = new System.Drawing.Size(97, 37);
             this.time_label.TabIndex = 5;
             this.time_label.Text = "Time:";
             // 
@@ -209,7 +240,7 @@
             this.ScoreLabel.ForeColor = System.Drawing.SystemColors.Window;
             this.ScoreLabel.Location = new System.Drawing.Point(2, -1);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(174, 46);
+            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
             this.ScoreLabel.TabIndex = 3;
             this.ScoreLabel.Text = "SCORE:";
             // 
@@ -221,7 +252,7 @@
             this.PlayerScore.ForeColor = System.Drawing.SystemColors.Window;
             this.PlayerScore.Location = new System.Drawing.Point(12, 49);
             this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(31, 32);
+            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
             this.PlayerScore.TabIndex = 2;
             this.PlayerScore.Text = "0";
             // 
@@ -271,7 +302,7 @@
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(146, 39);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(344, 69);
+            this.Title.Size = new System.Drawing.Size(281, 55);
             this.Title.TabIndex = 1;
             this.Title.Text = "$nec $nacc";
             // 
@@ -347,7 +378,7 @@
             this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.game_over_label.Location = new System.Drawing.Point(408, 4);
             this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(366, 69);
+            this.game_over_label.Size = new System.Drawing.Size(295, 55);
             this.game_over_label.TabIndex = 1;
             this.game_over_label.Text = "Game Over!";
             // 
@@ -358,7 +389,7 @@
             this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Adocalypse.Location = new System.Drawing.Point(84, 533);
             this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(804, 24);
+            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
             this.Adocalypse.TabIndex = 0;
             this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
     ".";
@@ -374,6 +405,36 @@
             this.loading_screen.Name = "loading_screen";
             this.loading_screen.Size = new System.Drawing.Size(200, 100);
             this.loading_screen.TabIndex = 6;
+            // 
+            // HS_Init1
+            // 
+            this.HS_Init1.AutoSize = true;
+            this.HS_Init1.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_Init1.Location = new System.Drawing.Point(327, 209);
+            this.HS_Init1.Name = "HS_Init1";
+            this.HS_Init1.Size = new System.Drawing.Size(99, 97);
+            this.HS_Init1.TabIndex = 2;
+            this.HS_Init1.Text = "A";
+            // 
+            // HS_Init2
+            // 
+            this.HS_Init2.AutoSize = true;
+            this.HS_Init2.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_Init2.Location = new System.Drawing.Point(451, 209);
+            this.HS_Init2.Name = "HS_Init2";
+            this.HS_Init2.Size = new System.Drawing.Size(99, 97);
+            this.HS_Init2.TabIndex = 3;
+            this.HS_Init2.Text = "A";
+            // 
+            // HS_Init3
+            // 
+            this.HS_Init3.AutoSize = true;
+            this.HS_Init3.Font = new System.Drawing.Font("Microsoft Sans Serif", 64F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_Init3.Location = new System.Drawing.Point(572, 209);
+            this.HS_Init3.Name = "HS_Init3";
+            this.HS_Init3.Size = new System.Drawing.Size(99, 97);
+            this.HS_Init3.TabIndex = 4;
+            this.HS_Init3.Text = "A";
             // 
             // snakeGrid
             // 
@@ -422,14 +483,162 @@
             this.snakeGrid.TabIndex = 0;
             this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
+            // HS_Init1_Up
+            // 
+            this.HS_Init1_Up.Location = new System.Drawing.Point(329, 176);
+            this.HS_Init1_Up.Name = "HS_Init1_Up";
+            this.HS_Init1_Up.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init1_Up.TabIndex = 5;
+            this.HS_Init1_Up.Text = "^";
+            this.HS_Init1_Up.UseVisualStyleBackColor = true;
+            // 
+            // HS_Init1_Down
+            // 
+            this.HS_Init1_Down.Location = new System.Drawing.Point(329, 309);
+            this.HS_Init1_Down.Name = "HS_Init1_Down";
+            this.HS_Init1_Down.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init1_Down.TabIndex = 6;
+            this.HS_Init1_Down.Text = "V";
+            this.HS_Init1_Down.UseVisualStyleBackColor = true;
+            // 
+            // HS_Init2_Up
+            // 
+            this.HS_Init2_Up.Location = new System.Drawing.Point(450, 176);
+            this.HS_Init2_Up.Name = "HS_Init2_Up";
+            this.HS_Init2_Up.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init2_Up.TabIndex = 7;
+            this.HS_Init2_Up.Text = "^";
+            this.HS_Init2_Up.UseVisualStyleBackColor = true;
+            // 
+            // HS_Init2_Down
+            // 
+            this.HS_Init2_Down.Location = new System.Drawing.Point(450, 309);
+            this.HS_Init2_Down.Name = "HS_Init2_Down";
+            this.HS_Init2_Down.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init2_Down.TabIndex = 8;
+            this.HS_Init2_Down.Text = "V";
+            this.HS_Init2_Down.UseVisualStyleBackColor = true;
+            // 
+            // HS_Init3_Up
+            // 
+            this.HS_Init3_Up.Location = new System.Drawing.Point(571, 176);
+            this.HS_Init3_Up.Name = "HS_Init3_Up";
+            this.HS_Init3_Up.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init3_Up.TabIndex = 9;
+            this.HS_Init3_Up.Text = "^";
+            this.HS_Init3_Up.UseVisualStyleBackColor = true;
+            // 
+            // HS_Init3_Down
+            // 
+            this.HS_Init3_Down.Location = new System.Drawing.Point(571, 309);
+            this.HS_Init3_Down.Name = "HS_Init3_Down";
+            this.HS_Init3_Down.Size = new System.Drawing.Size(100, 30);
+            this.HS_Init3_Down.TabIndex = 10;
+            this.HS_Init3_Down.Text = "V";
+            this.HS_Init3_Down.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(401, 367);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(194, 65);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Enter";
+            this.button1.UseMnemonic = false;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // HS_PlayerScore
+            // 
+            this.HS_PlayerScore.AutoSize = true;
+            this.HS_PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_PlayerScore.Location = new System.Drawing.Point(461, 32);
+            this.HS_PlayerScore.Name = "HS_PlayerScore";
+            this.HS_PlayerScore.Size = new System.Drawing.Size(35, 37);
+            this.HS_PlayerScore.TabIndex = 12;
+            this.HS_PlayerScore.Text = "0";
+            // 
+            // HS_P_TopScores
+            // 
+            this.HS_P_TopScores.Controls.Add(this.HS_5);
+            this.HS_P_TopScores.Controls.Add(this.HS_4);
+            this.HS_P_TopScores.Controls.Add(this.HS_3);
+            this.HS_P_TopScores.Controls.Add(this.HS_2);
+            this.HS_P_TopScores.Controls.Add(this.HS_1);
+            this.HS_P_TopScores.Controls.Add(this.HS_L_TopScores);
+            this.HS_P_TopScores.Location = new System.Drawing.Point(3, 96);
+            this.HS_P_TopScores.Name = "HS_P_TopScores";
+            this.HS_P_TopScores.Size = new System.Drawing.Size(179, 276);
+            this.HS_P_TopScores.TabIndex = 11;
+            // 
+            // HS_L_TopScores
+            // 
+            this.HS_L_TopScores.AutoSize = true;
+            this.HS_L_TopScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_L_TopScores.Location = new System.Drawing.Point(27, 6);
+            this.HS_L_TopScores.Name = "HS_L_TopScores";
+            this.HS_L_TopScores.Size = new System.Drawing.Size(122, 20);
+            this.HS_L_TopScores.TabIndex = 0;
+            this.HS_L_TopScores.Text = "TOP SCORES";
+            // 
+            // HS_1
+            // 
+            this.HS_1.AutoSize = true;
+            this.HS_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_1.Location = new System.Drawing.Point(2, 42);
+            this.HS_1.Name = "HS_1";
+            this.HS_1.Size = new System.Drawing.Size(65, 20);
+            this.HS_1.TabIndex = 1;
+            this.HS_1.Text = "AAA: 0";
+            // 
+            // HS_2
+            // 
+            this.HS_2.AutoSize = true;
+            this.HS_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_2.Location = new System.Drawing.Point(2, 80);
+            this.HS_2.Name = "HS_2";
+            this.HS_2.Size = new System.Drawing.Size(65, 20);
+            this.HS_2.TabIndex = 2;
+            this.HS_2.Text = "AAA: 0";
+            // 
+            // HS_3
+            // 
+            this.HS_3.AutoSize = true;
+            this.HS_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_3.Location = new System.Drawing.Point(2, 129);
+            this.HS_3.Name = "HS_3";
+            this.HS_3.Size = new System.Drawing.Size(65, 20);
+            this.HS_3.TabIndex = 3;
+            this.HS_3.Text = "AAA: 0";
+            // 
+            // HS_4
+            // 
+            this.HS_4.AutoSize = true;
+            this.HS_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_4.Location = new System.Drawing.Point(2, 175);
+            this.HS_4.Name = "HS_4";
+            this.HS_4.Size = new System.Drawing.Size(65, 20);
+            this.HS_4.TabIndex = 4;
+            this.HS_4.Text = "AAA: 0";
+            // 
+            // HS_5
+            // 
+            this.HS_5.AutoSize = true;
+            this.HS_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HS_5.Location = new System.Drawing.Point(2, 213);
+            this.HS_5.Name = "HS_5";
+            this.HS_5.Size = new System.Drawing.Size(65, 20);
+            this.HS_5.TabIndex = 5;
+            this.HS_5.Text = "AAA: 0";
+            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
             this.Controls.Add(this.loading_screen);
-            this.Controls.Add(this.titleScreen);
-            this.Controls.Add(this.snake_game_over);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.titleScreen);
+            this.Controls.Add(this.snake_game_over);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
@@ -446,6 +655,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
             this.apple_game_over.ResumeLayout(false);
             this.apple_game_over.PerformLayout();
+            this.HS_P_TopScores.ResumeLayout(false);
+            this.HS_P_TopScores.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -480,6 +691,24 @@
         private AxWMPLib.AxWindowsMediaPlayer BGM_Player;
         private AxWMPLib.AxWindowsMediaPlayer SFX_Player;
         private System.Windows.Forms.Panel loading_screen;
+        private System.Windows.Forms.Label HS_Init3;
+        private System.Windows.Forms.Label HS_Init2;
+        private System.Windows.Forms.Label HS_Init1;
+        private System.Windows.Forms.Button HS_Init3_Down;
+        private System.Windows.Forms.Button HS_Init3_Up;
+        private System.Windows.Forms.Button HS_Init2_Down;
+        private System.Windows.Forms.Button HS_Init2_Up;
+        private System.Windows.Forms.Button HS_Init1_Down;
+        private System.Windows.Forms.Button HS_Init1_Up;
+        private System.Windows.Forms.Label HS_PlayerScore;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel HS_P_TopScores;
+        private System.Windows.Forms.Label HS_5;
+        private System.Windows.Forms.Label HS_4;
+        private System.Windows.Forms.Label HS_3;
+        private System.Windows.Forms.Label HS_2;
+        private System.Windows.Forms.Label HS_1;
+        private System.Windows.Forms.Label HS_L_TopScores;
     }
 }
 
