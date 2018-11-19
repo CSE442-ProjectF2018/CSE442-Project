@@ -39,6 +39,7 @@ namespace GUIform
         SoundPlayer s_AppleGET;
         SoundPlayer s_snakeDIE;
         SoundPlayer s_Player;
+        SoundPlayer s_hover;
 
 
         //gif image related
@@ -543,7 +544,7 @@ namespace GUIform
             Panel p = (Panel)sender;
             if (_yourTurn)
             {
-                play_SFX("panel.wav");
+                //play_SFX("panel.wav");
                 if (p.BackgroundImage == null) p.BackgroundImage = i_hover;
             }
         }
