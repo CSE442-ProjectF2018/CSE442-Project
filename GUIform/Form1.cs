@@ -21,8 +21,19 @@ namespace GUIform
         Map _m;
         bool _yourTurn = true;
         int _moveCounter = 0;
-
         
+        
+        //
+        //IF YOU'RE ON CAMPUS, SET TRUE.
+        //SET FALSE OTHERWISE.
+        //THIS DISABLES DATABASE CONECTIVITY.
+        //
+        bool DB_OnCampus = true;
+        //
+        //
+        //
+
+
         Letter _head;
         Letter _l1;
         Letter _l2;
@@ -381,14 +392,17 @@ namespace GUIform
             _yourTurn = true;
             PlayerScore.Text = _m._playerScore.ToString();
 
-            HighScoreDB data = new HighScoreDB();
-            Tuple<string, string>[] top5 = data.getTop5();
-            data.closeConnection();
-            if (top5[0] != null) { HS_1.Text = top5[0].ToString(); }
-            if (top5[1] != null) { HS_2.Text = top5[1].ToString(); }
-            if (top5[2] != null) { HS_3.Text = top5[2].ToString(); }
-            if (top5[3] != null) { HS_4.Text = top5[3].ToString(); }
-            if (top5[4] != null) { HS_5.Text = top5[4].ToString(); }
+            if (!DB_OnCampus)
+            {
+                HighScoreDB data = new HighScoreDB();
+                Tuple<string, string>[] top5 = data.getTop5();
+                data.closeConnection();
+                if (top5[0] != null) { HS_1.Text = top5[0].ToString(); }
+                if (top5[1] != null) { HS_2.Text = top5[1].ToString(); }
+                if (top5[2] != null) { HS_3.Text = top5[2].ToString(); }
+                if (top5[3] != null) { HS_4.Text = top5[3].ToString(); }
+                if (top5[4] != null) { HS_5.Text = top5[4].ToString(); }
+            }
 
             play_BGM("GameBGM1.wav");
 
@@ -617,10 +631,15 @@ namespace GUIform
 
         private void HS_Enter_Click(object sender, EventArgs e)
         {
-            string s = "" + _l1.c + _l2.c + _l3.c;
-            HighScoreDB data = new HighScoreDB();
-            data.insert(s, _m._playerScore);
-            data.closeConnection();
+            if (!DB_OnCampus)
+            {
+                string s = "" + _l1.c + _l2.c + _l3.c;
+                HighScoreDB data = new HighScoreDB();
+                data.insert(s, _m._playerScore);
+                data.closeConnection();
+
+            }
+
             reset_to_gameScreen();
         }
     }
