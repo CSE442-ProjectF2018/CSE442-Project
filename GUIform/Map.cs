@@ -40,6 +40,7 @@ namespace GUIform
 
         public bool _appleGet;
         public bool _coinGet;
+        public bool _trapHit;
 
         public bool _snakeDeath;
 
@@ -51,7 +52,12 @@ namespace GUIform
         //false = rock
         public bool _toggleAR = true;
         public int _apples = 20;
-        public int _rocks = 10;
+
+        public int _score_credit = 1000;
+        public int _score_total = 0;
+        public int _coins_collected = 0;
+        public int _coins = 0;
+        public int is_happy = 1;
 
         private Block[,] info;
         
@@ -368,9 +374,15 @@ namespace GUIform
             {
                 _coinGet = true;
             }
-
-            info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);
-            info[_currentSnake._Head.X, _currentSnake._Head.Y] = new Block(3);
+            else if (info[_snakeLocation.X, _snakeLocation.Y].getType() == 5)
+            {
+                _trapHit = true;
+            }
+            
+                info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = new Block(3);
+                info[_currentSnake._Head.X, _currentSnake._Head.Y] = new Block(3);
+            
+            
 
 
         }
@@ -386,6 +398,16 @@ namespace GUIform
                     info[i, j] = new Block();
                 }
             }
+        }
+
+        public void add_Score()
+        {
+            int coin_mult = (int)(Math.Pow(_coins_collected, 2));
+            _score_total += is_happy * _score_credit * coin_mult;
+            is_happy = 1;
+            _score_credit = 1000;
+            _coins_collected = 0;
+
         }
     }
 }

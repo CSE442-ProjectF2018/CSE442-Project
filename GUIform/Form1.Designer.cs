@@ -55,7 +55,6 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.t_timer = new System.Windows.Forms.Timer(this.components);
-            this.loading_screen = new System.Windows.Forms.Panel();
             this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
@@ -367,14 +366,6 @@
             // 
             this.t_timer.Tick += new System.EventHandler(this.t_timer_Tick);
             // 
-            // loading_screen
-            // 
-            this.loading_screen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.loading_screen.Location = new System.Drawing.Point(893, 118);
-            this.loading_screen.Name = "loading_screen";
-            this.loading_screen.Size = new System.Drawing.Size(200, 100);
-            this.loading_screen.TabIndex = 6;
-            // 
             // snakeGrid
             // 
             this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
@@ -425,11 +416,10 @@
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
-            this.Controls.Add(this.loading_screen);
-            this.Controls.Add(this.titleScreen);
-            this.Controls.Add(this.snake_game_over);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.titleScreen);
+            this.Controls.Add(this.snake_game_over);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
@@ -479,7 +469,6 @@
         private System.Windows.Forms.Button togAppleRock;
         private AxWMPLib.AxWindowsMediaPlayer BGM_Player;
         private AxWMPLib.AxWindowsMediaPlayer SFX_Player;
-        private System.Windows.Forms.Panel loading_screen;
     }
 }
 
