@@ -242,7 +242,6 @@
             // 
             // gameScreen
             // 
-            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
             this.gameScreen.Controls.Add(this.HS_P_TopScores);
             this.gameScreen.Controls.Add(this.SFX_Player);
             this.gameScreen.Controls.Add(this.BGM_Player);
@@ -447,7 +446,6 @@
             // snakeGrid
             // 
             this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
-            this.snakeGrid.BackgroundImage = global::GUIform.Properties.Resources.BG_wooden;
             this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.snakeGrid.ColumnCount = 16;
             this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
