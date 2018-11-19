@@ -68,7 +68,6 @@
             // 
             // snake_game_over
             // 
-            this.snake_game_over.BackgroundImage = global::GUIform.Properties.Resources.Snek_Game_Over;
             this.snake_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.snake_game_over.Controls.Add(this.Enter_Initials);
             this.snake_game_over.Controls.Add(this.snake_game_over_reset);
@@ -105,7 +104,6 @@
             // 
             // gameScreen
             // 
-            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_grassy;
             this.gameScreen.Controls.Add(this.SFX_Player);
             this.gameScreen.Controls.Add(this.BGM_Player);
             this.gameScreen.Controls.Add(this.togAppleRock);
@@ -145,7 +143,6 @@
             // togAppleRock
             // 
             this.togAppleRock.BackColor = System.Drawing.Color.White;
-            this.togAppleRock.BackgroundImage = global::GUIform.Properties.Resources.apple;
             this.togAppleRock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.togAppleRock.Cursor = System.Windows.Forms.Cursors.Hand;
             this.togAppleRock.Location = new System.Drawing.Point(17, 523);
@@ -168,7 +165,6 @@
             // 
             // turnIcon
             // 
-            this.turnIcon.BackgroundImage = global::GUIform.Properties.Resources.appleturn;
             this.turnIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.turnIcon.Location = new System.Drawing.Point(821, 411);
             this.turnIcon.Name = "turnIcon";
@@ -237,7 +233,6 @@
             // 
             // titleScreen
             // 
-            this.titleScreen.BackgroundImage = global::GUIform.Properties.Resources.snek2;
             this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.titleScreen.Controls.Add(this.instructions);
             this.titleScreen.Controls.Add(this.Title);
@@ -305,7 +300,6 @@
             // 
             // blink
             // 
-            this.blink.BackgroundImage = global::GUIform.Properties.Resources.snek_blink;
             this.blink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.blink.Location = new System.Drawing.Point(1036, 0);
             this.blink.Name = "blink";
@@ -316,7 +310,6 @@
             // 
             // apple_game_over
             // 
-            this.apple_game_over.BackgroundImage = global::GUIform.Properties.Resources.Apple_Game_Over;
             this.apple_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.apple_game_over.Controls.Add(this.apple_game_over_reset);
             this.apple_game_over.Controls.Add(this.game_over_label);
@@ -369,7 +362,6 @@
             // snakeGrid
             // 
             this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
-            this.snakeGrid.BackgroundImage = global::GUIform.Properties.Resources.BG_wooden;
             this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.snakeGrid.ColumnCount = 16;
             this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
