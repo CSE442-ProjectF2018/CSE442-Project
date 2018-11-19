@@ -11,15 +11,42 @@ namespace GUIform
     enum BType { apple, snake, wall, free };
     
     
+    
 
     public partial class Game : Form
     {
         //core variables
         int time = 0;
-        int _userScore = 0;
+        
         Map _m;
         bool _yourTurn = true;
         int _moveCounter = 0;
+
+        
+        Letter _head;
+        Letter _l1;
+        Letter _l2;
+        Letter _l3;
+
+        //Alphabet for Highscore entree
+        public void letterListBuilder()
+        {
+            string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+            _head = new Letter(alphabet[0]);
+            Letter trav = _head;
+            for(int i = 1; i < 26; ++i)
+            {
+                Letter temp = new Letter(alphabet[i]);
+                trav.next = temp;
+                temp.prev = trav;
+                trav = temp;
+            }
+            trav.next = _head;
+            _head.prev = trav;
+        }
+        
+
 
         //time stuff
 
@@ -63,7 +90,11 @@ namespace GUIform
             //Loads the sound ahead of time, in attempt to play it.
             play_BGM("BGM1.wav");
 
-            
+            letterListBuilder();
+            _l1 = _head;
+            _l2 = _head;
+            _l3 = _head;
+
             //timer
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
@@ -205,8 +236,8 @@ namespace GUIform
             if (_m._appleGet == true)
             {
                 s_AppleGET.Play();
-                _userScore += _moveCounter * 10;
-                PlayerScore.Text = _userScore.ToString();
+                _m._playerScore += _moveCounter * 10;
+                PlayerScore.Text = _m._playerScore.ToString();
                 _moveCounter = 0;
 
                 sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y);
@@ -236,6 +267,10 @@ namespace GUIform
                 s_snakeDIE.Play();
                 gameScreen.Visible = false;
                 snake_game_over.Visible = true;
+                _l1 = _head;
+                _l2 = _head;
+                _l3 = _head;
+                HS_PlayerScore.Text = _m._playerScore.ToString();
 
 
                 
@@ -326,9 +361,19 @@ namespace GUIform
                 }
             }
             snakeGrid.ResumeLayout();
-            _userScore = 0;
+            _m._playerScore = 0;
             _yourTurn = true;
-            PlayerScore.Text = _userScore.ToString();
+            PlayerScore.Text = _m._playerScore.ToString();
+
+            HighScoreDB data = new HighScoreDB();
+            Tuple<string, string>[] top5 = data.getTop5();
+            data.closeConnection();
+            if (top5[0] != null) { HS_1.Text = top5[0].ToString(); }
+            if (top5[1] != null) { HS_2.Text = top5[1].ToString(); }
+            if (top5[2] != null) { HS_3.Text = top5[2].ToString(); }
+            if (top5[3] != null) { HS_4.Text = top5[3].ToString(); }
+            if (top5[4] != null) { HS_5.Text = top5[4].ToString(); }
+
             play_BGM("GameBGM1.wav");
 
 
@@ -462,6 +507,15 @@ namespace GUIform
         {
             s_Player = new SoundPlayer(s_directory + sfx);
             s_Player.Play();
+        }
+
+        private void HS_Enter_Click(object sender, EventArgs e)
+        {
+            string s = "" + _l1.c + _l2.c + _l3.c;
+            HighScoreDB data = new HighScoreDB();
+            data.insert(s, _m._playerScore);
+            data.closeConnection();
+            reset_to_gameScreen();
         }
     }
 }

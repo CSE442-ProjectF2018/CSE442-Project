@@ -30,6 +30,8 @@ namespace GUIform
         //Default map type(empty). Int: for use with switch statement.
         private int mapType = 0;
 
+        public int _playerScore;
+
         public Snake _currentSnake;
 
         //Location of apple.
@@ -60,6 +62,8 @@ namespace GUIform
         {
             info = new Block[dimension, dimension];
             buildMap();
+
+            _playerScore = 0;
 
             initSnake();
 
