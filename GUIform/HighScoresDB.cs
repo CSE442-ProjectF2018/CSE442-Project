@@ -90,7 +90,7 @@ namespace GUIform
             try
             {
                 _cnn.Open();
-                System.Windows.Forms.MessageBox.Show("Connected!");
+                //System.Windows.Forms.MessageBox.Show("Connected!");
 
 
             }
