@@ -62,7 +62,6 @@
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
-            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.titleScreen = new System.Windows.Forms.Panel();
             this.instructions = new System.Windows.Forms.TextBox();
             this.Title = new System.Windows.Forms.Label();
@@ -75,6 +74,7 @@
             this.Adocalypse = new System.Windows.Forms.Label();
             this.t_timer = new System.Windows.Forms.Timer(this.components);
             this.loading_screen = new System.Windows.Forms.Panel();
+            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
             this.HS_P_TopScores.SuspendLayout();
@@ -139,6 +139,7 @@
             this.HS_Init3_Down.TabIndex = 10;
             this.HS_Init3_Down.Text = "V";
             this.HS_Init3_Down.UseVisualStyleBackColor = true;
+            this.HS_Init3_Down.Click += new System.EventHandler(this.HS_Init3_Down_Click);
             // 
             // HS_Init3_Up
             // 
@@ -148,6 +149,7 @@
             this.HS_Init3_Up.TabIndex = 9;
             this.HS_Init3_Up.Text = "^";
             this.HS_Init3_Up.UseVisualStyleBackColor = true;
+            this.HS_Init3_Up.Click += new System.EventHandler(this.HS_Init3_Up_Click);
             // 
             // HS_Init2_Down
             // 
@@ -157,6 +159,7 @@
             this.HS_Init2_Down.TabIndex = 8;
             this.HS_Init2_Down.Text = "V";
             this.HS_Init2_Down.UseVisualStyleBackColor = true;
+            this.HS_Init2_Down.Click += new System.EventHandler(this.HS_Init2_Down_Click);
             // 
             // HS_Init2_Up
             // 
@@ -166,6 +169,7 @@
             this.HS_Init2_Up.TabIndex = 7;
             this.HS_Init2_Up.Text = "^";
             this.HS_Init2_Up.UseVisualStyleBackColor = true;
+            this.HS_Init2_Up.Click += new System.EventHandler(this.HS_Init2_Up_Click);
             // 
             // HS_Init1_Down
             // 
@@ -175,6 +179,7 @@
             this.HS_Init1_Down.TabIndex = 6;
             this.HS_Init1_Down.Text = "V";
             this.HS_Init1_Down.UseVisualStyleBackColor = true;
+            this.HS_Init1_Down.Click += new System.EventHandler(this.HS_Init1_Down_Click);
             // 
             // HS_Init1_Up
             // 
@@ -184,6 +189,7 @@
             this.HS_Init1_Up.TabIndex = 5;
             this.HS_Init1_Up.Text = "^";
             this.HS_Init1_Up.UseVisualStyleBackColor = true;
+            this.HS_Init1_Up.Click += new System.EventHandler(this.HS_Init1_Up_Click);
             // 
             // HS_Init3
             // 
@@ -442,52 +448,6 @@
             this.RESET_BUTTON.UseVisualStyleBackColor = false;
             this.RESET_BUTTON.Click += new System.EventHandler(this.RESET_BUTTON_Click);
             // 
-            // snakeGrid
-            // 
-            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
-            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.snakeGrid.ColumnCount = 16;
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.snakeGrid.Location = new System.Drawing.Point(188, 5);
-            this.snakeGrid.Name = "snakeGrid";
-            this.snakeGrid.RowCount = 16;
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
-            this.snakeGrid.TabIndex = 0;
-            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
-            // 
             // titleScreen
             // 
             this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -616,15 +576,66 @@
             // 
             this.t_timer.Tick += new System.EventHandler(this.t_timer_Tick);
             // 
+            // loading_screen
+            // 
+            this.loading_screen.Location = new System.Drawing.Point(0, 0);
+            this.loading_screen.Name = "loading_screen";
+            this.loading_screen.Size = new System.Drawing.Size(200, 100);
+            this.loading_screen.TabIndex = 0;
+            // 
+            // snakeGrid
+            // 
+            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
+            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.snakeGrid.ColumnCount = 16;
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.snakeGrid.Location = new System.Drawing.Point(188, 5);
+            this.snakeGrid.Name = "snakeGrid";
+            this.snakeGrid.RowCount = 16;
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
+            this.snakeGrid.TabIndex = 0;
+            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
+            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
-            this.Controls.Add(this.gameScreen);
-            this.Controls.Add(this.apple_game_over);
-            this.Controls.Add(this.titleScreen);
             this.Controls.Add(this.snake_game_over);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.titleScreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";

@@ -28,7 +28,7 @@ namespace GUIform
         //SET FALSE OTHERWISE.
         //THIS DISABLES DATABASE CONECTIVITY.
         //
-        bool DB_OnCampus = true;
+        bool DB_OnCampus = false;
         //
         //
         //
@@ -113,8 +113,12 @@ namespace GUIform
             _l2 = _head;
             _l3 = _head;
 
+            HS_Init1.AutoSize = false;
+            HS_Init2.AutoSize = false;
+            HS_Init3.AutoSize = false;
+
             //timer
-            
+
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
             blink_timer.Tick += new EventHandler(blinkTimer_Tick);
@@ -641,6 +645,42 @@ namespace GUIform
             }
 
             reset_to_gameScreen();
+        }
+
+        private void HS_Init1_Down_Click(object sender, EventArgs e)
+        {
+            _l1 = _l1.next;
+            HS_Init1.Text = _l1.c.ToString(); 
+        }
+
+        private void HS_Init2_Down_Click(object sender, EventArgs e)
+        {
+            _l2 = _l2.next;
+            HS_Init2.Text = _l2.c.ToString();
+        }
+
+        private void HS_Init3_Down_Click(object sender, EventArgs e)
+        {
+            _l3 = _l3.next;
+            HS_Init3.Text = _l3.c.ToString();
+        }
+
+        private void HS_Init1_Up_Click(object sender, EventArgs e)
+        {
+            _l1 = _l1.prev;
+            HS_Init1.Text = _l1.c.ToString();
+        }
+
+        private void HS_Init2_Up_Click(object sender, EventArgs e)
+        {
+            _l2 = _l2.prev;
+            HS_Init2.Text = _l2.c.ToString();
+        }
+
+        private void HS_Init3_Up_Click(object sender, EventArgs e)
+        {
+            _l3 = _l3.prev;
+            HS_Init3.Text = _l3.c.ToString();
         }
     }
 }
