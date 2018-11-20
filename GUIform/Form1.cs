@@ -401,11 +401,11 @@ namespace GUIform
                 HighScoreDB data = new HighScoreDB();
                 Tuple<string, string>[] top5 = data.getTop5();
                 data.closeConnection();
-                if (top5[0] != null) { HS_1.Text = top5[0].ToString(); }
-                if (top5[1] != null) { HS_2.Text = top5[1].ToString(); }
-                if (top5[2] != null) { HS_3.Text = top5[2].ToString(); }
-                if (top5[3] != null) { HS_4.Text = top5[3].ToString(); }
-                if (top5[4] != null) { HS_5.Text = top5[4].ToString(); }
+                if (top5[0] != null) { HS_1.Text = "" + top5[0].Item1 + ": " + top5[0].Item2; };
+                if (top5[1] != null) { HS_2.Text = "" + top5[1].Item1 + ": " + top5[1].Item2; };
+                if (top5[2] != null) { HS_3.Text = "" + top5[2].Item1 + ": " + top5[2].Item2; };
+                if (top5[3] != null) { HS_4.Text = "" + top5[3].Item1 + ": " + top5[3].Item2; };
+                if (top5[4] != null) { HS_5.Text = "" + top5[4].Item1 + ": " + top5[4].Item2; };
             }
 
             play_BGM("GameBGM1.wav");
