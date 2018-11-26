@@ -45,6 +45,8 @@
             this.Enter_Initials = new System.Windows.Forms.Label();
             this.snake_game_over_reset = new System.Windows.Forms.Button();
             this.gameScreen = new System.Windows.Forms.Panel();
+            this.PartialPoints = new System.Windows.Forms.Label();
+            this.TurnPoints = new System.Windows.Forms.Label();
             this.tool_rock = new System.Windows.Forms.Button();
             this.tool_apple = new System.Windows.Forms.Button();
             this.HS_P_TopScores = new System.Windows.Forms.Panel();
@@ -62,7 +64,6 @@
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
-            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.titleScreen = new System.Windows.Forms.Panel();
             this.optionsPanel = new System.Windows.Forms.Panel();
             this.map_preview = new System.Windows.Forms.PictureBox();
@@ -85,8 +86,7 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.loading_screen = new System.Windows.Forms.Panel();
-            this.TurnPoints = new System.Windows.Forms.Label();
-            this.PartialPoints = new System.Windows.Forms.Label();
+            this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
             this.HS_P_TopScores.SuspendLayout();
@@ -130,7 +130,7 @@
             this.HS_PlayerScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_PlayerScore.Location = new System.Drawing.Point(539, 23);
             this.HS_PlayerScore.Name = "HS_PlayerScore";
-            this.HS_PlayerScore.Size = new System.Drawing.Size(42, 46);
+            this.HS_PlayerScore.Size = new System.Drawing.Size(35, 37);
             this.HS_PlayerScore.TabIndex = 12;
             this.HS_PlayerScore.Text = "0";
             // 
@@ -221,7 +221,7 @@
             this.HS_Init3.ForeColor = System.Drawing.Color.White;
             this.HS_Init3.Location = new System.Drawing.Point(572, 193);
             this.HS_Init3.Name = "HS_Init3";
-            this.HS_Init3.Size = new System.Drawing.Size(121, 120);
+            this.HS_Init3.Size = new System.Drawing.Size(99, 97);
             this.HS_Init3.TabIndex = 4;
             this.HS_Init3.Text = "A";
             // 
@@ -233,7 +233,7 @@
             this.HS_Init2.ForeColor = System.Drawing.Color.White;
             this.HS_Init2.Location = new System.Drawing.Point(445, 193);
             this.HS_Init2.Name = "HS_Init2";
-            this.HS_Init2.Size = new System.Drawing.Size(121, 120);
+            this.HS_Init2.Size = new System.Drawing.Size(99, 97);
             this.HS_Init2.TabIndex = 3;
             this.HS_Init2.Text = "A";
             // 
@@ -245,7 +245,7 @@
             this.HS_Init1.ForeColor = System.Drawing.Color.White;
             this.HS_Init1.Location = new System.Drawing.Point(323, 193);
             this.HS_Init1.Name = "HS_Init1";
-            this.HS_Init1.Size = new System.Drawing.Size(121, 120);
+            this.HS_Init1.Size = new System.Drawing.Size(99, 97);
             this.HS_Init1.TabIndex = 2;
             this.HS_Init1.Text = "A";
             // 
@@ -257,7 +257,7 @@
             this.Enter_Initials.ForeColor = System.Drawing.SystemColors.Window;
             this.Enter_Initials.Location = new System.Drawing.Point(395, 102);
             this.Enter_Initials.Name = "Enter_Initials";
-            this.Enter_Initials.Size = new System.Drawing.Size(276, 38);
+            this.Enter_Initials.Size = new System.Drawing.Size(230, 31);
             this.Enter_Initials.TabIndex = 1;
             this.Enter_Initials.Text = "Enter your initials!";
             // 
@@ -275,6 +275,7 @@
             // 
             // gameScreen
             // 
+            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_park_1;
             this.gameScreen.Controls.Add(this.PartialPoints);
             this.gameScreen.Controls.Add(this.TurnPoints);
             this.gameScreen.Controls.Add(this.tool_rock);
@@ -293,6 +294,26 @@
             this.gameScreen.Name = "gameScreen";
             this.gameScreen.Size = new System.Drawing.Size(1136, 610);
             this.gameScreen.TabIndex = 1;
+            // 
+            // PartialPoints
+            // 
+            this.PartialPoints.AutoSize = true;
+            this.PartialPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PartialPoints.Location = new System.Drawing.Point(891, 267);
+            this.PartialPoints.Name = "PartialPoints";
+            this.PartialPoints.Size = new System.Drawing.Size(24, 26);
+            this.PartialPoints.TabIndex = 13;
+            this.PartialPoints.Text = "0";
+            // 
+            // TurnPoints
+            // 
+            this.TurnPoints.AutoSize = true;
+            this.TurnPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TurnPoints.Location = new System.Drawing.Point(886, 225);
+            this.TurnPoints.Name = "TurnPoints";
+            this.TurnPoints.Size = new System.Drawing.Size(205, 26);
+            this.TurnPoints.TabIndex = 12;
+            this.TurnPoints.Text = "Points in this turn:";
             // 
             // tool_rock
             // 
@@ -339,7 +360,7 @@
             this.HS_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_5.Location = new System.Drawing.Point(2, 213);
             this.HS_5.Name = "HS_5";
-            this.HS_5.Size = new System.Drawing.Size(82, 25);
+            this.HS_5.Size = new System.Drawing.Size(65, 20);
             this.HS_5.TabIndex = 5;
             this.HS_5.Text = "AAA: 0";
             // 
@@ -349,7 +370,7 @@
             this.HS_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_4.Location = new System.Drawing.Point(2, 175);
             this.HS_4.Name = "HS_4";
-            this.HS_4.Size = new System.Drawing.Size(82, 25);
+            this.HS_4.Size = new System.Drawing.Size(65, 20);
             this.HS_4.TabIndex = 4;
             this.HS_4.Text = "AAA: 0";
             // 
@@ -359,7 +380,7 @@
             this.HS_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_3.Location = new System.Drawing.Point(2, 129);
             this.HS_3.Name = "HS_3";
-            this.HS_3.Size = new System.Drawing.Size(82, 25);
+            this.HS_3.Size = new System.Drawing.Size(65, 20);
             this.HS_3.TabIndex = 3;
             this.HS_3.Text = "AAA: 0";
             // 
@@ -369,7 +390,7 @@
             this.HS_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_2.Location = new System.Drawing.Point(2, 80);
             this.HS_2.Name = "HS_2";
-            this.HS_2.Size = new System.Drawing.Size(82, 25);
+            this.HS_2.Size = new System.Drawing.Size(65, 20);
             this.HS_2.TabIndex = 2;
             this.HS_2.Text = "AAA: 0";
             // 
@@ -379,7 +400,7 @@
             this.HS_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_1.Location = new System.Drawing.Point(2, 42);
             this.HS_1.Name = "HS_1";
-            this.HS_1.Size = new System.Drawing.Size(82, 25);
+            this.HS_1.Size = new System.Drawing.Size(65, 20);
             this.HS_1.TabIndex = 1;
             this.HS_1.Text = "AAA: 0";
             // 
@@ -389,7 +410,7 @@
             this.HS_L_TopScores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HS_L_TopScores.Location = new System.Drawing.Point(27, 6);
             this.HS_L_TopScores.Name = "HS_L_TopScores";
-            this.HS_L_TopScores.Size = new System.Drawing.Size(154, 25);
+            this.HS_L_TopScores.Size = new System.Drawing.Size(122, 20);
             this.HS_L_TopScores.TabIndex = 0;
             this.HS_L_TopScores.Text = "TOP SCORES";
             // 
@@ -433,7 +454,7 @@
             this.turnLabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.turnLabel.Location = new System.Drawing.Point(888, 401);
             this.turnLabel.Name = "turnLabel";
-            this.turnLabel.Size = new System.Drawing.Size(72, 17);
+            this.turnLabel.Size = new System.Drawing.Size(54, 13);
             this.turnLabel.TabIndex = 9;
             this.turnLabel.Text = "Your Turn";
             // 
@@ -454,7 +475,7 @@
             this.ScoreLabel.ForeColor = System.Drawing.SystemColors.Window;
             this.ScoreLabel.Location = new System.Drawing.Point(2, -1);
             this.ScoreLabel.Name = "ScoreLabel";
-            this.ScoreLabel.Size = new System.Drawing.Size(174, 46);
+            this.ScoreLabel.Size = new System.Drawing.Size(138, 37);
             this.ScoreLabel.TabIndex = 3;
             this.ScoreLabel.Text = "SCORE:";
             // 
@@ -466,7 +487,7 @@
             this.PlayerScore.ForeColor = System.Drawing.SystemColors.Window;
             this.PlayerScore.Location = new System.Drawing.Point(12, 49);
             this.PlayerScore.Name = "PlayerScore";
-            this.PlayerScore.Size = new System.Drawing.Size(31, 32);
+            this.PlayerScore.Size = new System.Drawing.Size(24, 26);
             this.PlayerScore.TabIndex = 2;
             this.PlayerScore.Text = "0";
             // 
@@ -480,52 +501,6 @@
             this.RESET_BUTTON.Text = "DIE";
             this.RESET_BUTTON.UseVisualStyleBackColor = false;
             this.RESET_BUTTON.Click += new System.EventHandler(this.RESET_BUTTON_Click);
-            // 
-            // snakeGrid
-            // 
-            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
-            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.snakeGrid.ColumnCount = 16;
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.snakeGrid.Location = new System.Drawing.Point(188, 5);
-            this.snakeGrid.Name = "snakeGrid";
-            this.snakeGrid.RowCount = 16;
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
-            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
-            this.snakeGrid.TabIndex = 0;
-            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
             // titleScreen
             // 
@@ -577,7 +552,7 @@
             this.o_difficulty_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.o_difficulty_label.Location = new System.Drawing.Point(161, 192);
             this.o_difficulty_label.Name = "o_difficulty_label";
-            this.o_difficulty_label.Size = new System.Drawing.Size(23, 25);
+            this.o_difficulty_label.Size = new System.Drawing.Size(18, 20);
             this.o_difficulty_label.TabIndex = 7;
             this.o_difficulty_label.Text = "1";
             // 
@@ -610,7 +585,7 @@
             this.o_difficulty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.o_difficulty.Location = new System.Drawing.Point(29, 192);
             this.o_difficulty.Name = "o_difficulty";
-            this.o_difficulty.Size = new System.Drawing.Size(90, 25);
+            this.o_difficulty.Size = new System.Drawing.Size(73, 20);
             this.o_difficulty.TabIndex = 4;
             this.o_difficulty.Text = "Difficulty:";
             // 
@@ -620,7 +595,7 @@
             this.o_mapSel_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.o_mapSel_label.Location = new System.Drawing.Point(147, 15);
             this.o_mapSel_label.Name = "o_mapSel_label";
-            this.o_mapSel_label.Size = new System.Drawing.Size(25, 25);
+            this.o_mapSel_label.Size = new System.Drawing.Size(21, 20);
             this.o_mapSel_label.TabIndex = 3;
             this.o_mapSel_label.Text = "R";
             // 
@@ -653,7 +628,7 @@
             this.o_mapSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.o_mapSel.Location = new System.Drawing.Point(29, 15);
             this.o_mapSel.Name = "o_mapSel";
-            this.o_mapSel.Size = new System.Drawing.Size(51, 25);
+            this.o_mapSel.Size = new System.Drawing.Size(40, 20);
             this.o_mapSel.TabIndex = 0;
             this.o_mapSel.Text = "Map";
             // 
@@ -688,7 +663,7 @@
             this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.Title.Location = new System.Drawing.Point(146, 39);
             this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(344, 69);
+            this.Title.Size = new System.Drawing.Size(281, 55);
             this.Title.TabIndex = 1;
             this.Title.Text = "$nec $nacc";
             // 
@@ -761,7 +736,7 @@
             this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.game_over_label.Location = new System.Drawing.Point(408, 4);
             this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(366, 69);
+            this.game_over_label.Size = new System.Drawing.Size(295, 55);
             this.game_over_label.TabIndex = 1;
             this.game_over_label.Text = "Game Over!";
             // 
@@ -772,7 +747,7 @@
             this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Adocalypse.Location = new System.Drawing.Point(84, 533);
             this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(804, 24);
+            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
             this.Adocalypse.TabIndex = 0;
             this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
     ".";
@@ -784,25 +759,51 @@
             this.loading_screen.Size = new System.Drawing.Size(200, 100);
             this.loading_screen.TabIndex = 0;
             // 
-            // TurnPoints
+            // snakeGrid
             // 
-            this.TurnPoints.AutoSize = true;
-            this.TurnPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TurnPoints.Location = new System.Drawing.Point(802, 121);
-            this.TurnPoints.Name = "TurnPoints";
-            this.TurnPoints.Size = new System.Drawing.Size(205, 26);
-            this.TurnPoints.TabIndex = 12;
-            this.TurnPoints.Text = "Points in this turn:";
-            // 
-            // PartialPoints
-            // 
-            this.PartialPoints.AutoSize = true;
-            this.PartialPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PartialPoints.Location = new System.Drawing.Point(828, 174);
-            this.PartialPoints.Name = "PartialPoints";
-            this.PartialPoints.Size = new System.Drawing.Size(24, 26);
-            this.PartialPoints.TabIndex = 13;
-            this.PartialPoints.Text = "0";
+            this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
+            this.snakeGrid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.snakeGrid.ColumnCount = 16;
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.snakeGrid.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
+            this.snakeGrid.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.snakeGrid.Location = new System.Drawing.Point(274, 12);
+            this.snakeGrid.Name = "snakeGrid";
+            this.snakeGrid.RowCount = 16;
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.snakeGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.snakeGrid.Size = new System.Drawing.Size(592, 592);
+            this.snakeGrid.TabIndex = 0;
+            this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
             // Game
             // 
