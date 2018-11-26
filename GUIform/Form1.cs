@@ -25,7 +25,7 @@ namespace GUIform
         //SET FALSE OTHERWISE.
         //THIS DISABLES DATABASE CONECTIVITY.
         //
-        bool DB_OnCampus = false;
+        bool DB_OnCampus = true;
         //
         //
         //
@@ -175,6 +175,8 @@ namespace GUIform
                         applePanel.BackgroundImage = Image.FromFile(sp_directory + "apple.png");
                         applePanel.BackgroundImageLayout = ImageLayout.Stretch;
                         //applePanel.Update();
+                        PartialPoints.Text = _m._points_turn.ToString();
+                        PlayerScore.Text = _m._points_total.ToString();
 
                         _yourTurn = false;
 
@@ -200,6 +202,9 @@ namespace GUIform
 
                         applePanel.BackgroundImage = Image.FromFile(sp_directory + "rock.png");
                         applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+
+                        PartialPoints.Text = _m._points_turn.ToString();
+                        PlayerScore.Text = _m._points_total.ToString();
 
                         play_SFX("object_place.wav");
                     }
@@ -273,9 +278,10 @@ namespace GUIform
                 sTail.BackgroundImage = null;
                 sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
                 //sTail.Update();
-                
-                PlayerScore.Text = _m._points_total.ToString();
 
+                PartialPoints.Text = _m._points_turn.ToString();
+                PlayerScore.Text = _m._points_total.ToString();
+                
 
                 foreach (Point p in _m._coinLocations)
                 {
@@ -339,15 +345,17 @@ namespace GUIform
                 target.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
                 target.BackgroundImageLayout = ImageLayout.Stretch;
                 _m.setBlockAt(_m._currentSnake._Head.X, _m._currentSnake._Head.Y, 0);
-                /*
+                
                 for(int i = 0; i < _m._coinLocations.Count; ++i)
                 {
                     if(_m._coinLocations[i].X == _m._currentSnake._Head.X && _m._coinLocations[i].Y == _m._currentSnake._Head.Y)
                     {
                         _m._coinLocations.RemoveAt(i);
+                        break;
                     }
                 }
-                */
+                
+                /*
                 foreach(Point p in _m._coinLocations)
                 {
                     if(p.X == _m._currentSnake._Head.X && p.Y == _m._currentSnake._Head.Y)
@@ -356,6 +364,7 @@ namespace GUIform
                         break;
                     }
                 }
+                */
 
                 PartialPoints.Text = _m._points_turn.ToString();
 

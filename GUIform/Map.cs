@@ -42,7 +42,7 @@ namespace GUIform
         //Maximum Coins allowed on grid.
         int _maxCoins;
 
-        //Amount of coins currently on grid.
+        //Amount of coins collected on that turn.
         int _collectedCoins;
 
         //Cost of each rock placed by user
@@ -317,9 +317,9 @@ namespace GUIform
         }
 
         //Coin Generator - Places Coins in groups of 3 on map at random in accordance with Coin Max.
-        public void coinGen(int maxCoins)
+        public void coinGen(int coinLimit)
         {
-            while (maxCoins > 0)
+            while (coinLimit > 0)
             {
                 //New Coin location on map.
                 Random rnd = new Random();
@@ -341,11 +341,11 @@ namespace GUIform
                     if (_info[i + 2, j] == 0 && _info[i + 1, j] == 0)
                     {
                         int c = 0;
-                        while (c < 3 && maxCoins > 0)
+                        while (c < 3 && coinLimit > 0)
                         {
                             _info[i + c, j] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -357,11 +357,11 @@ namespace GUIform
                     if (_info[i + 1, j] == 0 && _info[i - 1, j] == 0)
                     {
                         int c = -1;
-                        while (c < 2 && maxCoins > 0)
+                        while (c < 2 && coinLimit > 0)
                         {
                             _info[i + c, j] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -373,11 +373,11 @@ namespace GUIform
                     if (_info[i - 2, j] == 0 && _info[i - 1, j] == 0)
                     {
                         int c = -2;
-                        while (c < 1 && maxCoins > 0)
+                        while (c < 1 && coinLimit > 0)
                         {
                             _info[i + c, j] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -395,11 +395,11 @@ namespace GUIform
                     if (_info[j + 2, i] == 0 && _info[j + 1, i] == 0)
                     {
                         int c = 0;
-                        while (c < 3 && maxCoins > 0)
+                        while (c < 3 && coinLimit > 0)
                         {
                             _info[j + c, i] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -411,11 +411,11 @@ namespace GUIform
                     if (_info[j + 1, i] == 0 && _info[j - 1, i] == 0)
                     {
                         int c = -1;
-                        while (c < 2 && maxCoins > 0)
+                        while (c < 2 && coinLimit > 0)
                         {
                             _info[j + c, i] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -427,11 +427,11 @@ namespace GUIform
                     if (_info[j - 2, i] == 0 && _info[j - 1, i] == 0)
                     {
                         int c = -2;
-                        while (c < 1 && maxCoins > 0)
+                        while (c < 1 && coinLimit > 0)
                         {
                             _info[j + c, i] = 4;
                             _coinLocations.Add(new Point(i + c, j));
-                            --maxCoins;
+                            --coinLimit;
                             ++c;
                         }
                         continue;
@@ -440,6 +440,7 @@ namespace GUIform
                 }
                 else { continue; }
             }
+            
         }
 
         //Returns block information at given coordinates.
@@ -806,6 +807,14 @@ namespace GUIform
             {
                 _coinGet = true;
                 ++_collectedCoins;
+                foreach(Point p in _coinLocations)
+                {
+                    if(p.X == _snakeLocation.X && p.Y == _snakeLocation.Y)
+                    {
+                        _coinLocations.Remove(p);
+                        break;
+                    }
+                }
                 partialScoreMod(4);
             }
             else if (_info[_snakeLocation.X, _snakeLocation.Y] == 5)
