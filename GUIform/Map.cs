@@ -49,20 +49,29 @@ namespace GUIform
         public Path _head;
         public Path _tail;
         Path _trav;
+        public int nextDirection;
 
         //true = apple
         //false = rock
         public bool _toggleAR = true;
         public int _apples = 20;
 
+        //score variables
         public int _score_credit = 1000;
         public int _score_total = 0;
         public int _coins_collected = 0;
-        public int _coins = 0;
-        public int is_happy = 1;
+        public int is_sad = 0;
+
+        //placement max variables
+        public int _coins_placed = 0;
+        public int _traps_placed = 0;
+
+
+        public int _tool_selection = 0;
+        
+
 
         private Block[,] info;
-        
         //If no arguments given, use default arguments.
         public Map()
         {
@@ -313,7 +322,7 @@ namespace GUIform
             }else if(15 < x || 15 < y)
             {
                 return false;
-            }else if(info[x,y].getType() == 2 || info[x,y].getType() == 3)
+            }else if(info[x,y].getType() == 2 || info[x,y].getType() == 3 || info[x, y].getType() == 6)
             {
                 return false;
             }
@@ -336,7 +345,7 @@ namespace GUIform
 
             _trav = _trav.next;
 
-            int nextDirection;
+            
 
             //Is apple East or West?
             if (_trav.X < _snakeLocation.X)
@@ -407,11 +416,9 @@ namespace GUIform
         public void add_Score()
         {
             int coin_mult = (int)(Math.Pow(_coins_collected, 2));
-            _score_total += is_happy * _score_credit * coin_mult;
-            is_happy = 1;
-            _score_credit = 1000;
-            _coins_collected = 0;
+            _score_total +=  _score_credit * coin_mult / (is_sad + 1);
 
         }
+        
     }
 }

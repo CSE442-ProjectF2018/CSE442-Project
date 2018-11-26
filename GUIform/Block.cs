@@ -10,10 +10,11 @@ namespace GUIform
     //Block Types
     //0 is None.
     //1 is Apple.
-    //2 is Obstacle.
+    //2 is Rock.
     //3 is Snake.
     //4 is Coin
-    //5 is spike
+    //5 is trap
+    //6 is unbreakable wall
 
     public class Block
     {
@@ -29,7 +30,7 @@ namespace GUIform
         //Constructor where we immediately assign Btype
         public Block(int inputType)
         {
-            if(inputType >= 0 && inputType <= 6)
+            if(inputType >= 0 && inputType <= 7)
             {
                 _blockType = inputType;
             }
@@ -49,7 +50,7 @@ namespace GUIform
         //Set block type after creation.
         public void setType(int newType)
         {
-            if (newType >= 0 && newType <= 6)
+            if (newType >= 0 && newType <= 7)
             {
                 _blockType = newType;
             }
