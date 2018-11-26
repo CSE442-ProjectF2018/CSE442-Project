@@ -8,11 +8,7 @@ using System.Windows.Threading;
 
 namespace GUIform
 {
-    enum BType { apple, snake, wall, free };
     
-    
-    
-
     public partial class Game : Form
     {
         //core variables
@@ -21,6 +17,7 @@ namespace GUIform
         Map _m;
         bool _yourTurn = true;
         int _moveCounter = 0;
+        bool _toggleAR = true;
         
         
         //
@@ -150,43 +147,62 @@ namespace GUIform
         {
             if (_yourTurn)
             {
-                
-                if(_m._toggleAR)
+                Point p = snakeGrid.PointToClient(MousePosition);
+                p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
+                p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+
+
+                if (_toggleAR)
                 {
+                    if(_m.getBlockAt(p.X,p.Y) != 0)
+                    {
+                        return;
+                    }
+                    
                     //Place an apple
                     play_SFX("object_place.wav");
-                    Point p = snakeGrid.PointToClient(MousePosition);
-                    p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
-                    p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+                    
 
                     //Add Apple def to backing map.
-                    Block newApple = new Block(1);
-                    _m.setBlockAt(p.X, p.Y, newApple);
+                    bool creditCheck = _m.partialScoreMod(1);
+                    if (creditCheck)
+                    {
+                        _m.setBlockAt(p.X, p.Y, 1);
 
-                    System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
-                    applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                        System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                        applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
 
+                        applePanel.BackgroundImage = Image.FromFile(sp_directory + "apple.png");
+                        applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+                        //applePanel.Update();
 
-                    applePanel.BackgroundImage = Image.FromFile(sp_directory + "apple.png");
-                    applePanel.BackgroundImageLayout = ImageLayout.Stretch;
-                    //applePanel.Update();
-                    _m._apples--;
-                    _yourTurn = false;
+                        _yourTurn = false;
 
-                    _m.updateSnakePath();
-                    dispatcherTimer.Start();
+                        _m.updateSnakePath();
+                        dispatcherTimer.Start();
+                    }
+                    
                 }
-                else if(_m._score_credit > 0)
+                else
                 {
-                    //Place a Rock
-                    Point p = snakeGrid.PointToClient(MousePosition);
-                    p.X = (int)(((double)16 / snakeGrid.Size.Width) * p.X);
-                    p.Y = (int)(((double)16 / snakeGrid.Size.Height) * p.Y);
+                    if(_m.getBlockAt(p.X,p.Y) != 0)
+                    {
+                        return;
+                    }
+                    bool creditCheck = _m.partialScoreMod(2);
+                    if (creditCheck)
+                    {
+                        //Place a Rock
+                        _m.setBlockAt(p.X, p.Y, 2);
 
-                    //Add Rock def to backing map.
-                    place_rock(p.X, p.Y);
-                    _m._score_credit -= 100;
-                    play_SFX("object_place.wav");
+                        System.Windows.Forms.Panel applePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                        applePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+
+                        applePanel.BackgroundImage = Image.FromFile(sp_directory + "rock.png");
+                        applePanel.BackgroundImageLayout = ImageLayout.Stretch;
+
+                        play_SFX("object_place.wav");
+                    }
 
                 }
             }
@@ -251,16 +267,36 @@ namespace GUIform
             if (_m._appleGet == true)
             {
                 s_AppleGET.Play();
-                _m._playerScore += _moveCounter * 10;
-                PlayerScore.Text = _m._playerScore.ToString();
-                _moveCounter = 0;
+                
 
                 sTail = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._appleLocation.X, _m._appleLocation.Y);
                 sTail.BackgroundImage = null;
                 sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
                 //sTail.Update();
-                _m.add_Score();
-                PlayerScore.Text = _m._score_total.ToString();
+                
+                PlayerScore.Text = _m._points_total.ToString();
+
+
+                foreach (Point p in _m._coinLocations)
+                {
+                    coin_pic = new PictureBox();
+                    image_coin = Image.FromFile(sp_directory + "coin.gif");
+                    fdim = new FrameDimension(image_coin.FrameDimensionsList[0]);
+                    frames = image_coin.GetFrameCount(fdim);
+                    coin_pic.Image = image_coin;
+                    coin_pic.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    snakeGrid.GetControlFromPosition(p.X, p.Y).Controls.Clear();
+                    snakeGrid.GetControlFromPosition(p.X, p.Y).Controls.Add(coin_pic);
+                }
+
+                foreach (Point p in _m._trapLocations)
+                {
+                    System.Windows.Forms.Panel pan = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                    pan.Controls.Clear();
+                    pan.BackgroundImage = i_trap;
+                    pan.BackgroundImageLayout = ImageLayout.Stretch;
+
+                }
 
                 updateMap();
                 
@@ -289,26 +325,47 @@ namespace GUIform
                 _l1 = _head;
                 _l2 = _head;
                 _l3 = _head;
-                HS_PlayerScore.Text = _m._playerScore.ToString();
+                HS_PlayerScore.Text = _m._points_total.ToString();
 
-
-                
                 dispatcherTimer.Stop();
             }
             else if (_m._coinGet)
             {
                 play_SFX("coin_get.wav");
-                snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y).Controls.RemoveAt(0);
-                snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y).BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
-                snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y).BackgroundImageLayout = ImageLayout.Stretch;
-                _m.setBlockAt(_m._currentSnake._Head.X, _m._currentSnake._Head.Y, new Block(0));
-                _m._coins_collected++;
+
+                System.Windows.Forms.Panel target = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y);
+
+                target.Controls.Clear();
+                target.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
+                target.BackgroundImageLayout = ImageLayout.Stretch;
+                _m.setBlockAt(_m._currentSnake._Head.X, _m._currentSnake._Head.Y, 0);
+                /*
+                for(int i = 0; i < _m._coinLocations.Count; ++i)
+                {
+                    if(_m._coinLocations[i].X == _m._currentSnake._Head.X && _m._coinLocations[i].Y == _m._currentSnake._Head.Y)
+                    {
+                        _m._coinLocations.RemoveAt(i);
+                    }
+                }
+                */
+                foreach(Point p in _m._coinLocations)
+                {
+                    if(p.X == _m._currentSnake._Head.X && p.Y == _m._currentSnake._Head.Y)
+                    {
+                        _m._coinLocations.Remove(p);
+                        break;
+                    }
+                }
+
+                PartialPoints.Text = _m._points_turn.ToString();
+
                 _m._coinGet = false;
             }
             else if (_m._trapHit)
             {
                 play_SFX("oof.wav");
-                _m.is_happy = 0;
+                //_m.is_happy = 0;
+                PartialPoints.Text = _m._points_turn.ToString();
                 _m._trapHit = false;
             }
 
@@ -361,6 +418,8 @@ namespace GUIform
             sHead.BackgroundImageLayout = ImageLayout.Stretch;
             sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
 
+            
+
             //sHead.Update();
             turnIcon_StyleChanged();
             snakeGrid.Update();
@@ -387,14 +446,41 @@ namespace GUIform
                     test.MouseEnter += new EventHandler(GP_Enter);
                     test.MouseLeave += new EventHandler(GP_Leave);
                     test.Click += new System.EventHandler(this.snakeGrid_Click);
-                    test.BackgroundImageLayout = ImageLayout.Stretch;
-                    snakeGrid.Controls.Add(test, i, j);
+                    switch (_m._info[i, j])
+                    {
+                        default:
+                            test.BackgroundImageLayout = ImageLayout.Stretch;
+                            snakeGrid.Controls.Add(test, i, j);
+                            break;
+                        case 2:
+                            test.BackgroundImage = i_rock;
+                            test.BackgroundImageLayout = ImageLayout.Stretch;
+                            snakeGrid.Controls.Add(test, i, j);
+                            break;
+                        case 4:
+                            coin_pic = new PictureBox();
+                            image_coin = Image.FromFile(sp_directory + "coin.gif");
+                            fdim = new FrameDimension(image_coin.FrameDimensionsList[0]);
+                            frames = image_coin.GetFrameCount(fdim);
+                            coin_pic.Image = image_coin;
+                            coin_pic.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                            test.Controls.Add(coin_pic);
+                            snakeGrid.Controls.Add(test, i, j);
+                            break;
+                        case 5:
+                            test.BackgroundImage = i_trap;
+                            test.BackgroundImageLayout = ImageLayout.Stretch;
+                            snakeGrid.Controls.Add(test, i, j);
+                            break;
+                    }
+                    
                 }
             }
             snakeGrid.ResumeLayout();
-            _m._playerScore = 0;
+            
             _yourTurn = true;
-            PlayerScore.Text = _m._playerScore.ToString();
+            PlayerScore.Text = _m._points_total.ToString();
+            PartialPoints.Text = _m._points_turn.ToString();
 
             if (!DB_OnCampus)
             {
@@ -411,6 +497,7 @@ namespace GUIform
             play_BGM("GameBGM1.wav");
 
             initializeTimeCounter();
+            /*
             place_Coin(5, 5);
             place_Coin(1, 1);
             place_Coin(2, 2);
@@ -418,18 +505,19 @@ namespace GUIform
             place_Coin(0, 15);
             place_Trap(15, 15);
             place_Coin(15, 0);
+            */
             c_anim.Start();
             setPanel(gameScreen);
-            rando_Map();
+            //rando_Map();
         }
 
         //others
         private void place_Coin(int x, int y)
         {
-            if(_m.getBlockAt(x,y).getType() == 0)
+            if(_m.getBlockAt(x,y) == 0)
             {
                 //places coin object on map
-                _m.setBlockAt(x, y, new Block(4));
+                _m.setBlockAt(x, y, 4);
 
                 //sets the coins image to a gif and sets up all the other bullshit that makes it work.
                 coin_pic = new PictureBox();
@@ -445,18 +533,18 @@ namespace GUIform
         }
         private void place_Trap(int x, int y)
         {
-            if (_m.getBlockAt(x, y).getType() == 0)
+            if (_m.getBlockAt(x, y) == 0)
             {
-                _m.setBlockAt(x, y, new Block(5));
+                _m.setBlockAt(x, y, 5);
                 snakeGrid.GetControlFromPosition(x, y).BackgroundImage = i_trap;
             }
             
         }
         private void place_rock(int x, int y)
         {
-            if(_m.getBlockAt(x,y).getType() == 0)
+            if(_m.getBlockAt(x,y) == 0)
             {
-                _m.setBlockAt(x, y, new Block(2));
+                _m.setBlockAt(x, y, 2);
                 snakeGrid.GetControlFromPosition(x, y).BackgroundImage = i_rock;
                 
             }
@@ -550,8 +638,8 @@ namespace GUIform
 
         private void toggleAppleRock(object sender, EventArgs e)
         {
-            _m._toggleAR = !_m._toggleAR;
-            if(!_m._toggleAR)togAppleRock.BackgroundImage = Image.FromFile(sp_directory + "rock.png");
+            _toggleAR = !_toggleAR;
+            if(!_toggleAR)togAppleRock.BackgroundImage = Image.FromFile(sp_directory + "rock.png");
             else togAppleRock.BackgroundImage = Image.FromFile(sp_directory + "apple.png");
         }
         private void initialize_Asset_Pack(string pack)
@@ -639,7 +727,7 @@ namespace GUIform
             {
                 string s = "" + _l1.c + _l2.c + _l3.c;
                 HighScoreDB data = new HighScoreDB();
-                data.insert(s, _m._playerScore);
+                data.insert(s, _m._points_total);
                 data.closeConnection();
 
             }
