@@ -307,7 +307,7 @@
             // 
             this.tool_apple.BackColor = System.Drawing.Color.Gray;
             this.tool_apple.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tool_apple.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            this.tool_apple.FlatAppearance.BorderColor = System.Drawing.Color.Yellow;
             this.tool_apple.FlatAppearance.BorderSize = 5;
             this.tool_apple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.tool_apple.Location = new System.Drawing.Point(17, 392);
@@ -783,10 +783,10 @@
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
-            this.Controls.Add(this.titleScreen);
-            this.Controls.Add(this.snake_game_over);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.titleScreen);
+            this.Controls.Add(this.snake_game_over);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
