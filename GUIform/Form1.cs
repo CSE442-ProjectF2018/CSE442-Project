@@ -71,7 +71,6 @@ namespace GUIform
             
         }
 
-
         private void TitleScreen_Load(object sender, EventArgs e)
         {
 
@@ -234,6 +233,9 @@ namespace GUIform
                 BGM_Player.Ctlcontrols.stop();
                 t_time.Stop();
                 s_snakeDIE.Play();
+                slot1.Image = Image.FromFile(i_directory + "p2.png");
+                slot2.Image = Image.FromFile(i_directory + "p1.png");
+                slot3.Image = Image.FromFile(i_directory + "p3.png");
                 gameScreen.Visible = false;
                 snake_game_over.Visible = true;
 
@@ -462,6 +464,29 @@ namespace GUIform
         {
             s_Player = new SoundPlayer(s_directory + sfx);
             s_Player.Play();
+        }
+
+        public static int p1;
+        public static int p2;
+        public static int p3;
+
+        private void spin_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < 0; i++)
+            {
+                Random ran = new Random();
+                p1 = ran.Next(1, 4);
+                p2 = ran.Next(1, 4);
+                p3 = ran.Next(1, 4);
+            }
+            if (slot1.Image != null) slot1.Image.Dispose();
+            slot1.Image = Image.FromFile(i_directory + p1.ToString() + ".png");
+
+            if (slot2.Image != null) slot2.Image.Dispose();
+            slot2.Image = Image.FromFile(i_directory + p2.ToString() + ".png");
+
+            if (slot3.Image != null) slot3.Image.Dispose();
+            slot3.Image = Image.FromFile(i_directory + p3.ToString() + ".png");
         }
     }
 }
