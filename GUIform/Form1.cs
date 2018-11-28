@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Media;
 using System.Windows.Forms;
 using System.Windows.Threading;
@@ -116,9 +115,17 @@ namespace GUIform
                     applePanel.BackgroundImage = Image.FromFile(sp_directory + "apple.png");
                     applePanel.BackgroundImageLayout = ImageLayout.Stretch;
                     applePanel.Update();
+
+                    System.Windows.Forms.Panel snakeHomePanel = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(p.X, p.Y);
+                    snakeHomePanel.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+
+
+                    snakeHomePanel.BackgroundImage = Image.FromFile(i_directory + "snakeHouse.png");
+                    snakeHomePanel.BackgroundImageLayout = ImageLayout.Stretch;
+                    snakeHomePanel.Update();
+
                     _m._apples--;
                     _yourTurn = false;
-
                     _m.updateSnakePath();
                     dispatcherTimer.Start();
                 }
@@ -462,6 +469,11 @@ namespace GUIform
         {
             s_Player = new SoundPlayer(s_directory + sfx);
             s_Player.Play();
+        }
+
+        private void snakeHome_VisibleChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

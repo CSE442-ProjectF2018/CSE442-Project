@@ -120,6 +120,7 @@
     <None Include="Assets\default\Audio\GameBGM2.wav" />
     <None Include="Assets\default\Audio\Scream.wav" />
     <None Include="Assets\default\Images\title.png" />
+    <Content Include="Assets\default\Images\snakeHouse.png" />
     <Content Include="Assets\Images\apple.png" />
     <Content Include="Assets\Images\Apple_Game_Over.png" />
     <Content Include="Assets\Images\BG_grassy.png" />
