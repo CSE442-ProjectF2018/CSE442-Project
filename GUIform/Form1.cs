@@ -545,11 +545,17 @@ namespace GUIform
             i_rock = Image.FromFile(sp_directory + "rock.png");
             i_apple = Image.FromFile(sp_directory + "apple.png");
             i_wall = Image.FromFile(sp_directory + "wall.png");
+            HS_Init1_Down.BackgroundImage = Image.FromFile(sp_directory + "arrow_down.png");
+            HS_Init1_Up.BackgroundImage = Image.FromFile(sp_directory + "arrow_up.png");
+            HS_Init2_Down.BackgroundImage = Image.FromFile(sp_directory + "arrow_down.png");
+            HS_Init2_Up.BackgroundImage = Image.FromFile(sp_directory + "arrow_up.png");
+            HS_Init3_Down.BackgroundImage = Image.FromFile(sp_directory +"arrow_down.png");
+            HS_Init3_Up.BackgroundImage = Image.FromFile(sp_directory + "arrow_up.png");
             /*
             c_anim.Tick += new EventHandler(c_anim_Tick);
             c_anim.Interval = 100;
             */
-            
+
         }
         private void initialize_EventHandlers()
         {
