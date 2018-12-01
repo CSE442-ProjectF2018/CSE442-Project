@@ -82,6 +82,8 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.loading_screen = new System.Windows.Forms.Panel();
+            this.asset_Pack_List = new System.Windows.Forms.ListBox();
+            this.o_RSP_Apply = new System.Windows.Forms.Button();
             this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
@@ -527,6 +529,8 @@
             // optionsPanel
             // 
             this.optionsPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.optionsPanel.Controls.Add(this.o_RSP_Apply);
+            this.optionsPanel.Controls.Add(this.asset_Pack_List);
             this.optionsPanel.Controls.Add(this.map_preview);
             this.optionsPanel.Controls.Add(this.o_mapSel_label);
             this.optionsPanel.Controls.Add(this.o_mapSel_right);
@@ -717,6 +721,27 @@
             this.loading_screen.Size = new System.Drawing.Size(200, 100);
             this.loading_screen.TabIndex = 0;
             // 
+            // asset_Pack_List
+            // 
+            this.asset_Pack_List.FormattingEnabled = true;
+            this.asset_Pack_List.ItemHeight = 16;
+            this.asset_Pack_List.Location = new System.Drawing.Point(59, 216);
+            this.asset_Pack_List.Name = "asset_Pack_List";
+            this.asset_Pack_List.Size = new System.Drawing.Size(186, 132);
+            this.asset_Pack_List.TabIndex = 9;
+            this.asset_Pack_List.SelectedIndexChanged += new System.EventHandler(this.asset_Pack_List_SelectedIndexChanged);
+            // 
+            // o_RSP_Apply
+            // 
+            this.o_RSP_Apply.BackColor = System.Drawing.Color.Yellow;
+            this.o_RSP_Apply.Location = new System.Drawing.Point(59, 348);
+            this.o_RSP_Apply.Name = "o_RSP_Apply";
+            this.o_RSP_Apply.Size = new System.Drawing.Size(186, 38);
+            this.o_RSP_Apply.TabIndex = 10;
+            this.o_RSP_Apply.Text = "Apply Pack";
+            this.o_RSP_Apply.UseVisualStyleBackColor = false;
+            this.o_RSP_Apply.Click += new System.EventHandler(this.o_RSP_Apply_Click);
+            // 
             // snakeGrid
             // 
             this.snakeGrid.BackColor = System.Drawing.Color.DarkGray;
@@ -766,10 +791,10 @@
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
+            this.Controls.Add(this.titleScreen);
             this.Controls.Add(this.snake_game_over);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
-            this.Controls.Add(this.titleScreen);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Game";
@@ -851,6 +876,8 @@
         private System.Windows.Forms.Label o_mapSel;
         private System.Windows.Forms.Label PartialPoints;
         private System.Windows.Forms.Label TurnPoints;
+        private System.Windows.Forms.ListBox asset_Pack_List;
+        private System.Windows.Forms.Button o_RSP_Apply;
     }
 }
 

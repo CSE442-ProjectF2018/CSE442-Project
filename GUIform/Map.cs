@@ -182,13 +182,18 @@ namespace GUIform
                     System.IO.StreamReader FR = new System.IO.StreamReader(Environment.CurrentDirectory + "\\custom_map.txt");
                     //first initialized a blank map
                     _info = new int[16, 16];
-                    for (int i = 0; i < 16; ++i)
+                    
+                    int y = 0;
+                    while (!FR.EndOfStream && y < 16)
                     {
-                        for (int j = 0; j < 16; ++j)
+                        string mapLine = FR.ReadLine();
+                        for(int i = 0; i < 16; i++)
                         {
-                            _info[i, j] = 0;
+                            if (mapLine[i] == '1') _info[i, y] = 6;
                         }
+                        y++;
                     }
+                    _info[7, 7] = 0;
                     break;
                 case 0:
                     _info = new int[16, 16];

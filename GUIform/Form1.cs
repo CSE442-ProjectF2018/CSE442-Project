@@ -63,9 +63,11 @@ namespace GUIform
 
         //Asset directiory
         private string c_asset_pack = "default"; //Current asset pack
+        private string[] assetPacks;
         private string s_directory;
         private string i_directory;
         private string sp_directory;
+        
 
         //sound effects
         SoundPlayer s_PlayButton;
@@ -101,6 +103,7 @@ namespace GUIform
 
             setPanel(titleScreen);
             //Excahnges the current screen/panel.
+            scan_Asset_Directory();
             initialize_Asset_Pack(c_asset_pack);
             initialize_EventHandlers();
             //Loads the sound ahead of time, in attempt to play it.
@@ -224,7 +227,6 @@ namespace GUIform
         }
         private void apple_game_over_reset_Click(object sender, EventArgs e)
         {
-
             reset_to_gameScreen();
         }
         private void snake_game_over_reset_CLick(object sender, EventArgs e)
@@ -238,7 +240,19 @@ namespace GUIform
 
         private void RESET_BUTTON_Click(object sender, EventArgs e)
         {
-            _m._snakeDeath = true;
+            if (!_yourTurn)
+            {
+                BGM_Player.Ctlcontrols.stop();
+                play_SFX2("scream.wav");
+                setPanel(snake_game_over);
+                _l1 = _head;
+                _l2 = _head;
+                _l3 = _head;
+                HS_PlayerScore.Text = _m._points_total.ToString();
+
+                play_BGM("GameOverBGM.wav");
+                dispatcherTimer.Stop();
+            }
         }
         private void instruction_button_Click(object sender, EventArgs e)
         {
@@ -251,6 +265,11 @@ namespace GUIform
                 instructions.Text += "Make sure to avoid traps!." + Environment.NewLine;
                 instructions.Text += "Try to avoid killing the snake to achieve higher scores" + Environment.NewLine;
                 instructions.Text += "How long will you survive?" + Environment.NewLine;
+                instructions.Text += "-----------------------------" + Environment.NewLine;
+                instructions.Text += "Apple Tool: place an apple to guide snake" + Environment.NewLine;
+                instructions.Text += "Rock Tool: place to block undesirable snake paths, but decreases your score." + Environment.NewLine;
+                instructions.Text += "Pickaxe Tool: use to desproy rocks you have placed." + Environment.NewLine;
+                instructions.Text += "Bear Trap: Resets points gained during a turn to 0." + Environment.NewLine;
                 instruction_button.Text = "Back";
             }
             else
@@ -318,9 +337,8 @@ namespace GUIform
                 else if (_m._snakeDeath)
                 {
                     BGM_Player.Ctlcontrols.stop();
-                    play_SFX("scream.wav");
-                    gameScreen.Visible = false;
-                    snake_game_over.Visible = true;
+                    play_SFX2("scream.wav");
+                    setPanel(snake_game_over);
                     _l1 = _head;
                     _l2 = _head;
                     _l3 = _head;
@@ -557,6 +575,16 @@ namespace GUIform
             */
 
         }
+
+        private void scan_Asset_Directory()
+        {
+            assetPacks = Directory.GetDirectories(Environment.CurrentDirectory + "\\Assets\\");
+            int i = 0;
+            foreach(string s in assetPacks)
+            {
+                asset_Pack_List.Items.Add(System.IO.Path.GetFileName(s));
+            }
+        }
         private void initialize_EventHandlers()
         {
             //Universal behavior for all buttons added to game
@@ -657,15 +685,19 @@ namespace GUIform
         }
         private void play_SFX(string sfx)
         {
-            /*
-             SFX_Player.URL = s_directory + sfx;
-             SFX_Player.settings.volume = 500;
-             SFX_Player.Ctlcontrols.play();
-             */
+            
              
             s_Player = new SoundPlayer(s_directory + sfx);
             s_Player.Play();
             
+        }
+        private void play_SFX2(string sfx)
+        {
+            
+             SFX_Player.URL = s_directory + sfx;
+             SFX_Player.settings.volume = 500;
+             SFX_Player.Ctlcontrols.play();
+             
         }
 
         private void HS_Enter_Click(object sender, EventArgs e)
@@ -841,6 +873,20 @@ namespace GUIform
             }
         }
 
-       
+        private void asset_Pack_List_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            c_asset_pack = asset_Pack_List.GetItemText(asset_Pack_List.SelectedItem);
+            Console.WriteLine("{0}", c_asset_pack);
+        }
+
+        private void o_RSP_Apply_Click(object sender, EventArgs e)
+        {
+            initialize_Asset_Pack(c_asset_pack);
+            _map_selection = -1;
+            o_mapSel_label.Text = "R";
+            map_preview.BackgroundImage = Image.FromFile(i_directory + "p_map_random.png");
+            o_mapSel_left.Visible = true;
+            o_mapSel_right.Visible = true;
+        }
     }
 }
