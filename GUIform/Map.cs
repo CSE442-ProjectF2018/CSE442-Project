@@ -127,7 +127,7 @@ namespace GUIform
             //Map selection
             mapGen(mapSel, spawnLoc);
             
-            initSnake(spawnLoc);
+            
         }
 
         public bool partialScoreMod(int t)
@@ -313,8 +313,23 @@ namespace GUIform
                 }
             }
             //
+            while (true)
+            {
+                if (_info[spawnLocG.X, spawnLocG.Y] == 0)
+                {
+                    _info[spawnLocG.X, spawnLocG.Y] = 3;
+                    initSnake(spawnLocG);
+                    break;
+                }
+                else
+                {
+                    Random rnd = new Random();
+                    spawnLocG.X = rnd.Next(16);
+                    spawnLocG.Y = rnd.Next(16);
+                    continue;
+                }
+            }
             
-            _info[spawnLocG.X, spawnLocG.Y] = 3;
 
             trapGen(_maxTraps);
             coinGen(_maxCoins);
@@ -842,7 +857,7 @@ namespace GUIform
             {
                 _appleGet = true;
                 _currentSnake.consume(1);
-                _points_total += _points_turn;
+                _points_total += (int)(((1000 - (_activeRocks * _rockCost)) / (double)1000) * _points_turn);
                 _points_turn = 1000 - (_activeRocks * _rockCost);
                 coinGen(_collectedCoins);
                 trapGen(_trapsHit);

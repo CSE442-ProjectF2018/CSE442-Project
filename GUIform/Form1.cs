@@ -430,7 +430,8 @@ namespace GUIform
 
         private void reset_to_gameScreen()
         {
-            Point spawnLocI = new Point(7, 7);
+            Random rnd = new Random();
+            Point spawnLocI = new Point(rnd.Next(15), rnd.Next(15));
             _m = new Map(_map_selection, spawnLocI);
             gameScreen.Controls.Add(snakeGrid);
             snakeGrid.Controls.Clear();
