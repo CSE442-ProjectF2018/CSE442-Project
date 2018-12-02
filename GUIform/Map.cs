@@ -54,6 +54,16 @@ namespace GUIform
         //Cost of each apple placed by user
         int _appleCost;
 
+        //1 OR 0 depending on if a spike is hit in that turn.
+        //Deafult is 1 = happy.
+        //Multiplied with partial score in calculation.
+        int _snakeHappy = 1;
+
+        //Snake's growth rate when eating apples.
+        //Dependant on intial amount of open tiles on map load.
+        int _growthRate;
+
+
         //
         //MISC
         //
@@ -71,7 +81,7 @@ namespace GUIform
         public bool _trapHit;
 
         //Is there a path to the apple available at the moment?
-        bool _applePathOpen;
+        public bool _applePathOpen;
         
         //Locations of traps on the grid.
         public List<Point> _trapLocations;
@@ -856,9 +866,26 @@ namespace GUIform
             if (_info[_snakeLocation.X, _snakeLocation.Y] == 1)
             {
                 _appleGet = true;
-                _currentSnake.consume(1);
-                _points_total += (int)(((1000 - (_activeRocks * _rockCost)) / (double)1000) * _points_turn);
-                _points_turn = 1000 - (_activeRocks * _rockCost);
+                _currentSnake.consume(_growthRate);
+                if (_collectedCoins == 0)
+                {
+                    //Pointless to write this, but added for clarity.
+                    _points_total += 0;
+
+                    if((_points_turn + _rockCost * _activeRocks) < _appleCost)
+                    {
+                        _snakeDeath = true;
+                    }
+                    
+                }
+                else
+                {
+                    _points_total += (int)(((1000 - (_activeRocks * _rockCost)) / (double)1000) * _points_turn) * _snakeHappy;
+                    _points_turn = 1000 - (_activeRocks * _rockCost);
+                }
+                
+                
+                _snakeHappy = 1;
                 coinGen(_collectedCoins);
                 trapGen(_trapsHit);
             }
@@ -885,6 +912,7 @@ namespace GUIform
                 _trapHit = true;
                 ++_trapsHit;
                 partialScoreMod(5);
+                _snakeHappy = 0;
                 _info[_snakeLocation.X, _snakeLocation.Y] = 0;
                 foreach (Point p in _trapLocations)
                 {

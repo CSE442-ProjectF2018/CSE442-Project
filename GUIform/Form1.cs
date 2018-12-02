@@ -292,6 +292,10 @@ namespace GUIform
                 //sTail.Update();
 
                 _m.moveSnake();
+                if (!_m._applePathOpen)
+                {
+                    _m.updateSnakePath();
+                }
 
                 if (_m._appleGet == true)
                 {
@@ -378,7 +382,24 @@ namespace GUIform
                     _moveCounter++;
                 }
             }
-            cf += 1;
+
+            if (_m._snakeDeath)
+            {
+                BGM_Player.Ctlcontrols.stop();
+                play_SFX2("scream.wav");
+                setPanel(snake_game_over);
+                _l1 = _head;
+                _l2 = _head;
+                _l3 = _head;
+                HS_PlayerScore.Text = _m._points_total.ToString();
+
+                play_BGM("GameOverBGM.wav");
+                dispatcherTimer.Stop();
+            }
+
+
+
+                cf += 1;
             if (cf >= frames) cf = 0;
             coin_pic.Image.SelectActiveFrame(fdim, cf);
 
