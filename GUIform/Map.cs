@@ -808,7 +808,7 @@ namespace GUIform
                 _points_turn = 1000 - (_activeRocks * _rockCost);
                 coinGen(_collectedCoins);
             }
-            else if (_info[_snakeLocation.X, _snakeLocation.Y] == 3)
+            else  if (_info[_snakeLocation.X, _snakeLocation.Y] == 3)
             {
                 _snakeDeath = true;
             }
