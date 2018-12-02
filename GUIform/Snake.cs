@@ -31,7 +31,7 @@ namespace GUIform
         //East = 1
         //South = 2
         //West = 3
-        int _currentDirection;
+        public int _currentDirection;
 
         //head is the part that looks like it moves
         public SnakeNode _Head;
@@ -47,18 +47,18 @@ namespace GUIform
         public int _length;
 
         //Default Constructor
-        public Snake()
+        public Snake(System.Drawing.Point spawnLocDL)
         {
             //Snake Moves right by default.
             _currentDirection = 1;
 
             _dirPrev = _currentDirection;
 
-            //Spawn snake at 7,7.
-            _Head = new SnakeNode(7, 7);
+            //Spawn snake at given location
+            _Head = new SnakeNode(spawnLocDL.X, spawnLocDL.Y);
 
             //At the beginning, Head and Tail occupy same space.
-            _Tail = new SnakeNode(7, 7);
+            _Tail = new SnakeNode(spawnLocDL.X, spawnLocDL.Y);
             _Tail.next = _Head;
             _Head.prev = _Tail;
 

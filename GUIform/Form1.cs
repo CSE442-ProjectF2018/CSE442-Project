@@ -355,29 +355,7 @@ namespace GUIform
                     System.Windows.Forms.Panel target = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y);
 
                     target.Controls.Clear();
-                    target.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
-                    target.BackgroundImageLayout = ImageLayout.Stretch;
-                    _m.setBlockAt(_m._currentSnake._Head.X, _m._currentSnake._Head.Y, 0);
-
-                    for (int i = 0; i < _m._coinLocations.Count; ++i)
-                    {
-                        if (_m._coinLocations[i].X == _m._currentSnake._Head.X && _m._coinLocations[i].Y == _m._currentSnake._Head.Y)
-                        {
-                            _m._coinLocations.RemoveAt(i);
-                            break;
-                        }
-                    }
-
-                    /*
-                    foreach(Point p in _m._coinLocations)
-                    {
-                        if(p.X == _m._currentSnake._Head.X && p.Y == _m._currentSnake._Head.Y)
-                        {
-                            _m._coinLocations.Remove(p);
-                            break;
-                        }
-                    }
-                    */
+                    updateMap();
 
                     PartialPoints.Text = _m._points_turn.ToString();
 
@@ -385,12 +363,12 @@ namespace GUIform
                 }
                 else if (_m._trapHit)
                 {
-                    snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y).BackgroundImage =
-                        Image.FromFile(sp_directory + "snake_body.png");
+                    
                     play_SFX("oof.wav");
-                    //_m.is_happy = 0;
+                    
                     PartialPoints.Text = _m._points_turn.ToString();
                     _m._trapHit = false;
+                    updateMap();
                 }
 
                 else
@@ -425,33 +403,35 @@ namespace GUIform
             sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
             //sTail.Update();
 
-            sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 255, 0);
+            sTail.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
             sTail.BackgroundImageLayout = ImageLayout.Stretch;
             sTail.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
 
 
+            System.Windows.Forms.Panel pHead = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Head.prev.X, _m._currentSnake._Head.prev.Y);
+
+            pHead.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+            pHead.BackgroundImageLayout = ImageLayout.Stretch;
+            pHead.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
+
             System.Windows.Forms.Panel sHead = (System.Windows.Forms.Panel)snakeGrid.GetControlFromPosition(_m._currentSnake._Head.X, _m._currentSnake._Head.Y);
 
-            sHead.BackColor = System.Drawing.Color.FromArgb(0, 0, 255, 0);
+            sHead.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
             sHead.BackgroundImageLayout = ImageLayout.Stretch;
-            sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_body.png");
             
-            /*
-            if (_m.nextDirection == 3) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_l.png");
-            else if (_m.nextDirection == 1) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_r.png");
-            else if (_m.nextDirection == 0) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_u.png");
-            else if (_m.nextDirection == 2) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_d.png");
-            */
-
-            //sHead.Update();
+            if (_m._currentSnake._currentDirection == 3) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_l.png");
+            else if (_m._currentSnake._currentDirection == 1) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_r.png");
+            else if (_m._currentSnake._currentDirection == 0) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_u.png");
+            else if (_m._currentSnake._currentDirection == 2) sHead.BackgroundImage = Image.FromFile(sp_directory + "snake_head_d.png");
+            
             turnIcon_StyleChanged();
             snakeGrid.Update();
         }
 
         private void reset_to_gameScreen()
         {
-            
-            _m = new Map(_map_selection);
+            Point spawnLocI = new Point(7, 7);
+            _m = new Map(_map_selection, spawnLocI);
             gameScreen.Controls.Add(snakeGrid);
             snakeGrid.Controls.Clear();
             snakeGrid.SuspendLayout();
@@ -473,6 +453,11 @@ namespace GUIform
                             break;
                         case 2:
                             test.BackgroundImage = i_rock;
+                            test.BackgroundImageLayout = ImageLayout.Stretch;
+                            snakeGrid.Controls.Add(test, i, j);
+                            break;
+                        case 3:
+                            test.BackgroundImage = Image.FromFile(sp_directory + "snake_head_r.png");
                             test.BackgroundImageLayout = ImageLayout.Stretch;
                             snakeGrid.Controls.Add(test, i, j);
                             break;

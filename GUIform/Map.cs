@@ -81,6 +81,9 @@ namespace GUIform
         //Maximum amount of traps allowed on grid.
         int _maxTraps;
 
+        //Number of traps hit on that turn.
+        int _trapsHit;
+
         //2D matrix representing map info.
         public int[,] _info;
 
@@ -103,7 +106,7 @@ namespace GUIform
 
 
         //Default Constructor
-        public Map(int mapSel)
+        public Map(int mapSel, Point spawnLoc)
         {
             //Points
             _points_total = 0;
@@ -115,15 +118,16 @@ namespace GUIform
             //MISC
             _maxCoins = 10;
             _maxTraps = 3;
+            _trapsHit = 0;
             _activeRocks = 0;
             _trapLocations = new List<Point>();
             _coinLocations = new List<Point>();
 
 
             //Map selection
-            mapGen(mapSel);
+            mapGen(mapSel, spawnLoc);
             
-            initSnake();
+            initSnake(spawnLoc);
         }
 
         public bool partialScoreMod(int t)
@@ -165,7 +169,7 @@ namespace GUIform
         }
 
         //Generate grid. Maptype, t.
-        public void mapGen(int t)
+        public void mapGen(int t, Point spawnLocG)
         {
             if(t == -1)
             {
@@ -294,20 +298,23 @@ namespace GUIform
                         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
                         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
                     };
-                    //
-                    for (int i = 0; i < 16; ++i)
-                    {
-                        for (int j = 0; j < 16; ++j)
-                        {
-                            int temp = _info[i, j];
-                            _info[i, j] = _info[j, i];
-                            _info[j, i] = temp;
-                        }
-                    }
-                    //
+                    
                     break;
 
             }
+            //
+            for (int i = 0; i < 16; ++i)
+            {
+                for (int j = 0; j < 16; ++j)
+                {
+                    int temp = _info[i, j];
+                    _info[i, j] = _info[j, i];
+                    _info[j, i] = temp;
+                }
+            }
+            //
+            
+            _info[spawnLocG.X, spawnLocG.Y] = 3;
 
             trapGen(_maxTraps);
             coinGen(_maxCoins);
@@ -352,6 +359,7 @@ namespace GUIform
                 }
 
             }
+            _trapsHit = _maxTraps - _trapLocations.Count;
         }
 
         //Coin Generator - Places Coins in groups of 3 on map at random in accordance with Coin Max.
@@ -509,12 +517,12 @@ namespace GUIform
         }
 
         //Initializes snake at default coordinates.
-        public void initSnake()
+        public void initSnake(Point spawnLocS)
         {
             //Spawn new snake at location 7,7 with length of 3.
-            _currentSnake = new Snake();
+            _currentSnake = new Snake(spawnLocS);
 
-            _snakeLocation = new Point(7, 7);
+            _snakeLocation = spawnLocS;
             _snakeDeath = false;
         }
 
@@ -837,6 +845,7 @@ namespace GUIform
                 _points_total += _points_turn;
                 _points_turn = 1000 - (_activeRocks * _rockCost);
                 coinGen(_collectedCoins);
+                trapGen(_trapsHit);
             }
             else if (_info[_snakeLocation.X, _snakeLocation.Y] == 3)
             {
@@ -859,7 +868,18 @@ namespace GUIform
             else if (_info[_snakeLocation.X, _snakeLocation.Y] == 5)
             {
                 _trapHit = true;
+                ++_trapsHit;
                 partialScoreMod(5);
+                _info[_snakeLocation.X, _snakeLocation.Y] = 0;
+                foreach (Point p in _trapLocations)
+                {
+                    if (p.X == _snakeLocation.X && p.Y == _snakeLocation.Y)
+                    {
+                        _trapLocations.Remove(p);
+                        break;
+                    }
+                }
+
             }
 
             _info[_currentSnake._Tail.X, _currentSnake._Tail.Y] = 3;
