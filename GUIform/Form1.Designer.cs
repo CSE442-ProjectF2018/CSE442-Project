@@ -44,6 +44,32 @@
             this.HS_Init1 = new System.Windows.Forms.Label();
             this.Enter_Initials = new System.Windows.Forms.Label();
             this.snake_game_over_reset = new System.Windows.Forms.Button();
+            this.titleScreen = new System.Windows.Forms.Panel();
+            this.optionsPanel = new System.Windows.Forms.Panel();
+            this.o_RSP_Apply = new System.Windows.Forms.Button();
+            this.asset_Pack_List = new System.Windows.Forms.ListBox();
+            this.o_mapSel_label = new System.Windows.Forms.Label();
+            this.o_mapSel_right = new System.Windows.Forms.Button();
+            this.o_mapSel_left = new System.Windows.Forms.Button();
+            this.o_mapSel = new System.Windows.Forms.Label();
+            this.options = new System.Windows.Forms.Button();
+            this.instructions = new System.Windows.Forms.TextBox();
+            this.Title = new System.Windows.Forms.Label();
+            this.playButton = new System.Windows.Forms.Button();
+            this.instruction_button = new System.Windows.Forms.Button();
+            this.apple_game_over = new System.Windows.Forms.Panel();
+            this.apple_game_over_reset = new System.Windows.Forms.Button();
+            this.game_over_label = new System.Windows.Forms.Label();
+            this.Adocalypse = new System.Windows.Forms.Label();
+            this.loading_screen = new System.Windows.Forms.Panel();
+            this.Slots = new System.Windows.Forms.Panel();
+            this.Slot_Result = new System.Windows.Forms.Label();
+            this.SlotArm = new System.Windows.Forms.Panel();
+            this.Slot3 = new System.Windows.Forms.PictureBox();
+            this.Slot2 = new System.Windows.Forms.PictureBox();
+            this.Slot1 = new System.Windows.Forms.PictureBox();
+            this.map_preview = new System.Windows.Forms.PictureBox();
+            this.blink = new System.Windows.Forms.PictureBox();
             this.gameScreen = new System.Windows.Forms.Panel();
             this.PartialPoints = new System.Windows.Forms.Label();
             this.TurnPoints = new System.Windows.Forms.Label();
@@ -65,46 +91,21 @@
             this.PlayerScore = new System.Windows.Forms.Label();
             this.RESET_BUTTON = new System.Windows.Forms.Button();
             this.snakeGrid = new GUIform.DBLayoutPanel(this.components);
-            this.titleScreen = new System.Windows.Forms.Panel();
-            this.optionsPanel = new System.Windows.Forms.Panel();
-            this.o_RSP_Apply = new System.Windows.Forms.Button();
-            this.asset_Pack_List = new System.Windows.Forms.ListBox();
-            this.map_preview = new System.Windows.Forms.PictureBox();
-            this.o_mapSel_label = new System.Windows.Forms.Label();
-            this.o_mapSel_right = new System.Windows.Forms.Button();
-            this.o_mapSel_left = new System.Windows.Forms.Button();
-            this.o_mapSel = new System.Windows.Forms.Label();
-            this.options = new System.Windows.Forms.Button();
-            this.instructions = new System.Windows.Forms.TextBox();
-            this.Title = new System.Windows.Forms.Label();
-            this.playButton = new System.Windows.Forms.Button();
-            this.instruction_button = new System.Windows.Forms.Button();
-            this.blink = new System.Windows.Forms.PictureBox();
-            this.apple_game_over = new System.Windows.Forms.Panel();
-            this.apple_game_over_reset = new System.Windows.Forms.Button();
-            this.game_over_label = new System.Windows.Forms.Label();
-            this.Adocalypse = new System.Windows.Forms.Label();
-            this.loading_screen = new System.Windows.Forms.Panel();
-            this.Slots = new System.Windows.Forms.Panel();
-            this.SlotArm = new System.Windows.Forms.Panel();
-            this.Slot3 = new System.Windows.Forms.PictureBox();
-            this.Slot2 = new System.Windows.Forms.PictureBox();
-            this.Slot1 = new System.Windows.Forms.PictureBox();
             this.snake_game_over.SuspendLayout();
-            this.gameScreen.SuspendLayout();
-            this.HS_P_TopScores.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BGM_Player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).BeginInit();
             this.titleScreen.SuspendLayout();
             this.optionsPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_preview)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
             this.apple_game_over.SuspendLayout();
             this.Slots.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Slot3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Slot2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Slot1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_preview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
+            this.gameScreen.SuspendLayout();
+            this.HS_P_TopScores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BGM_Player)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // snake_game_over
@@ -286,9 +287,300 @@
             this.snake_game_over_reset.UseVisualStyleBackColor = false;
             this.snake_game_over_reset.Click += new System.EventHandler(this.snake_game_over_reset_CLick);
             // 
+            // titleScreen
+            // 
+            this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.titleScreen.Controls.Add(this.optionsPanel);
+            this.titleScreen.Controls.Add(this.options);
+            this.titleScreen.Controls.Add(this.instructions);
+            this.titleScreen.Controls.Add(this.Title);
+            this.titleScreen.Controls.Add(this.playButton);
+            this.titleScreen.Controls.Add(this.instruction_button);
+            this.titleScreen.Controls.Add(this.blink);
+            this.titleScreen.Location = new System.Drawing.Point(-1, -1);
+            this.titleScreen.Name = "titleScreen";
+            this.titleScreen.Size = new System.Drawing.Size(1137, 611);
+            this.titleScreen.TabIndex = 0;
+            this.titleScreen.Click += new System.EventHandler(this.titleScreen_Click);
+            // 
+            // optionsPanel
+            // 
+            this.optionsPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.optionsPanel.Controls.Add(this.o_RSP_Apply);
+            this.optionsPanel.Controls.Add(this.asset_Pack_List);
+            this.optionsPanel.Controls.Add(this.map_preview);
+            this.optionsPanel.Controls.Add(this.o_mapSel_label);
+            this.optionsPanel.Controls.Add(this.o_mapSel_right);
+            this.optionsPanel.Controls.Add(this.o_mapSel_left);
+            this.optionsPanel.Controls.Add(this.o_mapSel);
+            this.optionsPanel.Location = new System.Drawing.Point(814, 118);
+            this.optionsPanel.Name = "optionsPanel";
+            this.optionsPanel.Size = new System.Drawing.Size(311, 386);
+            this.optionsPanel.TabIndex = 7;
+            this.optionsPanel.Visible = false;
+            // 
+            // o_RSP_Apply
+            // 
+            this.o_RSP_Apply.BackColor = System.Drawing.Color.Yellow;
+            this.o_RSP_Apply.Location = new System.Drawing.Point(59, 348);
+            this.o_RSP_Apply.Name = "o_RSP_Apply";
+            this.o_RSP_Apply.Size = new System.Drawing.Size(186, 38);
+            this.o_RSP_Apply.TabIndex = 10;
+            this.o_RSP_Apply.Text = "Apply Pack";
+            this.o_RSP_Apply.UseVisualStyleBackColor = false;
+            this.o_RSP_Apply.Click += new System.EventHandler(this.o_RSP_Apply_Click);
+            // 
+            // asset_Pack_List
+            // 
+            this.asset_Pack_List.FormattingEnabled = true;
+            this.asset_Pack_List.Location = new System.Drawing.Point(59, 216);
+            this.asset_Pack_List.Name = "asset_Pack_List";
+            this.asset_Pack_List.Size = new System.Drawing.Size(186, 121);
+            this.asset_Pack_List.TabIndex = 9;
+            this.asset_Pack_List.SelectedIndexChanged += new System.EventHandler(this.asset_Pack_List_SelectedIndexChanged);
+            // 
+            // o_mapSel_label
+            // 
+            this.o_mapSel_label.AutoSize = true;
+            this.o_mapSel_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.o_mapSel_label.Location = new System.Drawing.Point(147, 15);
+            this.o_mapSel_label.Name = "o_mapSel_label";
+            this.o_mapSel_label.Size = new System.Drawing.Size(21, 20);
+            this.o_mapSel_label.TabIndex = 3;
+            this.o_mapSel_label.Text = "R";
+            // 
+            // o_mapSel_right
+            // 
+            this.o_mapSel_right.BackColor = System.Drawing.Color.Yellow;
+            this.o_mapSel_right.Location = new System.Drawing.Point(190, 15);
+            this.o_mapSel_right.Name = "o_mapSel_right";
+            this.o_mapSel_right.Size = new System.Drawing.Size(25, 23);
+            this.o_mapSel_right.TabIndex = 2;
+            this.o_mapSel_right.Text = ">";
+            this.o_mapSel_right.UseVisualStyleBackColor = false;
+            this.o_mapSel_right.Click += new System.EventHandler(this.o_mapSel_right_Click);
+            // 
+            // o_mapSel_left
+            // 
+            this.o_mapSel_left.BackColor = System.Drawing.Color.Yellow;
+            this.o_mapSel_left.Location = new System.Drawing.Point(105, 15);
+            this.o_mapSel_left.Name = "o_mapSel_left";
+            this.o_mapSel_left.Size = new System.Drawing.Size(25, 23);
+            this.o_mapSel_left.TabIndex = 1;
+            this.o_mapSel_left.Text = "<";
+            this.o_mapSel_left.UseVisualStyleBackColor = false;
+            this.o_mapSel_left.Click += new System.EventHandler(this.o_mapSel_left_Click);
+            // 
+            // o_mapSel
+            // 
+            this.o_mapSel.AutoSize = true;
+            this.o_mapSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.o_mapSel.Location = new System.Drawing.Point(29, 15);
+            this.o_mapSel.Name = "o_mapSel";
+            this.o_mapSel.Size = new System.Drawing.Size(40, 20);
+            this.o_mapSel.TabIndex = 0;
+            this.o_mapSel.Text = "Map";
+            // 
+            // options
+            // 
+            this.options.BackColor = System.Drawing.Color.Transparent;
+            this.options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.options.Location = new System.Drawing.Point(1064, 534);
+            this.options.Name = "options";
+            this.options.Size = new System.Drawing.Size(70, 74);
+            this.options.TabIndex = 6;
+            this.options.UseVisualStyleBackColor = false;
+            this.options.Click += new System.EventHandler(this.options_Click);
+            // 
+            // instructions
+            // 
+            this.instructions.BackColor = System.Drawing.SystemColors.Window;
+            this.instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instructions.Location = new System.Drawing.Point(355, 118);
+            this.instructions.Multiline = true;
+            this.instructions.Name = "instructions";
+            this.instructions.ReadOnly = true;
+            this.instructions.Size = new System.Drawing.Size(451, 386);
+            this.instructions.TabIndex = 4;
+            this.instructions.Visible = false;
+            // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.BackColor = System.Drawing.Color.Transparent;
+            this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Title.Location = new System.Drawing.Point(146, 39);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(281, 55);
+            this.Title.TabIndex = 1;
+            this.Title.Text = "$nec $nacc";
+            // 
+            // playButton
+            // 
+            this.playButton.BackColor = System.Drawing.Color.Yellow;
+            this.playButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.Location = new System.Drawing.Point(418, 510);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(308, 88);
+            this.playButton.TabIndex = 0;
+            this.playButton.Text = "PLAY!";
+            this.playButton.UseVisualStyleBackColor = false;
+            this.playButton.Click += new System.EventHandler(this.playButton_Click);
+            // 
+            // instruction_button
+            // 
+            this.instruction_button.BackColor = System.Drawing.Color.Yellow;
+            this.instruction_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.instruction_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.instruction_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.instruction_button.Location = new System.Drawing.Point(3, 561);
+            this.instruction_button.Name = "instruction_button";
+            this.instruction_button.Size = new System.Drawing.Size(150, 51);
+            this.instruction_button.TabIndex = 3;
+            this.instruction_button.Text = "How to Play";
+            this.instruction_button.UseVisualStyleBackColor = false;
+            this.instruction_button.Click += new System.EventHandler(this.instruction_button_Click);
+            // 
+            // apple_game_over
+            // 
+            this.apple_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.apple_game_over.Controls.Add(this.apple_game_over_reset);
+            this.apple_game_over.Controls.Add(this.game_over_label);
+            this.apple_game_over.Controls.Add(this.Adocalypse);
+            this.apple_game_over.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.apple_game_over.Location = new System.Drawing.Point(0, 0);
+            this.apple_game_over.Name = "apple_game_over";
+            this.apple_game_over.Size = new System.Drawing.Size(1136, 609);
+            this.apple_game_over.TabIndex = 3;
+            // 
+            // apple_game_over_reset
+            // 
+            this.apple_game_over_reset.BackColor = System.Drawing.Color.Yellow;
+            this.apple_game_over_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.apple_game_over_reset.Location = new System.Drawing.Point(1019, 573);
+            this.apple_game_over_reset.Name = "apple_game_over_reset";
+            this.apple_game_over_reset.Size = new System.Drawing.Size(117, 38);
+            this.apple_game_over_reset.TabIndex = 2;
+            this.apple_game_over_reset.Text = "Play Again";
+            this.apple_game_over_reset.UseVisualStyleBackColor = false;
+            this.apple_game_over_reset.Click += new System.EventHandler(this.apple_game_over_reset_Click);
+            // 
+            // game_over_label
+            // 
+            this.game_over_label.AutoSize = true;
+            this.game_over_label.BackColor = System.Drawing.Color.Transparent;
+            this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.game_over_label.Location = new System.Drawing.Point(408, 4);
+            this.game_over_label.Name = "game_over_label";
+            this.game_over_label.Size = new System.Drawing.Size(295, 55);
+            this.game_over_label.TabIndex = 1;
+            this.game_over_label.Text = "Game Over!";
+            // 
+            // Adocalypse
+            // 
+            this.Adocalypse.AutoSize = true;
+            this.Adocalypse.BackColor = System.Drawing.Color.Transparent;
+            this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Adocalypse.Location = new System.Drawing.Point(84, 533);
+            this.Adocalypse.Name = "Adocalypse";
+            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
+            this.Adocalypse.TabIndex = 0;
+            this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
+    ".";
+            // 
+            // loading_screen
+            // 
+            this.loading_screen.Location = new System.Drawing.Point(0, 0);
+            this.loading_screen.Name = "loading_screen";
+            this.loading_screen.Size = new System.Drawing.Size(200, 100);
+            this.loading_screen.TabIndex = 0;
+            // 
+            // Slots
+            // 
+            this.Slots.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Slots.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Slots.Controls.Add(this.Slot_Result);
+            this.Slots.Controls.Add(this.SlotArm);
+            this.Slots.Controls.Add(this.Slot3);
+            this.Slots.Controls.Add(this.Slot2);
+            this.Slots.Controls.Add(this.Slot1);
+            this.Slots.Location = new System.Drawing.Point(1, 0);
+            this.Slots.Name = "Slots";
+            this.Slots.Size = new System.Drawing.Size(1137, 612);
+            this.Slots.TabIndex = 4;
+            this.Slots.Paint += new System.Windows.Forms.PaintEventHandler(this.Slots_Paint);
+            // 
+            // Slot_Result
+            // 
+            this.Slot_Result.AutoSize = true;
+            this.Slot_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Slot_Result.Location = new System.Drawing.Point(356, 394);
+            this.Slot_Result.Name = "Slot_Result";
+            this.Slot_Result.Size = new System.Drawing.Size(0, 51);
+            this.Slot_Result.TabIndex = 4;
+            // 
+            // SlotArm
+            // 
+            this.SlotArm.BackColor = System.Drawing.Color.Transparent;
+            this.SlotArm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SlotArm.Location = new System.Drawing.Point(986, 139);
+            this.SlotArm.Name = "SlotArm";
+            this.SlotArm.Size = new System.Drawing.Size(164, 361);
+            this.SlotArm.TabIndex = 3;
+            this.SlotArm.Click += new System.EventHandler(this.SlotArm_Click);
+            // 
+            // Slot3
+            // 
+            this.Slot3.Location = new System.Drawing.Point(656, 179);
+            this.Slot3.Name = "Slot3";
+            this.Slot3.Size = new System.Drawing.Size(150, 150);
+            this.Slot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot3.TabIndex = 2;
+            this.Slot3.TabStop = false;
+            // 
+            // Slot2
+            // 
+            this.Slot2.Location = new System.Drawing.Point(434, 179);
+            this.Slot2.Name = "Slot2";
+            this.Slot2.Size = new System.Drawing.Size(150, 150);
+            this.Slot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot2.TabIndex = 1;
+            this.Slot2.TabStop = false;
+            // 
+            // Slot1
+            // 
+            this.Slot1.Location = new System.Drawing.Point(206, 179);
+            this.Slot1.Name = "Slot1";
+            this.Slot1.Size = new System.Drawing.Size(150, 150);
+            this.Slot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot1.TabIndex = 0;
+            this.Slot1.TabStop = false;
+            // 
+            // map_preview
+            // 
+            this.map_preview.BackColor = System.Drawing.Color.White;
+            this.map_preview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.map_preview.Location = new System.Drawing.Point(77, 59);
+            this.map_preview.Name = "map_preview";
+            this.map_preview.Size = new System.Drawing.Size(138, 103);
+            this.map_preview.TabIndex = 8;
+            this.map_preview.TabStop = false;
+            // 
+            // blink
+            // 
+            this.blink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.blink.Location = new System.Drawing.Point(1036, 0);
+            this.blink.Name = "blink";
+            this.blink.Size = new System.Drawing.Size(100, 50);
+            this.blink.TabIndex = 5;
+            this.blink.TabStop = false;
+            this.blink.Visible = false;
+            // 
             // gameScreen
             // 
-            this.gameScreen.BackgroundImage = global::GUIform.Properties.Resources.BG_park_1;
             this.gameScreen.Controls.Add(this.PartialPoints);
             this.gameScreen.Controls.Add(this.TurnPoints);
             this.gameScreen.Controls.Add(this.tool_rock);
@@ -565,285 +857,6 @@
             this.snakeGrid.TabIndex = 0;
             this.snakeGrid.Click += new System.EventHandler(this.snakeGrid_Click);
             // 
-            // titleScreen
-            // 
-            this.titleScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.titleScreen.Controls.Add(this.optionsPanel);
-            this.titleScreen.Controls.Add(this.options);
-            this.titleScreen.Controls.Add(this.instructions);
-            this.titleScreen.Controls.Add(this.Title);
-            this.titleScreen.Controls.Add(this.playButton);
-            this.titleScreen.Controls.Add(this.instruction_button);
-            this.titleScreen.Controls.Add(this.blink);
-            this.titleScreen.Location = new System.Drawing.Point(-1, -1);
-            this.titleScreen.Name = "titleScreen";
-            this.titleScreen.Size = new System.Drawing.Size(1137, 611);
-            this.titleScreen.TabIndex = 0;
-            this.titleScreen.Click += new System.EventHandler(this.titleScreen_Click);
-            // 
-            // optionsPanel
-            // 
-            this.optionsPanel.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.optionsPanel.Controls.Add(this.o_RSP_Apply);
-            this.optionsPanel.Controls.Add(this.asset_Pack_List);
-            this.optionsPanel.Controls.Add(this.map_preview);
-            this.optionsPanel.Controls.Add(this.o_mapSel_label);
-            this.optionsPanel.Controls.Add(this.o_mapSel_right);
-            this.optionsPanel.Controls.Add(this.o_mapSel_left);
-            this.optionsPanel.Controls.Add(this.o_mapSel);
-            this.optionsPanel.Location = new System.Drawing.Point(814, 118);
-            this.optionsPanel.Name = "optionsPanel";
-            this.optionsPanel.Size = new System.Drawing.Size(311, 386);
-            this.optionsPanel.TabIndex = 7;
-            this.optionsPanel.Visible = false;
-            // 
-            // o_RSP_Apply
-            // 
-            this.o_RSP_Apply.BackColor = System.Drawing.Color.Yellow;
-            this.o_RSP_Apply.Location = new System.Drawing.Point(59, 348);
-            this.o_RSP_Apply.Name = "o_RSP_Apply";
-            this.o_RSP_Apply.Size = new System.Drawing.Size(186, 38);
-            this.o_RSP_Apply.TabIndex = 10;
-            this.o_RSP_Apply.Text = "Apply Pack";
-            this.o_RSP_Apply.UseVisualStyleBackColor = false;
-            this.o_RSP_Apply.Click += new System.EventHandler(this.o_RSP_Apply_Click);
-            // 
-            // asset_Pack_List
-            // 
-            this.asset_Pack_List.FormattingEnabled = true;
-            this.asset_Pack_List.Location = new System.Drawing.Point(59, 216);
-            this.asset_Pack_List.Name = "asset_Pack_List";
-            this.asset_Pack_List.Size = new System.Drawing.Size(186, 121);
-            this.asset_Pack_List.TabIndex = 9;
-            this.asset_Pack_List.SelectedIndexChanged += new System.EventHandler(this.asset_Pack_List_SelectedIndexChanged);
-            // 
-            // map_preview
-            // 
-            this.map_preview.BackColor = System.Drawing.Color.White;
-            this.map_preview.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.map_preview.Location = new System.Drawing.Point(77, 59);
-            this.map_preview.Name = "map_preview";
-            this.map_preview.Size = new System.Drawing.Size(138, 103);
-            this.map_preview.TabIndex = 8;
-            this.map_preview.TabStop = false;
-            // 
-            // o_mapSel_label
-            // 
-            this.o_mapSel_label.AutoSize = true;
-            this.o_mapSel_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.o_mapSel_label.Location = new System.Drawing.Point(147, 15);
-            this.o_mapSel_label.Name = "o_mapSel_label";
-            this.o_mapSel_label.Size = new System.Drawing.Size(21, 20);
-            this.o_mapSel_label.TabIndex = 3;
-            this.o_mapSel_label.Text = "R";
-            // 
-            // o_mapSel_right
-            // 
-            this.o_mapSel_right.BackColor = System.Drawing.Color.Yellow;
-            this.o_mapSel_right.Location = new System.Drawing.Point(190, 15);
-            this.o_mapSel_right.Name = "o_mapSel_right";
-            this.o_mapSel_right.Size = new System.Drawing.Size(25, 23);
-            this.o_mapSel_right.TabIndex = 2;
-            this.o_mapSel_right.Text = ">";
-            this.o_mapSel_right.UseVisualStyleBackColor = false;
-            this.o_mapSel_right.Click += new System.EventHandler(this.o_mapSel_right_Click);
-            // 
-            // o_mapSel_left
-            // 
-            this.o_mapSel_left.BackColor = System.Drawing.Color.Yellow;
-            this.o_mapSel_left.Location = new System.Drawing.Point(105, 15);
-            this.o_mapSel_left.Name = "o_mapSel_left";
-            this.o_mapSel_left.Size = new System.Drawing.Size(25, 23);
-            this.o_mapSel_left.TabIndex = 1;
-            this.o_mapSel_left.Text = "<";
-            this.o_mapSel_left.UseVisualStyleBackColor = false;
-            this.o_mapSel_left.Click += new System.EventHandler(this.o_mapSel_left_Click);
-            // 
-            // o_mapSel
-            // 
-            this.o_mapSel.AutoSize = true;
-            this.o_mapSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.o_mapSel.Location = new System.Drawing.Point(29, 15);
-            this.o_mapSel.Name = "o_mapSel";
-            this.o_mapSel.Size = new System.Drawing.Size(40, 20);
-            this.o_mapSel.TabIndex = 0;
-            this.o_mapSel.Text = "Map";
-            // 
-            // options
-            // 
-            this.options.BackColor = System.Drawing.Color.Transparent;
-            this.options.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.options.Location = new System.Drawing.Point(1064, 534);
-            this.options.Name = "options";
-            this.options.Size = new System.Drawing.Size(70, 74);
-            this.options.TabIndex = 6;
-            this.options.UseVisualStyleBackColor = false;
-            this.options.Click += new System.EventHandler(this.options_Click);
-            // 
-            // instructions
-            // 
-            this.instructions.BackColor = System.Drawing.SystemColors.Window;
-            this.instructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instructions.Location = new System.Drawing.Point(355, 118);
-            this.instructions.Multiline = true;
-            this.instructions.Name = "instructions";
-            this.instructions.ReadOnly = true;
-            this.instructions.Size = new System.Drawing.Size(451, 386);
-            this.instructions.TabIndex = 4;
-            this.instructions.Visible = false;
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.BackColor = System.Drawing.Color.Transparent;
-            this.Title.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Title.Location = new System.Drawing.Point(146, 39);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(281, 55);
-            this.Title.TabIndex = 1;
-            this.Title.Text = "$nec $nacc";
-            // 
-            // playButton
-            // 
-            this.playButton.BackColor = System.Drawing.Color.Yellow;
-            this.playButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playButton.Location = new System.Drawing.Point(418, 510);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(308, 88);
-            this.playButton.TabIndex = 0;
-            this.playButton.Text = "PLAY!";
-            this.playButton.UseVisualStyleBackColor = false;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click);
-            // 
-            // instruction_button
-            // 
-            this.instruction_button.BackColor = System.Drawing.Color.Yellow;
-            this.instruction_button.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.instruction_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.instruction_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.instruction_button.Location = new System.Drawing.Point(3, 561);
-            this.instruction_button.Name = "instruction_button";
-            this.instruction_button.Size = new System.Drawing.Size(150, 51);
-            this.instruction_button.TabIndex = 3;
-            this.instruction_button.Text = "How to Play";
-            this.instruction_button.UseVisualStyleBackColor = false;
-            this.instruction_button.Click += new System.EventHandler(this.instruction_button_Click);
-            // 
-            // blink
-            // 
-            this.blink.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.blink.Location = new System.Drawing.Point(1036, 0);
-            this.blink.Name = "blink";
-            this.blink.Size = new System.Drawing.Size(100, 50);
-            this.blink.TabIndex = 5;
-            this.blink.TabStop = false;
-            this.blink.Visible = false;
-            // 
-            // apple_game_over
-            // 
-            this.apple_game_over.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.apple_game_over.Controls.Add(this.apple_game_over_reset);
-            this.apple_game_over.Controls.Add(this.game_over_label);
-            this.apple_game_over.Controls.Add(this.Adocalypse);
-            this.apple_game_over.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.apple_game_over.Location = new System.Drawing.Point(0, 0);
-            this.apple_game_over.Name = "apple_game_over";
-            this.apple_game_over.Size = new System.Drawing.Size(1136, 609);
-            this.apple_game_over.TabIndex = 3;
-            // 
-            // apple_game_over_reset
-            // 
-            this.apple_game_over_reset.BackColor = System.Drawing.Color.Yellow;
-            this.apple_game_over_reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.apple_game_over_reset.Location = new System.Drawing.Point(1019, 573);
-            this.apple_game_over_reset.Name = "apple_game_over_reset";
-            this.apple_game_over_reset.Size = new System.Drawing.Size(117, 38);
-            this.apple_game_over_reset.TabIndex = 2;
-            this.apple_game_over_reset.Text = "Play Again";
-            this.apple_game_over_reset.UseVisualStyleBackColor = false;
-            this.apple_game_over_reset.Click += new System.EventHandler(this.apple_game_over_reset_Click);
-            // 
-            // game_over_label
-            // 
-            this.game_over_label.AutoSize = true;
-            this.game_over_label.BackColor = System.Drawing.Color.Transparent;
-            this.game_over_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.game_over_label.Location = new System.Drawing.Point(408, 4);
-            this.game_over_label.Name = "game_over_label";
-            this.game_over_label.Size = new System.Drawing.Size(295, 55);
-            this.game_over_label.TabIndex = 1;
-            this.game_over_label.Text = "Game Over!";
-            // 
-            // Adocalypse
-            // 
-            this.Adocalypse.AutoSize = true;
-            this.Adocalypse.BackColor = System.Drawing.Color.Transparent;
-            this.Adocalypse.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Adocalypse.Location = new System.Drawing.Point(84, 533);
-            this.Adocalypse.Name = "Adocalypse";
-            this.Adocalypse.Size = new System.Drawing.Size(644, 18);
-            this.Adocalypse.TabIndex = 0;
-            this.Adocalypse.Text = "Doctors are appearing everywhere, here\'s how you can prepare for the Adocalypse.." +
-    ".";
-            // 
-            // loading_screen
-            // 
-            this.loading_screen.Location = new System.Drawing.Point(0, 0);
-            this.loading_screen.Name = "loading_screen";
-            this.loading_screen.Size = new System.Drawing.Size(200, 100);
-            this.loading_screen.TabIndex = 0;
-            // 
-            // Slots
-            // 
-            this.Slots.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Slots.Controls.Add(this.SlotArm);
-            this.Slots.Controls.Add(this.Slot3);
-            this.Slots.Controls.Add(this.Slot2);
-            this.Slots.Controls.Add(this.Slot1);
-            this.Slots.Location = new System.Drawing.Point(1, 0);
-            this.Slots.Name = "Slots";
-            this.Slots.Size = new System.Drawing.Size(1137, 612);
-            this.Slots.TabIndex = 4;
-            // 
-            // SlotArm
-            // 
-            this.SlotArm.BackColor = System.Drawing.Color.Firebrick;
-            this.SlotArm.Location = new System.Drawing.Point(893, 97);
-            this.SlotArm.Name = "SlotArm";
-            this.SlotArm.Size = new System.Drawing.Size(164, 361);
-            this.SlotArm.TabIndex = 3;
-            this.SlotArm.Click += new System.EventHandler(this.SlotArm_Click);
-            // 
-            // Slot3
-            // 
-            this.Slot3.Location = new System.Drawing.Point(614, 167);
-            this.Slot3.Name = "Slot3";
-            this.Slot3.Size = new System.Drawing.Size(150, 150);
-            this.Slot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Slot3.TabIndex = 2;
-            this.Slot3.TabStop = false;
-            // 
-            // Slot2
-            // 
-            this.Slot2.Location = new System.Drawing.Point(415, 167);
-            this.Slot2.Name = "Slot2";
-            this.Slot2.Size = new System.Drawing.Size(150, 150);
-            this.Slot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Slot2.TabIndex = 1;
-            this.Slot2.TabStop = false;
-            // 
-            // Slot1
-            // 
-            this.Slot1.Location = new System.Drawing.Point(209, 167);
-            this.Slot1.Name = "Slot1";
-            this.Slot1.Size = new System.Drawing.Size(150, 150);
-            this.Slot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Slot1.TabIndex = 0;
-            this.Slot1.TabStop = false;
-            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
@@ -858,6 +871,19 @@
             this.Text = "Snek Snak";
             this.snake_game_over.ResumeLayout(false);
             this.snake_game_over.PerformLayout();
+            this.titleScreen.ResumeLayout(false);
+            this.titleScreen.PerformLayout();
+            this.optionsPanel.ResumeLayout(false);
+            this.optionsPanel.PerformLayout();
+            this.apple_game_over.ResumeLayout(false);
+            this.apple_game_over.PerformLayout();
+            this.Slots.ResumeLayout(false);
+            this.Slots.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.map_preview)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
             this.gameScreen.ResumeLayout(false);
             this.gameScreen.PerformLayout();
             this.HS_P_TopScores.ResumeLayout(false);
@@ -865,18 +891,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.SFX_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BGM_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.turnIcon)).EndInit();
-            this.titleScreen.ResumeLayout(false);
-            this.titleScreen.PerformLayout();
-            this.optionsPanel.ResumeLayout(false);
-            this.optionsPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.map_preview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
-            this.apple_game_over.ResumeLayout(false);
-            this.apple_game_over.PerformLayout();
-            this.Slots.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Slot3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Slot2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Slot1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -944,6 +958,7 @@
         private System.Windows.Forms.PictureBox Slot3;
         private System.Windows.Forms.PictureBox Slot2;
         private System.Windows.Forms.PictureBox Slot1;
+        private System.Windows.Forms.Label Slot_Result;
     }
 }
 
