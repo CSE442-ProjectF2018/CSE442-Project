@@ -1034,7 +1034,7 @@ namespace GUIform
                     break;
                 case 3:
                     o_mapSel_label.Text = "3";
-                    map_preview.BackgroundImage = Image.FromFile(i_directory + "p_map_3.png");
+                    map_preview.BackgroundImage = Image.FromFile(i_directory + "p_map_1.png");
                     o_mapSel_right.Visible = true;
                     break;
             }

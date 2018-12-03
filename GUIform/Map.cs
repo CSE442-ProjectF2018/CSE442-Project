@@ -201,6 +201,7 @@ namespace GUIform
                     while (!FR.EndOfStream && y < 16)
                     {
                         string mapLine = FR.ReadLine();
+                        if(mapLine.Length < 16) mapLine = "00000000000000000000000000000";
                         for(int i = 0; i < 16; i++)
                         {
                             if (mapLine[i] == '1') _info[i, y] = 6;
