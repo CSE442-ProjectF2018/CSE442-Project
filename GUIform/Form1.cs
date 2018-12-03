@@ -355,6 +355,8 @@ namespace GUIform
                     BGM_Player.Ctlcontrols.stop();
                     play_SFX2("scream.wav");
                     //setPanel(snake_game_over);
+                    SlotArm.BackgroundImage = Image.FromFile(i_directory + "lever_up.png");
+                    Slots.BackgroundImage = Image.FromFile(i_directory + "slotmachine.png");
                     setPanel(Slots);
                     Image sm1 = Image.FromFile(sp_directory + "sm1.gif");
                     Image sm2 = Image.FromFile(sp_directory + "sm2.gif");
@@ -413,6 +415,8 @@ namespace GUIform
                 BGM_Player.Ctlcontrols.stop();
                 play_SFX2("scream.wav");
                 //setPanel(snake_game_over);
+                SlotArm.BackgroundImage = Image.FromFile(i_directory + "lever_up.png");
+                Slots.BackgroundImage = Image.FromFile(i_directory + "slotmachine.png");
                 setPanel(Slots);
                 Image sm1 = Image.FromFile(sp_directory + "sm1.gif");
                 Image sm2 = Image.FromFile(sp_directory + "sm2.gif");
@@ -438,6 +442,8 @@ namespace GUIform
 
             if (_slotsOpen)
             {
+                string resultText;
+
                 switch (_slotCounter)
                 {
                     case 0:
@@ -447,7 +453,7 @@ namespace GUIform
                         _smR_2 = rnd.Next(5);
                         _smR_3 = rnd.Next(5);
                         
-                        //_smR_1 = _smR_2 = _smR_3 = 4;
+                        //_smR_1 = _smR_2 = _smR_3 = 3;
                         break;
                     case 16:
                         Slot1.Image = Image.FromFile(sp_directory + "sm_" + _smR_1.ToString() + ".png");
@@ -466,11 +472,13 @@ namespace GUIform
                             {
                                 case 4:
                                     int temp = _m._points_total;
+                                    
                                     reset_to_gameScreen();
                                     _m._points_total = temp;
                                     PlayerScore.Text = temp.ToString();
                                     break;
                                 case 3:
+                                    
                                     _m._points_turn *= 3;
                                     _m._points_total += _m._points_turn;
 
@@ -484,6 +492,7 @@ namespace GUIform
                                     play_BGM("GameOverBGM.wav");
                                     break;
                                 case 2:
+                                    
                                     _m._points_turn *= 2;
                                     _m._points_total += _m._points_turn;
 
@@ -496,6 +505,7 @@ namespace GUIform
                                     play_BGM("GameOverBGM.wav");
                                     break;
                                 case 1:
+                                    
                                     _m._points_turn = (int)Math.Round(_m._points_turn * 1.5);
                                     _m._points_total += _m._points_turn;
 
@@ -508,6 +518,7 @@ namespace GUIform
                                     play_BGM("GameOverBGM.wav");
                                     break;
                                 default:
+                                    
                                     setPanel(snake_game_over);
                                     _l1 = _head;
                                     _l2 = _head;
@@ -520,7 +531,7 @@ namespace GUIform
                         }
                         else
                         {
-                            if (_smR_1 == 0 || _smR_2 == 0 || _smR_3 == 0)
+                            if (_smR_1 == 0 || _smR_2 == 0 || _smR_3 == 0 || true)
                             {
                                 setPanel(snake_game_over);
                                 _l1 = _head;
@@ -1047,10 +1058,16 @@ namespace GUIform
 
         private void SlotArm_Click(object sender, EventArgs e)
         {
+            SlotArm.BackgroundImage = Image.FromFile(i_directory + "lever_down.png");
             SlotArm.Enabled = false;
             play_SFX("scream.wav");
             _slotsOpen = true;
             _slotCounter = 0;
+        }
+
+        private void Slots_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
