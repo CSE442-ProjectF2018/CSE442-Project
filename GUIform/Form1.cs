@@ -29,8 +29,8 @@ namespace GUIform
         int _smR_1;
         int _smR_2;
         int _smR_3;
-        
-        
+
+
         //
         //IF YOU'RE ON CAMPUS, SET TRUE.
         //SET FALSE OTHERWISE.
@@ -447,7 +447,7 @@ namespace GUIform
                         _smR_2 = rnd.Next(5);
                         _smR_3 = rnd.Next(5);
                         
-                        //_smR_1 = _smR_2 = _smR_3 = 3;
+                        //_smR_1 = _smR_2 = _smR_3 = 4;
                         break;
                     case 16:
                         Slot1.Image = Image.FromFile(sp_directory + "sm_" + _smR_1.ToString() + ".png");
@@ -520,14 +520,21 @@ namespace GUIform
                         }
                         else
                         {
-                            setPanel(snake_game_over);
-                            _l1 = _head;
-                            _l2 = _head;
-                            _l3 = _head;
-                            HS_PlayerScore.Text = _m._points_total.ToString();
+                            if (_smR_1 == 0 || _smR_2 == 0 || _smR_3 == 0)
+                            {
+                                setPanel(snake_game_over);
+                                _l1 = _head;
+                                _l2 = _head;
+                                _l3 = _head;
+                                HS_PlayerScore.Text = _m._points_total.ToString();
 
-                            play_BGM("GameOverBGM.wav");
-                            
+                                play_BGM("GameOverBGM.wav");
+
+                            }else if ()
+                            {
+
+                            }
+
                         }
                         _slotsOpen = false;
                         SlotArm.Enabled = true;
