@@ -85,6 +85,11 @@
             this.game_over_label = new System.Windows.Forms.Label();
             this.Adocalypse = new System.Windows.Forms.Label();
             this.loading_screen = new System.Windows.Forms.Panel();
+            this.Slots = new System.Windows.Forms.Panel();
+            this.SlotArm = new System.Windows.Forms.Panel();
+            this.Slot3 = new System.Windows.Forms.PictureBox();
+            this.Slot2 = new System.Windows.Forms.PictureBox();
+            this.Slot1 = new System.Windows.Forms.PictureBox();
             this.snake_game_over.SuspendLayout();
             this.gameScreen.SuspendLayout();
             this.HS_P_TopScores.SuspendLayout();
@@ -96,6 +101,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.map_preview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.blink)).BeginInit();
             this.apple_game_over.SuspendLayout();
+            this.Slots.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1)).BeginInit();
             this.SuspendLayout();
             // 
             // snake_game_over
@@ -787,11 +796,60 @@
             this.loading_screen.Size = new System.Drawing.Size(200, 100);
             this.loading_screen.TabIndex = 0;
             // 
+            // Slots
+            // 
+            this.Slots.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.Slots.Controls.Add(this.SlotArm);
+            this.Slots.Controls.Add(this.Slot3);
+            this.Slots.Controls.Add(this.Slot2);
+            this.Slots.Controls.Add(this.Slot1);
+            this.Slots.Location = new System.Drawing.Point(1, 0);
+            this.Slots.Name = "Slots";
+            this.Slots.Size = new System.Drawing.Size(1137, 612);
+            this.Slots.TabIndex = 4;
+            // 
+            // SlotArm
+            // 
+            this.SlotArm.BackColor = System.Drawing.Color.Firebrick;
+            this.SlotArm.Location = new System.Drawing.Point(893, 97);
+            this.SlotArm.Name = "SlotArm";
+            this.SlotArm.Size = new System.Drawing.Size(164, 361);
+            this.SlotArm.TabIndex = 3;
+            this.SlotArm.Click += new System.EventHandler(this.SlotArm_Click);
+            // 
+            // Slot3
+            // 
+            this.Slot3.Location = new System.Drawing.Point(614, 167);
+            this.Slot3.Name = "Slot3";
+            this.Slot3.Size = new System.Drawing.Size(150, 150);
+            this.Slot3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot3.TabIndex = 2;
+            this.Slot3.TabStop = false;
+            // 
+            // Slot2
+            // 
+            this.Slot2.Location = new System.Drawing.Point(415, 167);
+            this.Slot2.Name = "Slot2";
+            this.Slot2.Size = new System.Drawing.Size(150, 150);
+            this.Slot2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot2.TabIndex = 1;
+            this.Slot2.TabStop = false;
+            // 
+            // Slot1
+            // 
+            this.Slot1.Location = new System.Drawing.Point(209, 167);
+            this.Slot1.Name = "Slot1";
+            this.Slot1.Size = new System.Drawing.Size(150, 150);
+            this.Slot1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Slot1.TabIndex = 0;
+            this.Slot1.TabStop = false;
+            // 
             // Game
             // 
             this.ClientSize = new System.Drawing.Size(1136, 609);
             this.Controls.Add(this.gameScreen);
             this.Controls.Add(this.apple_game_over);
+            this.Controls.Add(this.Slots);
             this.Controls.Add(this.titleScreen);
             this.Controls.Add(this.snake_game_over);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -815,6 +873,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.blink)).EndInit();
             this.apple_game_over.ResumeLayout(false);
             this.apple_game_over.PerformLayout();
+            this.Slots.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Slot3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Slot1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -877,6 +939,11 @@
         private System.Windows.Forms.Label TurnPoints;
         private System.Windows.Forms.ListBox asset_Pack_List;
         private System.Windows.Forms.Button o_RSP_Apply;
+        private System.Windows.Forms.Panel Slots;
+        private System.Windows.Forms.Panel SlotArm;
+        private System.Windows.Forms.PictureBox Slot3;
+        private System.Windows.Forms.PictureBox Slot2;
+        private System.Windows.Forms.PictureBox Slot1;
     }
 }
 

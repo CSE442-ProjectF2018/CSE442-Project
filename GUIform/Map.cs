@@ -339,7 +339,38 @@ namespace GUIform
                     continue;
                 }
             }
+
+            int openCount = 0;
+            for(int i = 0; i < 16; ++i)
+            {
+                for(int j = 0; j < 16; ++j)
+                {
+                    if(_info[i, j] == 0)
+                    {
+                        ++openCount;
+                    }
+                }
+            }
+            double openRatio = openCount / (double)256;
             
+            if(openRatio >= 0.95)
+            {
+                _growthRate = 5;
+            }else if(openRatio >= 0.90)
+            {
+                _growthRate = 4;
+            }else if(openRatio >= 0.85)
+            {
+                _growthRate = 3;
+            }else if(openRatio >= 0.80)
+            {
+                _growthRate = 2;
+            }
+            else
+            {
+                _growthRate = 1;
+            }
+
 
             trapGen(_maxTraps);
             coinGen(_maxCoins);

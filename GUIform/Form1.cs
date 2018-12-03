@@ -18,6 +18,17 @@ namespace GUIform
         bool _yourTurn = true;
         int _moveCounter = 0;
         int _tool_selection = 0;
+
+        //Enables the timer to control slots.
+        bool _slotsOpen = false;
+
+        //Determines when specific slot events will occur.
+        int _slotCounter = 0;
+
+        //Slot random results. 0 -> 4
+        int _smR_1;
+        int _smR_2;
+        int _smR_3;
         
         
         //
@@ -121,7 +132,7 @@ namespace GUIform
             //timer
 
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
-            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(100);
+            dispatcherTimer.Interval = TimeSpan.FromMilliseconds(88);
             
             
         }
@@ -235,6 +246,7 @@ namespace GUIform
             setPanel(titleScreen);
             play_BGM("BGM1.wav");
             _m = null;
+            dispatcherTimer.Stop();
 
         }
 
@@ -342,14 +354,27 @@ namespace GUIform
                 {
                     BGM_Player.Ctlcontrols.stop();
                     play_SFX2("scream.wav");
-                    setPanel(snake_game_over);
-                    _l1 = _head;
-                    _l2 = _head;
-                    _l3 = _head;
-                    HS_PlayerScore.Text = _m._points_total.ToString();
+                    //setPanel(snake_game_over);
+                    setPanel(Slots);
+                    Image sm1 = Image.FromFile(sp_directory + "sm1.gif");
+                    Image sm2 = Image.FromFile(sp_directory + "sm2.gif");
+                    Image sm3 = Image.FromFile(sp_directory + "sm3.gif");
+                    FrameDimension sm1_fdim = new FrameDimension(sm1.FrameDimensionsList[0]);
+                    FrameDimension sm2_fdim = new FrameDimension(sm2.FrameDimensionsList[0]);
+                    FrameDimension sm3_fdim = new FrameDimension(sm3.FrameDimensionsList[0]);
+                    int sm1_frames = sm1.GetFrameCount(sm1_fdim);
+                    int sm2_frames = sm2.GetFrameCount(sm2_fdim);
+                    int sm3_frames = sm3.GetFrameCount(sm3_fdim);
+                    Slot1.Image = sm1;
+                    Slot2.Image = sm2;
+                    Slot3.Image = sm3;
+                    Slot1.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    Slot2.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                    Slot3.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
 
-                    play_BGM("GameOverBGM.wav");
-                    dispatcherTimer.Stop();
+                    _m._snakeDeath = false;
+                    _yourTurn = true;
+                    //dispatcherTimer.Stop();
                 }
                 else if (_m._coinGet)
                 {
@@ -387,24 +412,141 @@ namespace GUIform
             {
                 BGM_Player.Ctlcontrols.stop();
                 play_SFX2("scream.wav");
-                setPanel(snake_game_over);
-                _l1 = _head;
-                _l2 = _head;
-                _l3 = _head;
-                HS_PlayerScore.Text = _m._points_total.ToString();
+                //setPanel(snake_game_over);
+                setPanel(Slots);
+                Image sm1 = Image.FromFile(sp_directory + "sm1.gif");
+                Image sm2 = Image.FromFile(sp_directory + "sm2.gif");
+                Image sm3 = Image.FromFile(sp_directory + "sm3.gif");
+                FrameDimension sm1_fdim = new FrameDimension(sm1.FrameDimensionsList[0]);
+                FrameDimension sm2_fdim = new FrameDimension(sm2.FrameDimensionsList[0]);
+                FrameDimension sm3_fdim = new FrameDimension(sm3.FrameDimensionsList[0]);
+                int sm1_frames = sm1.GetFrameCount(sm1_fdim);
+                int sm2_frames = sm2.GetFrameCount(sm2_fdim);
+                int sm3_frames = sm3.GetFrameCount(sm3_fdim);
+                Slot1.Image = sm1;
+                Slot2.Image = sm2;
+                Slot3.Image = sm3;
+                Slot1.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                Slot2.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+                Slot3.BackColor = System.Drawing.Color.FromArgb(0, 0, 0, 0);
 
-                play_BGM("GameOverBGM.wav");
-                dispatcherTimer.Stop();
+               
+                
+                _m._snakeDeath = false;
+                //dispatcherTimer.Stop();
+            }
+
+            if (_slotsOpen)
+            {
+                switch (_slotCounter)
+                {
+                    case 0:
+                        Random rnd = new Random();
+                        
+                        _smR_1 = rnd.Next(5);
+                        _smR_2 = rnd.Next(5);
+                        _smR_3 = rnd.Next(5);
+                        
+                        //_smR_1 = _smR_2 = _smR_3 = 3;
+                        break;
+                    case 16:
+                        Slot1.Image = Image.FromFile(sp_directory + "sm_" + _smR_1.ToString() + ".png");
+                        break;
+                    case 32:
+                        Slot2.Image = Image.FromFile(sp_directory + "sm_" + _smR_2.ToString() + ".png");
+                        break;
+                    case 48:
+                        Slot3.Image = Image.FromFile(sp_directory + "sm_" + _smR_3.ToString() + ".png");
+                        break;
+                    case 56:
+                        //If all 3 are equal.
+                        if(_smR_1 == _smR_2 && _smR_1 == _smR_3)
+                        {
+                            switch (_smR_1)
+                            {
+                                case 4:
+                                    int temp = _m._points_total;
+                                    reset_to_gameScreen();
+                                    _m._points_total = temp;
+                                    PlayerScore.Text = temp.ToString();
+                                    break;
+                                case 3:
+                                    _m._points_turn *= 3;
+                                    _m._points_total += _m._points_turn;
+
+                                    setPanel(snake_game_over);
+
+                                    _l1 = _head;
+                                    _l2 = _head;
+                                    _l3 = _head;
+                                    HS_PlayerScore.Text = _m._points_total.ToString();
+
+                                    play_BGM("GameOverBGM.wav");
+                                    break;
+                                case 2:
+                                    _m._points_turn *= 2;
+                                    _m._points_total += _m._points_turn;
+
+                                    setPanel(snake_game_over);
+                                    _l1 = _head;
+                                    _l2 = _head;
+                                    _l3 = _head;
+                                    HS_PlayerScore.Text = _m._points_total.ToString();
+
+                                    play_BGM("GameOverBGM.wav");
+                                    break;
+                                case 1:
+                                    _m._points_turn = (int)Math.Round(_m._points_turn * 1.5);
+                                    _m._points_total += _m._points_turn;
+
+                                    setPanel(snake_game_over);
+                                    _l1 = _head;
+                                    _l2 = _head;
+                                    _l3 = _head;
+                                    HS_PlayerScore.Text = _m._points_total.ToString();
+
+                                    play_BGM("GameOverBGM.wav");
+                                    break;
+                                default:
+                                    setPanel(snake_game_over);
+                                    _l1 = _head;
+                                    _l2 = _head;
+                                    _l3 = _head;
+                                    HS_PlayerScore.Text = _m._points_total.ToString();
+
+                                    play_BGM("GameOverBGM.wav");
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            setPanel(snake_game_over);
+                            _l1 = _head;
+                            _l2 = _head;
+                            _l3 = _head;
+                            HS_PlayerScore.Text = _m._points_total.ToString();
+
+                            play_BGM("GameOverBGM.wav");
+                            
+                        }
+                        _slotsOpen = false;
+                        SlotArm.Enabled = true;
+                        break;
+
+
+                }
+
+                ++_slotCounter;
             }
 
 
-
+            /*
                 cf += 1;
             if (cf >= frames) cf = 0;
             coin_pic.Image.SelectActiveFrame(fdim, cf);
 
             coin_pic.Image = (Image)coin_pic.Image.Clone();
-
+            */
 
         }
         
@@ -894,6 +1036,14 @@ namespace GUIform
             map_preview.BackgroundImage = Image.FromFile(i_directory + "p_map_random.png");
             o_mapSel_left.Visible = true;
             o_mapSel_right.Visible = true;
+        }
+
+        private void SlotArm_Click(object sender, EventArgs e)
+        {
+            SlotArm.Enabled = false;
+            play_SFX("scream.wav");
+            _slotsOpen = true;
+            _slotCounter = 0;
         }
     }
 }
