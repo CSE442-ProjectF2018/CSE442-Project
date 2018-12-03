@@ -530,7 +530,7 @@ namespace GUIform
 
                                 play_BGM("GameOverBGM.wav");
 
-                            }else if ()
+                            }else if (false)
                             {
 
                             }
